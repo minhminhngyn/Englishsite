@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LexiViet – Luyện Từ Vựng Tiếng Anh</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0a0f0a; --surface:#111911; --surface2:#192119; --surface3:#1f2a1f;
+  --border:rgba(180,220,120,0.08); --border2:rgba(180,220,120,0.18);
+  --text:#e8f0dc; --muted:#7a9060;
+  --accent:#a8e063; --accent2:#f0c040; --red:#ff6b6b; --green:#5effa0; --blue:#60c8f0;
+  --glow:0 0 24px rgba(168,224,99,0.25); --glow-gold:0 0 24px rgba(240,192,64,0.3);
+  --radius:18px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+
+.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(168,224,99,.03)1px,transparent 1px),linear-gradient(90deg,rgba(168,224,99,.03)1px,transparent 1px);
+  background-size:40px 40px;}
+.bg-glow{position:fixed;width:600px;height:600px;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0;}
+.bg-glow-1{background:rgba(168,224,99,.06);top:-200px;left:-100px;}
+.bg-glow-2{background:rgba(240,192,64,.05);bottom:-200px;right:-100px;}
+
+.app{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:0 20px 80px;}
+
+/* HEADER */
+header{display:flex;align-items:center;justify-content:space-between;padding:28px 0 24px;
+  border-bottom:.5px solid var(--border2);margin-bottom:40px;gap:16px;flex-wrap:wrap;}
+.logo{display:flex;align-items:center;gap:12px;font-family:'Fraunces',serif;font-size:24px;font-weight:900;letter-spacing:-.5px;}
+.logo-mark{width:40px;height:40px;background:var(--accent);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:var(--glow);}
+.logo em{font-style:normal;color:var(--accent);}
+.hud{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.hud-pill{display:flex;align-items:center;gap:8px;background:var(--surface2);border:.5px solid var(--border2);border-radius:999px;padding:7px 16px;font-size:13px;font-weight:600;}
+.xp-track{width:100px;height:5px;background:var(--surface3);border-radius:3px;overflow:hidden;}
+.xp-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:3px;transition:width .6s cubic-bezier(.34,1.56,.64,1);width:0%;}
+.streak-val{color:var(--accent2);font-family:'Fraunces',serif;font-weight:700;}
+.xp-val{color:var(--accent);font-family:'Fraunces',serif;font-weight:700;font-size:12px;}
+.lvl-badge{background:var(--accent);color:var(--bg);border-radius:999px;padding:3px 10px;font-size:11px;font-weight:700;}
+
+/* SCREENS */
+#screen-home,#screen-game,#screen-end{display:none;}
+#screen-home.active,#screen-game.active,#screen-end.active{display:block;animation:slideUp .45s cubic-bezier(.22,1,.36,1) both;}
+@keyframes slideUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+
+/* HOME */
+.hero{text-align:center;margin-bottom:44px;}
+.hero-tag{display:inline-block;background:rgba(168,224,99,.12);border:.5px solid rgba(168,224,99,.3);border-radius:999px;padding:5px 16px;font-size:12px;font-weight:600;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px;}
+.hero h1{font-family:'Fraunces',serif;font-size:clamp(36px,7vw,62px);font-weight:900;letter-spacing:-2px;line-height:.95;margin-bottom:16px;}
+.hero h1 .line2{color:var(--accent);display:block;}
+.hero p{color:var(--muted);font-size:15px;line-height:1.7;max-width:440px;margin:0 auto 28px;}
+.stats-row{display:flex;gap:28px;justify-content:center;}
+.stat-item{text-align:center;}
+.stat-n{font-family:'Fraunces',serif;font-size:28px;font-weight:900;color:var(--accent2);}
+.stat-l{font-size:12px;color:var(--muted);margin-top:2px;}
+
+.section-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.topics-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;}
+.topic-pill{padding:8px 18px;border-radius:999px;border:.5px solid var(--border2);background:var(--surface);color:var(--muted);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;}
+.topic-pill:hover{color:var(--text);border-color:rgba(168,224,99,.4);}
+.topic-pill.active{background:var(--accent);color:var(--bg);border-color:var(--accent);box-shadow:var(--glow);}
+
+.modes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;}
+.mode-card{background:var(--surface);border:.5px solid var(--border2);border-radius:var(--radius);padding:26px 22px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;}
+.mode-card::before{content:'';position:absolute;inset:0;border-radius:var(--radius);opacity:0;transition:opacity .3s;}
+.mode-card.cg::before{background:radial-gradient(circle at top left,rgba(168,224,99,.12),transparent 65%);}
+.mode-card.co::before{background:radial-gradient(circle at top left,rgba(240,192,64,.12),transparent 65%);}
+.mode-card.cb::before{background:radial-gradient(circle at top left,rgba(96,200,240,.12),transparent 65%);}
+.mode-card.cr::before{background:radial-gradient(circle at top left,rgba(255,107,107,.12),transparent 65%);}
+.mode-card:hover{transform:translateY(-5px);}
+.mode-card:hover::before{opacity:1;}
+.mode-card:hover.cg{border-color:rgba(168,224,99,.4);box-shadow:var(--glow);}
+.mode-card:hover.co{border-color:rgba(240,192,64,.4);box-shadow:var(--glow-gold);}
+.mode-icon{font-size:30px;margin-bottom:14px;display:block;}
+.mode-badge{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
+.cg .mode-badge{color:var(--accent);} .co .mode-badge{color:var(--accent2);} .cb .mode-badge{color:var(--blue);} .cr .mode-badge{color:var(--red);}
+.mode-name{font-family:'Fraunces',serif;font-size:19px;font-weight:700;margin-bottom:8px;}
+.mode-desc{font-size:13px;color:var(--muted);line-height:1.5;}
+.mode-xp{margin-top:14px;font-size:11px;font-weight:700;}
+.cg .mode-xp{color:var(--accent);} .co .mode-xp{color:var(--accent2);} .cb .mode-xp{color:var(--blue);} .cr .mode-xp{color:var(--red);}
+
+/* GAME */
+.game-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;gap:12px;}
+.back-btn{background:var(--surface);border:.5px solid var(--border2);border-radius:12px;padding:9px 18px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;transition:all .2s;}
+.back-btn:hover{color:var(--text);}
+.mode-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+.game-meta{display:flex;align-items:center;gap:14px;}
+.q-count{font-family:'Fraunces',serif;font-size:14px;color:var(--muted);}
+.q-count span{color:var(--text);font-weight:700;}
+
+.timer-wrap{position:relative;width:50px;height:50px;}
+.timer-wrap svg{transform:rotate(-90deg);}
+.timer-arc{transition:stroke-dashoffset 1s linear;}
+.timer-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:14px;font-weight:700;}
+
+.prog-dots{display:flex;gap:5px;justify-content:center;margin-bottom:18px;}
+.pdot{height:4px;width:20px;border-radius:2px;background:var(--surface3);transition:all .3s;}
+.pdot.ok{background:var(--green);} .pdot.no{background:var(--red);width:8px;} .pdot.cur{background:var(--accent);}
+
+.score-mini{display:flex;gap:14px;margin-bottom:18px;}
+.s-pill{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--muted);}
+.s-dot{width:8px;height:8px;border-radius:50%;}
+.s-green{background:var(--green);} .s-red{background:var(--red);}
+
+.word-card{background:var(--surface);border:.5px solid var(--border2);border-radius:24px;padding:36px 32px 28px;text-align:center;margin-bottom:16px;transition:border-color .3s,box-shadow .3s;position:relative;overflow:hidden;}
+.word-card::before{content:'';position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:280px;height:180px;background:radial-gradient(circle,rgba(168,224,99,.06),transparent 70%);pointer-events:none;}
+.word-card.flash-ok{border-color:var(--green);box-shadow:0 0 24px rgba(94,255,160,.3);}
+.word-card.flash-no{border-color:var(--red);box-shadow:0 0 24px rgba(255,107,107,.3);}
+.word-level{display:inline-flex;align-items:center;background:rgba(168,224,99,.1);border:.5px solid rgba(168,224,99,.25);border-radius:999px;padding:3px 12px;font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.06em;text-transform:uppercase;margin-bottom:16px;}
+.word-type{font-size:12px;color:var(--muted);font-weight:600;font-style:italic;margin-bottom:6px;}
+.word-main{font-family:'Fraunces',serif;font-size:clamp(32px,6vw,52px);font-weight:900;letter-spacing:-1.5px;line-height:1;margin-bottom:8px;}
+.word-phonetic{font-size:14px;color:var(--blue);margin-bottom:14px;font-weight:500;}
+.word-prompt{font-size:15px;color:var(--muted);line-height:1.6;max-width:500px;margin:0 auto;}
+
+.opts-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.opt{background:var(--surface);border:.5px solid var(--border2);border-radius:16px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;color:var(--text);cursor:pointer;text-align:left;line-height:1.4;transition:all .18s;}
+.opt-key{width:28px;height:28px;border-radius:8px;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--muted);flex-shrink:0;transition:all .18s;font-family:'Fraunces',serif;}
+.opt:hover:not(:disabled){border-color:rgba(168,224,99,.4);background:rgba(168,224,99,.05);}
+.opt:hover:not(:disabled) .opt-key{background:rgba(168,224,99,.2);color:var(--accent);}
+.opt.opt-ok{border-color:var(--green);background:rgba(94,255,160,.07);color:var(--green);}
+.opt.opt-ok .opt-key{background:var(--green);color:var(--bg);border-color:var(--green);}
+.opt.opt-no{border-color:var(--red);background:rgba(255,107,107,.07);color:var(--red);}
+.opt.opt-no .opt-key{background:var(--red);color:var(--bg);border-color:var(--red);}
+.opt:disabled{cursor:default;}
+
+.scr-wrap{margin-bottom:16px;}
+.ans-slots{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:16px;}
+.slot{width:42px;height:50px;border-bottom:2.5px solid var(--accent);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--accent);cursor:pointer;transition:all .15s;}
+.slot.empty{opacity:.3;}
+.slot:not(.empty):hover{border-color:var(--red);color:var(--red);}
+.tile-row{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;}
+.tile{width:42px;height:50px;background:var(--surface2);border:.5px solid var(--border2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:20px;font-weight:700;cursor:pointer;transition:all .15s;user-select:none;}
+.tile:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px);}
+.tile.used{opacity:.2;pointer-events:none;}
+
+.match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
+.match-col-head{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.match-items{display:flex;flex-direction:column;gap:8px;}
+.match-item{background:var(--surface);border:.5px solid var(--border2);border-radius:14px;padding:12px 16px;font-size:13px;font-weight:600;cursor:pointer;text-align:center;transition:all .18s;user-select:none;line-height:1.4;}
+.match-item:hover{border-color:rgba(168,224,99,.4);color:var(--accent);}
+.match-item.sel{background:rgba(168,224,99,.12);border-color:var(--accent);color:var(--accent);}
+.match-item.matched{background:rgba(94,255,160,.08);border-color:var(--green);color:var(--green);pointer-events:none;opacity:.7;}
+.match-item.wrong{background:rgba(255,107,107,.08);border-color:var(--red);color:var(--red);}
+
+.fb-bar{border-radius:14px;padding:14px 18px;display:none;align-items:flex-start;gap:12px;font-size:14px;font-weight:600;line-height:1.5;margin-bottom:14px;}
+.fb-bar.show{display:flex;}
+.fb-bar.ok{background:rgba(94,255,160,.08);border:.5px solid rgba(94,255,160,.4);color:var(--green);}
+.fb-bar.no{background:rgba(255,107,107,.08);border:.5px solid rgba(255,107,107,.4);color:var(--red);}
+.fb-icon{font-size:20px;flex-shrink:0;}
+.fb-body{flex:1;}
+.fb-main{margin-bottom:3px;}
+.fb-vn{font-size:12px;opacity:.85;font-weight:400;}
+.fb-syn{font-size:11px;color:var(--blue);margin-top:4px;font-weight:500;}
+
+.next-btn{width:100%;display:none;background:var(--surface2);border:.5px solid var(--border2);border-radius:14px;padding:16px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:var(--text);cursor:pointer;transition:all .2s;}
+.next-btn.show{display:block;}
+.next-btn:hover{background:var(--surface3);border-color:rgba(255,255,255,.15);}
+
+/* END */
+.end-card{background:var(--surface);border:.5px solid var(--border2);border-radius:28px;padding:48px 40px;text-align:center;position:relative;overflow:hidden;}
+.end-card::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:320px;height:320px;background:radial-gradient(circle,rgba(168,224,99,.1),transparent 70%);pointer-events:none;}
+.end-emoji{font-size:64px;margin-bottom:10px;}
+.end-title{font-family:'Fraunces',serif;font-size:34px;font-weight:900;letter-spacing:-1px;margin-bottom:8px;}
+.end-sub{color:var(--muted);font-size:15px;margin-bottom:36px;}
+.end-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:36px;}
+.end-stat{background:var(--surface2);border-radius:16px;padding:20px 14px;}
+.end-stat-n{font-family:'Fraunces',serif;font-size:30px;font-weight:900;margin-bottom:4px;}
+.end-stat-l{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;}
+.end-actions{display:flex;gap:12px;justify-content:center;}
+.btn-main{background:var(--accent);border:none;border-radius:14px;padding:14px 32px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:var(--bg);cursor:pointer;box-shadow:var(--glow);transition:all .2s;}
+.btn-main:hover{transform:translateY(-2px);}
+.btn-ghost{background:transparent;border:.5px solid var(--border2);border-radius:14px;padding:14px 32px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:var(--muted);cursor:pointer;transition:all .2s;}
+.btn-ghost:hover{color:var(--text);border-color:rgba(255,255,255,.2);}
+
+/* particles */
+.ptcl{position:fixed;pointer-events:none;font-size:18px;z-index:999;animation:ptclFly .9s ease forwards;}
+@keyframes ptclFly{from{opacity:1;transform:translate(0,0) scale(1);}to{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.2);}}
+.xp-pop{position:fixed;pointer-events:none;font-family:'Fraunces',serif;font-size:14px;font-weight:700;color:var(--accent);z-index:999;animation:xpFloat 1.2s ease forwards;}
+@keyframes xpFloat{from{opacity:1;transform:translateY(0) scale(1);}to{opacity:0;transform:translateY(-70px) scale(.8);}}
+
+@media(max-width:580px){
+  .opts-grid{grid-template-columns:1fr;}
+  .match-wrap{grid-template-columns:1fr;}
+  .end-stats{grid-template-columns:1fr;}
+  .end-actions{flex-direction:column;}
+  .modes-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:400px){.modes-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="bg-glow bg-glow-1"></div>
+<div class="bg-glow bg-glow-2"></div>
+
+<div class="app">
+<header>
+  <div class="logo"><div class="logo-mark">🌿</div>Lexi<em>Viet</em></div>
+  <div class="hud">
+    <div class="hud-pill">
+      <span class="lvl-badge" id="lvl-badge">Lv.1</span>
+      <div class="xp-track"><div class="xp-fill" id="xp-fill"></div></div>
+      <span class="xp-val" id="xp-val">0 XP</span>
+    </div>
+    <div class="hud-pill">🔥 <span class="streak-val" id="streak-val">0</span></div>
+  </div>
+</header>
+
+<!-- HOME -->
+<div id="screen-home">
+  <div class="hero">
+    <div class="hero-tag">🇻🇳 Dành cho học sinh Việt Nam</div>
+    <h1>Luyện từ vựng<span class="line2">thông minh hơn.</span></h1>
+    <p>Từ vựng tiếng Anh trọng tâm cho kỳ thi THPT & ĐGNL 2026 — biên soạn bởi Cô Vũ Thị Mai Phương.</p>
+    <div class="stats-row">
+      <div class="stat-item"><div class="stat-n">100+</div><div class="stat-l">Từ vựng</div></div>
+      <div class="stat-item"><div class="stat-n">4</div><div class="stat-l">Chế độ chơi</div></div>
+      <div class="stat-item"><div class="stat-n">C1–C2</div><div class="stat-l">Cấp độ</div></div>
+    </div>
+  </div>
+
+  <div class="section-label">📚 Chọn chủ đề</div>
+  <div class="topics-row" id="topics-row">
+    <button class="topic-pill active" data-cat="all">Tất cả</button>
+    <button class="topic-pill" data-cat="sgk">SGK mở rộng</button>
+    <button class="topic-pill" data-cat="advanced">Từ nâng cao C1-C2</button>
+    <button class="topic-pill" data-cat="collocation">Collocation</button>
+    <button class="topic-pill" data-cat="phrasal">Phrasal Verbs</button>
+  </div>
+
+  <div class="section-label" style="margin-top:8px">🎮 Chọn chế độ chơi</div>
+  <div class="modes-grid">
+    <div class="mode-card cg" data-mode="quiz">
+      <span class="mode-icon">⚡</span>
+      <div class="mode-badge">Cổ điển</div>
+      <div class="mode-name">Trắc nghiệm</div>
+      <div class="mode-desc">Xem từ tiếng Anh, chọn nghĩa tiếng Việt đúng trong 4 đáp án.</div>
+      <div class="mode-xp">+10 XP / câu đúng</div>
+    </div>
+    <div class="mode-card co" data-mode="vn2en">
+      <span class="mode-icon">🔄</span>
+      <div class="mode-badge">Dịch ngược</div>
+      <div class="mode-name">Việt → Anh</div>
+      <div class="mode-desc">Đọc nghĩa tiếng Việt, chọn từ tiếng Anh tương ứng — khó hơn!</div>
+      <div class="mode-xp">+15 XP / câu đúng</div>
+    </div>
+    <div class="mode-card cb" data-mode="scramble">
+      <span class="mode-icon">🔀</span>
+      <div class="mode-badge">Ghép chữ</div>
+      <div class="mode-name">Xếp chữ cái</div>
+      <div class="mode-desc">Đọc nghĩa tiếng Việt, sắp xếp các chữ cái thành từ đúng.</div>
+      <div class="mode-xp">+18 XP / câu đúng</div>
+    </div>
+    <div class="mode-card cr" data-mode="match">
+      <span class="mode-icon">🎯</span>
+      <div class="mode-badge">Nối từ</div>
+      <div class="mode-name">Ghép đôi</div>
+      <div class="mode-desc">Nối từ tiếng Anh với nghĩa tiếng Việt. Không được sai!</div>
+      <div class="mode-xp">+12 XP / cặp đúng</div>
+    </div>
+  </div>
+</div>
+
+<!-- GAME -->
+<div id="screen-game">
+  <div class="game-bar">
+    <button class="back-btn" id="back-btn">← Quay lại</button>
+    <span class="mode-label" id="mode-label-txt">Trắc nghiệm</span>
+    <div class="game-meta">
+      <span class="q-count"><span id="q-cur">1</span> / <span id="q-tot">8</span></span>
+      <div class="timer-wrap">
+        <svg width="50" height="50" viewBox="0 0 50 50">
+          <circle cx="25" cy="25" r="20" fill="none" stroke="#192119" stroke-width="4"/>
+          <circle class="timer-arc" id="timer-arc" cx="25" cy="25" r="20"
+            fill="none" stroke="#a8e063" stroke-width="4"
+            stroke-linecap="round" stroke-dasharray="125.6" stroke-dashoffset="0"/>
+        </svg>
+        <div class="timer-num" id="timer-num">15</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="score-mini">
+    <div class="s-pill"><span class="s-dot s-green"></span><span id="sc-ok">0 đúng</span></div>
+    <div class="s-pill"><span class="s-dot s-red"></span><span id="sc-no">0 sai</span></div>
+  </div>
+
+  <div class="prog-dots" id="prog-dots"></div>
+
+  <div id="card-wrap">
+    <div class="word-card" id="word-card">
+      <div class="word-level" id="word-level">B2</div>
+      <div class="word-type" id="word-type">noun</div>
+      <div class="word-main" id="word-main">resilience</div>
+      <div class="word-phonetic" id="word-phonetic">/rɪˈzɪliəns/</div>
+      <div class="word-prompt" id="word-prompt">Chọn nghĩa tiếng Việt đúng:</div>
+    </div>
+    <div class="opts-grid" id="opts-grid"></div>
+    <div class="scr-wrap" id="scr-wrap" style="display:none">
+      <div class="ans-slots" id="ans-slots"></div>
+      <div class="tile-row" id="tile-row"></div>
+    </div>
+  </div>
+
+  <div id="match-area" style="display:none">
+    <div class="match-wrap">
+      <div>
+        <div class="match-col-head">Từ tiếng Anh</div>
+        <div class="match-items" id="match-words"></div>
+      </div>
+      <div>
+        <div class="match-col-head">Nghĩa tiếng Việt</div>
+        <div class="match-items" id="match-defs"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fb-bar" id="fb-bar">
+    <span class="fb-icon" id="fb-icon"></span>
+    <div class="fb-body">
+      <div class="fb-main" id="fb-main"></div>
+      <div class="fb-vn" id="fb-vn"></div>
+      <div class="fb-syn" id="fb-syn"></div>
+    </div>
+  </div>
+  <button class="next-btn" id="next-btn">Tiếp theo →</button>
+</div>
+
+<!-- END -->
+<div id="screen-end">
+  <div class="end-card">
+    <div class="end-emoji" id="end-emoji">🏆</div>
+    <div class="end-title" id="end-title">Xuất sắc!</div>
+    <div class="end-sub" id="end-sub">Bạn đã hoàn thành vòng học.</div>
+    <div class="end-stats">
+      <div class="end-stat"><div class="end-stat-n" id="es-cor" style="color:var(--green)">—</div><div class="end-stat-l">Đúng</div></div>
+      <div class="end-stat"><div class="end-stat-n" id="es-acc" style="color:var(--accent)">—</div><div class="end-stat-l">Chính xác</div></div>
+      <div class="end-stat"><div class="end-stat-n" id="es-xp" style="color:var(--accent2)">—</div><div class="end-stat-l">XP kiếm được</div></div>
+    </div>
+    <div class="end-actions">
+      <button class="btn-main" id="replay-btn">Chơi lại</button>
+      <button class="btn-ghost" id="home2-btn">Đổi chế độ</button>
+    </div>
+  </div>
+</div>
+</div><!-- .app -->
+
+<script>
+/* ════ DATA ════ */
+const WORDS = {
+  sgk: [
+    {w:'adulthood',    vn:'tuổi trưởng thành',              ph:'/ˈædʌlthʊd/',    type:'n',   lvl:'B2', syn:'maturity'},
+    {w:'ambitious',    vn:'đầy tham vọng',                  ph:'/æmˈbɪʃəs/',     type:'adj', lvl:'B2', syn:'aspiring'},
+    {w:'anxious',      vn:'lo lắng, bồn chồn',              ph:'/ˈæŋkʃəs/',      type:'adj', lvl:'B1', syn:'worried, nervous'},
+    {w:'assistance',   vn:'sự hỗ trợ, giúp đỡ',            ph:'/əˈsɪstəns/',    type:'n',   lvl:'B2', syn:'help, support'},
+    {w:'cautious',     vn:'thận trọng',                     ph:'/ˈkɔːʃəs/',      type:'adj', lvl:'B2', syn:'careful, wary'},
+    {w:'commitment',   vn:'sự cam kết, tận tâm',            ph:'/kəˈmɪtmənt/',   type:'n',   lvl:'B2', syn:'dedication'},
+    {w:'competence',   vn:'năng lực, khả năng',             ph:'/ˈkɒmpɪtəns/',   type:'n',   lvl:'C1', syn:'capability, ability'},
+    {w:'concern',      vn:'mối lo ngại',                    ph:'/kənˈsɜːn/',     type:'n',   lvl:'B2', syn:'worry, apprehension'},
+    {w:'consistency',  vn:'sự nhất quán, sự kiên định',     ph:'/kənˈsɪstənsi/', type:'n',   lvl:'C1', syn:'steadfastness'},
+    {w:'demanding',    vn:'đòi hỏi cao, khó khăn',          ph:'/dɪˈmɑːndɪŋ/',  type:'adj', lvl:'B2', syn:'challenging, taxing'},
+    {w:'desperate',    vn:'tuyệt vọng',                     ph:'/ˈdespərət/',    type:'adj', lvl:'B2', syn:'hopeless'},
+    {w:'enhance',      vn:'nâng cao, tăng cường',           ph:'/ɪnˈhɑːns/',     type:'v',   lvl:'B2', syn:'improve, boost'},
+    {w:'essential',    vn:'cần thiết, thiết yếu',           ph:'/ɪˈsenʃl/',      type:'adj', lvl:'B1', syn:'vital, crucial'},
+    {w:'evolve',       vn:'phát triển, tiến hóa',           ph:'/ɪˈvɒlv/',       type:'v',   lvl:'C1', syn:'develop, grow'},
+    {w:'expert',       vn:'chuyên gia',                     ph:'/ˈekspɜːt/',     type:'n',   lvl:'B1', syn:'specialist, master'},
+    {w:'firm',         vn:'kiên quyết',                     ph:'/fɜːm/',         type:'adj', lvl:'B2', syn:'resolute, determined'},
+    {w:'genuine',      vn:'chân thật, thật sự',             ph:'/ˈdʒenjuɪn/',    type:'adj', lvl:'B2', syn:'sincere, authentic'},
+    {w:'hopeful',      vn:'đầy hy vọng',                    ph:'/ˈhəʊpfl/',      type:'adj', lvl:'B1', syn:'optimistic'},
+    {w:'implement',    vn:'thực hiện, thi hành',            ph:'/ˈɪmplɪment/',   type:'v',   lvl:'B2', syn:'execute, carry out'},
+    {w:'innovation',   vn:'sự đổi mới, sự sáng tạo',       ph:'/ˌɪnəˈveɪʃn/',   type:'n',   lvl:'C1', syn:'creativity, novelty'},
+    {w:'mindful',      vn:'lưu tâm, chú ý',                 ph:'/ˈmaɪndfl/',     type:'adj', lvl:'B2', syn:'thoughtful, aware'},
+    {w:'noticeable',   vn:'đáng chú ý, dễ nhận thấy',      ph:'/ˈnəʊtɪsəbl/',   type:'adj', lvl:'B2', syn:'evident, obvious'},
+    {w:'prioritise',   vn:'ưu tiên',                        ph:'/praɪˈɒrɪtaɪz/', type:'v',   lvl:'B2', syn:'put first'},
+    {w:'promote',      vn:'thúc đẩy, quảng bá',             ph:'/prəˈməʊt/',     type:'v',   lvl:'B2', syn:'foster, encourage'},
+    {w:'resilience',   vn:'khả năng phục hồi, sự kiên cường',ph:'/rɪˈzɪliəns/', type:'n',   lvl:'C2', syn:'toughness'},
+    {w:'sustainability',vn:'sự bền vững',                   ph:'/səˌsteɪnəˈbɪləti/',type:'n',lvl:'C2',syn:'durability'},
+    {w:'tension',      vn:'sự căng thẳng, áp lực',          ph:'/ˈtenʃn/',       type:'n',   lvl:'B2', syn:'stress, strain'},
+    {w:'urgent',       vn:'khẩn cấp',                       ph:'/ˈɜːdʒənt/',     type:'adj', lvl:'B1', syn:'pressing, critical'},
+    {w:'valuable',     vn:'có giá trị',                     ph:'/ˈvæljuəbl/',    type:'adj', lvl:'B2', syn:'precious, worthwhile'},
+    {w:'verify',       vn:'xác minh, kiểm chứng',           ph:'/ˈverɪfaɪ/',     type:'v',   lvl:'C1', syn:'confirm, authenticate'},
+    {w:'vulnerable',   vn:'dễ bị tổn thương',               ph:'/ˈvʌlnərəbl/',   type:'adj', lvl:'C1', syn:'susceptible, fragile'},
+    {w:'contaminate',  vn:'làm ô nhiễm',                    ph:'/kənˈtæmɪneɪt/', type:'v',   lvl:'C1', syn:'pollute'},
+    {w:'decompose',    vn:'phân hủy',                       ph:'/ˌdiːkəmˈpəʊz/', type:'v',   lvl:'C1', syn:'decay, rot'},
+    {w:'degradation',  vn:'sự suy thoái, sự hủy hoại',     ph:'/deɡrəˈdeɪʃən/', type:'n',   lvl:'C1', syn:'deterioration'},
+    {w:'durable',      vn:'bền bỉ, lâu dài',                ph:'/ˈdjʊərəbl/',    type:'adj', lvl:'B2', syn:'long-lasting'},
+    {w:'transformation',vn:'sự biến đổi, chuyển đổi',      ph:'/ˌtrænsfəˈmeɪʃən/',type:'n',lvl:'C1',syn:'change, conversion'},
+    {w:'transparency', vn:'tính minh bạch, rõ ràng',        ph:'/trænsˈpærənsi/',type:'n',   lvl:'C1', syn:'clarity, openness'},
+    {w:'synthetic',    vn:'tổng hợp, nhân tạo',             ph:'/sɪnˈθetɪk/',    type:'adj', lvl:'C1', syn:'artificial, man-made'},
+    {w:'upcycling',    vn:'tái chế sáng tạo',               ph:'/ˌʌpˈsaɪklɪŋ/', type:'n',   lvl:'C1', syn:'creative recycling'},
+    {w:'scam',         vn:'trò lừa đảo',                    ph:'/skæm/',         type:'n',   lvl:'C1', syn:'fraud, hoax'},
+    {w:'scammer',      vn:'kẻ lừa đảo',                     ph:'/ˈskæmər/',      type:'n',   lvl:'C1', syn:'fraudster'},
+  ],
+  advanced: [
+    {w:'accountability',vn:'trách nhiệm giải trình',        ph:'/əˌkaʊntəˈbɪləti/',type:'n',lvl:'C1',syn:'responsibility'},
+    {w:'adaptability', vn:'khả năng thích nghi',            ph:'/əˌdæptəˈbɪləti/',type:'n',lvl:'C1',syn:'flexibility'},
+    {w:'aggression',   vn:'sự hung hăng, hiếu chiến',       ph:'/əˈɡreʃn/',      type:'n',   lvl:'C1', syn:'hostility'},
+    {w:'aspiration',   vn:'khát vọng, nguyện vọng',         ph:'/ˌæspəˈreɪʃn/',  type:'n',   lvl:'C1', syn:'ambition'},
+    {w:'avoidance',    vn:'sự né tránh',                    ph:'/əˈvɔɪdəns/',    type:'n',   lvl:'C1', syn:'evasion'},
+    {w:'burden',       vn:'gánh nặng',                      ph:'/ˈbɜːdn/',       type:'n',   lvl:'C1', syn:'load, weight'},
+    {w:'captivity',    vn:'tình trạng bị giam cầm',         ph:'/kæpˈtɪvəti/',   type:'n',   lvl:'C1', syn:'confinement'},
+    {w:'collective',   vn:'tập thể, chung',                 ph:'/kəˈlektɪv/',    type:'adj', lvl:'C1', syn:'joint, shared'},
+    {w:'dignity',      vn:'phẩm giá, sự cao quý',           ph:'/ˈdɪɡnəti/',     type:'n',   lvl:'C1', syn:'honour, pride'},
+    {w:'disrupt',      vn:'làm gián đoạn, phá vỡ',          ph:'/dɪsˈrʌpt/',     type:'v',   lvl:'C1', syn:'disturb, interrupt'},
+    {w:'distress',     vn:'nỗi đau khổ, phiền muộn',        ph:'/dɪˈstres/',     type:'n',   lvl:'C1', syn:'anguish, suffering'},
+    {w:'drawback',     vn:'hạn chế, nhược điểm',            ph:'/ˈdrɔːbæk/',     type:'n',   lvl:'C1', syn:'disadvantage'},
+    {w:'efficiency',   vn:'sự hiệu quả',                    ph:'/ɪˈfɪʃnsi/',     type:'n',   lvl:'C1', syn:'effectiveness'},
+    {w:'empower',      vn:'trao quyền, làm cho mạnh hơn',   ph:'/ɪmˈpaʊər/',     type:'v',   lvl:'C1', syn:'authorize, enable'},
+    {w:'empathy',      vn:'sự đồng cảm',                    ph:'/ˈempəθi/',      type:'n',   lvl:'C2', syn:'compassion'},
+    {w:'equity',       vn:'sự công bằng',                   ph:'/ˈekwəti/',      type:'n',   lvl:'C1', syn:'fairness, justice'},
+    {w:'exacerbate',   vn:'làm trầm trọng thêm',            ph:'/ɪɡˈzæsəbeɪt/',  type:'v',   lvl:'C1', syn:'worsen, aggravate'},
+    {w:'flawless',     vn:'hoàn hảo, không tì vết',         ph:'/ˈflɔːləs/',     type:'adj', lvl:'C2', syn:'perfect, impeccable'},
+    {w:'gratitude',    vn:'lòng biết ơn',                   ph:'/ˈɡrætɪtjuːd/',  type:'n',   lvl:'C1', syn:'thankfulness'},
+    {w:'hinder',       vn:'cản trở, gây trở ngại',          ph:'/ˈhɪndər/',      type:'v',   lvl:'C1', syn:'hamper, obstruct'},
+    {w:'impulsive',    vn:'bốc đồng, hấp tấp',              ph:'/ɪmˈpʌlsɪv/',   type:'adj', lvl:'C2', syn:'rash, impetuous'},
+    {w:'influential',  vn:'có ảnh hưởng',                   ph:'/ˌɪnfluˈenʃl/',  type:'adj', lvl:'C1', syn:'powerful, impactful'},
+    {w:'integration',  vn:'sự hội nhập, tích hợp',          ph:'/ˌɪntɪˈɡreʃən/', type:'n',   lvl:'C1', syn:'incorporation'},
+    {w:'irreversible', vn:'không thể đảo ngược',            ph:'/ɪˌrɪˈvɜːsəbl/', type:'adj', lvl:'C2', syn:'permanent'},
+    {w:'mindfulness',  vn:'sự chánh niệm, sự lưu tâm',      ph:'/ˈmaɪndflnəs/',  type:'n',   lvl:'C1', syn:'awareness, presence'},
+    {w:'obsolete',     vn:'lỗi thời, lạc hậu',              ph:'/ˈɒbsəliːt/',    type:'adj', lvl:'C1', syn:'outdated, old-fashioned'},
+    {w:'open-minded',  vn:'cởi mở, thoải mái',              ph:'/ˌoʊpənˈmaɪndɪd/',type:'adj',lvl:'C1',syn:'tolerant, broad-minded'},
+    {w:'outweigh',     vn:'lớn hơn, quan trọng hơn',         ph:'/ˌaʊtˈweɪ/',     type:'v',   lvl:'C1', syn:'surpass, overshadow'},
+    {w:'perfectionism',vn:'chủ nghĩa hoàn hảo',             ph:'/pəˈfekʃənɪzəm/',type:'n',   lvl:'C1', syn:'idealism'},
+    {w:'perpetuate',   vn:'duy trì, làm cho tồn tại mãi',   ph:'/pəˈpetʃʊeɪt/',  type:'v',   lvl:'C1', syn:'sustain, maintain'},
+    {w:'persistence',  vn:'sự kiên trì, sự dai dẳng',        ph:'/pəˈsɪstəns/',   type:'n',   lvl:'C2', syn:'determination'},
+    {w:'precarious',   vn:'bấp bênh, không chắc chắn',       ph:'/prɪˈkeəriəs/',  type:'adj', lvl:'C1', syn:'uncertain, insecure'},
+    {w:'procrastination',vn:'sự trì hoãn',                  ph:'/prəˌkræstɪˈneɪʃən/',type:'n',lvl:'C1',syn:'delay, postponement'},
+    {w:'prosperity',   vn:'sự thịnh vượng',                  ph:'/prɒsˈperəti/',  type:'n',   lvl:'C1', syn:'wealth, affluence'},
+    {w:'self-discipline',vn:'kỷ luật bản thân',             ph:'/ˌselfˈdɪsəplɪn/',type:'n',  lvl:'C2', syn:'self-control'},
+    {w:'self-esteem',  vn:'lòng tự trọng',                   ph:'/ˌself ɪˈstiːm/', type:'n',  lvl:'C1', syn:'self-worth'},
+    {w:'solidarity',   vn:'sự đoàn kết',                    ph:'/ˌsɒlɪˈdærəti/', type:'n',   lvl:'C1', syn:'unity, togetherness'},
+    {w:'stereotype',   vn:'khuôn mẫu, định kiến',            ph:'/ˈsteriətaɪp/',  type:'n',   lvl:'C1', syn:'cliché'},
+    {w:'stigma',       vn:'sự kỳ thị',                       ph:'/ˈstɪɡmə/',      type:'n',   lvl:'C1', syn:'shame, disgrace'},
+    {w:'undermine',    vn:'làm suy yếu',                     ph:'/ˌʌndərˈmaɪn/',  type:'v',   lvl:'C1', syn:'weaken, erode'},
+    {w:'unprecedented',vn:'chưa từng có',                   ph:'/ʌnˈpresɪdentɪd/',type:'adj',lvl:'C1',syn:'unparalleled'},
+    {w:'viable',       vn:'khả thi, có thể thực hiện',        ph:'/ˈvaɪəbl/',      type:'adj', lvl:'C1', syn:'feasible, workable'},
+    {w:'vibrant',      vn:'sôi động, rực rỡ, đầy sức sống',  ph:'/ˈvaɪbrənt/',    type:'adj', lvl:'C1', syn:'lively, energetic'},
+    {w:'volatile',     vn:'biến động, không ổn định',         ph:'/ˈvɒlətaɪl/',    type:'adj', lvl:'C1', syn:'unstable, unpredictable'},
+  ],
+  collocation: [
+    {w:'take a break',          vn:'nghỉ giải lao',                       ph:'',type:'collocation',lvl:'B1',syn:'rest'},
+    {w:'make a decision',       vn:'đưa ra quyết định',                   ph:'',type:'collocation',lvl:'B1',syn:'decide'},
+    {w:'make progress',         vn:'tiến bộ, đạt được tiến bộ',           ph:'',type:'collocation',lvl:'B2',syn:'advance'},
+    {w:'make a difference',     vn:'tạo ra sự khác biệt',                 ph:'',type:'collocation',lvl:'B2',syn:'have impact'},
+    {w:'make an effort',        vn:'nỗ lực, gắng hết sức',                ph:'',type:'collocation',lvl:'B2',syn:'try hard'},
+    {w:'take action',           vn:'hành động, thực hiện hành động',      ph:'',type:'collocation',lvl:'B2',syn:'act'},
+    {w:'raise awareness',       vn:'nâng cao nhận thức',                  ph:'',type:'collocation',lvl:'B2',syn:'spread knowledge'},
+    {w:'have an impact on',     vn:'có ảnh hưởng đến',                    ph:'',type:'collocation',lvl:'B2',syn:'affect, influence'},
+    {w:'do research',           vn:'thực hiện nghiên cứu',                ph:'',type:'collocation',lvl:'B2',syn:'investigate'},
+    {w:'take precautions',      vn:'thực hiện biện pháp phòng ngừa',      ph:'',type:'collocation',lvl:'B2',syn:'be careful'},
+    {w:'make a complaint',      vn:'phàn nàn, khiếu nại',                 ph:'',type:'collocation',lvl:'B2',syn:'complain'},
+    {w:'break down barriers',   vn:'phá bỏ rào cản',                      ph:'',type:'collocation',lvl:'C1',syn:'overcome obstacles'},
+    {w:'garner attention',      vn:'thu hút sự chú ý',                    ph:'',type:'collocation',lvl:'C1',syn:'attract notice'},
+    {w:'maintain eye contact',  vn:'duy trì giao tiếp bằng mắt',          ph:'',type:'collocation',lvl:'B2',syn:'look directly'},
+    {w:'make a commitment',     vn:'đưa ra lời cam kết',                  ph:'',type:'collocation',lvl:'B2',syn:'promise, pledge'},
+    {w:'join hands',            vn:'chung tay, cùng nhau',                ph:'',type:'collocation',lvl:'B2',syn:'cooperate'},
+    {w:'draw a distinction',    vn:'phân biệt, tạo sự khác biệt',         ph:'',type:'collocation',lvl:'C1',syn:'differentiate'},
+    {w:'make a good impression',vn:'gây ấn tượng tốt',                    ph:'',type:'collocation',lvl:'B2',syn:'impress someone'},
+    {w:'take measures',         vn:'áp dụng biện pháp',                   ph:'',type:'collocation',lvl:'B2',syn:'act, intervene'},
+    {w:'express appreciation',  vn:'bày tỏ sự trân trọng',                ph:'',type:'collocation',lvl:'C1',syn:'show gratitude'},
+  ],
+  phrasal: [
+    {w:'come across',      vn:'tình cờ gặp, tình cờ thấy',               ph:'',type:'phrasal verb',lvl:'B2',syn:'encounter by chance'},
+    {w:'come up with',     vn:'nảy ra ý tưởng, tìm ra giải pháp',        ph:'',type:'phrasal verb',lvl:'B2',syn:'think of, devise'},
+    {w:'get along with',   vn:'có mối quan hệ tốt với',                  ph:'',type:'phrasal verb',lvl:'B1',syn:'be friendly with'},
+    {w:'get over',         vn:'vượt qua, hồi phục từ',                   ph:'',type:'phrasal verb',lvl:'B2',syn:'recover from'},
+    {w:'get rid of',       vn:'vứt bỏ, loại bỏ',                         ph:'',type:'phrasal verb',lvl:'B2',syn:'eliminate, remove'},
+    {w:'go through',       vn:'trải qua, xem xét kỹ',                    ph:'',type:'phrasal verb',lvl:'B2',syn:'experience, examine'},
+    {w:'look forward to',  vn:'mong đợi, mong chờ điều sắp đến',         ph:'',type:'phrasal verb',lvl:'A2',syn:'anticipate'},
+    {w:'look after',       vn:'chăm sóc, trông nom',                     ph:'',type:'phrasal verb',lvl:'A2',syn:'take care of'},
+    {w:'look up to',       vn:'tôn trọng, ngưỡng mộ',                    ph:'',type:'phrasal verb',lvl:'B2',syn:'admire, respect'},
+    {w:'make up for',      vn:'bù đắp cho, đền bù cho',                  ph:'',type:'phrasal verb',lvl:'B2',syn:'compensate for'},
+    {w:'put off',          vn:'trì hoãn, hoãn lại',                      ph:'',type:'phrasal verb',lvl:'B2',syn:'postpone, delay'},
+    {w:'put up with',      vn:'chịu đựng, chấp nhận',                    ph:'',type:'phrasal verb',lvl:'B2',syn:'tolerate, endure'},
+    {w:'take over',        vn:'tiếp quản, đảm nhận',                     ph:'',type:'phrasal verb',lvl:'B2',syn:'take control of'},
+    {w:'take up',          vn:'bắt đầu theo đuổi (sở thích, thói quen)', ph:'',type:'phrasal verb',lvl:'B2',syn:'begin, start'},
+    {w:'turn down',        vn:'từ chối',                                  ph:'',type:'phrasal verb',lvl:'B2',syn:'reject, refuse'},
+    {w:'catch up on',      vn:'bắt kịp, làm bù',                         ph:'',type:'phrasal verb',lvl:'B2',syn:'make up for lost time'},
+    {w:'break out',        vn:'bùng nổ, nổ ra',                           ph:'',type:'phrasal verb',lvl:'B2',syn:'erupt, start suddenly'},
+    {w:'carry out',        vn:'thực hiện, tiến hành',                    ph:'',type:'phrasal verb',lvl:'B2',syn:'execute, conduct'},
+    {w:'find out',         vn:'phát hiện ra, tìm hiểu',                  ph:'',type:'phrasal verb',lvl:'A2',syn:'discover, learn'},
+    {w:'give up',          vn:'từ bỏ',                                    ph:'',type:'phrasal verb',lvl:'A2',syn:'quit, stop trying'},
+    {w:'run out of',       vn:'hết, cạn kiệt',                            ph:'',type:'phrasal verb',lvl:'B1',syn:'exhaust, deplete'},
+    {w:'speed up',         vn:'tăng tốc, xảy ra nhanh hơn',              ph:'',type:'phrasal verb',lvl:'B1',syn:'accelerate'},
+    {w:'die out',          vn:'diệt vong, không còn tồn tại',             ph:'',type:'phrasal verb',lvl:'B2',syn:'become extinct'},
+    {w:'bounce back',      vn:'hồi phục nhanh chóng',                    ph:'',type:'phrasal verb',lvl:'C1',syn:'recover quickly'},
+    {w:'stand for',        vn:'viết tắt của; đại diện cho',              ph:'',type:'phrasal verb',lvl:'B1',syn:'represent, abbreviate'},
+    {w:'stem from',        vn:'xuất phát từ',                             ph:'',type:'phrasal verb',lvl:'C1',syn:'originate from'},
+    {w:'call off',         vn:'hủy bỏ',                                   ph:'',type:'phrasal verb',lvl:'B2',syn:'cancel'},
+    {w:'set off',          vn:'khởi hành; gây ra (chuông, bom nổ)',       ph:'',type:'phrasal verb',lvl:'B2',syn:'depart; trigger'},
+  ]
+};
+
+/* ════ STATE ════ */
+let totalXP=0, level=1, streak=0;
+let mode='', cat='all';
+let queue=[], qIdx=0, qOk=0, qNo=0, roundXP=0;
+let timerID=null, timeLeft=15;
+let matchSel=null, matchDone=0;
+const PER=8;
+const XP_MAP={quiz:10,vn2en:15,scramble:18,match:12};
+const TIMER_MAP={quiz:15,vn2en:15,scramble:25,match:9999};
+
+/* ════ HELPERS ════ */
+const shuf=a=>[...a].sort(()=>Math.random()-.5);
+function getPool(c){return c==='all'?Object.values(WORDS).flat():(WORDS[c]||[]);}
+
+function showScreen(id){
+  ['screen-home','screen-game','screen-end'].forEach(s=>{
+    const el=document.getElementById(s);
+    el.classList.remove('active'); el.style.display='none';
+  });
+  const t=document.getElementById(id);
+  t.style.display='block';
+  requestAnimationFrame(()=>t.classList.add('active'));
+}
+
+function updateHUD(){
+  const pct=((totalXP%100)/100)*100;
+  document.getElementById('xp-fill').style.width=pct+'%';
+  document.getElementById('xp-val').textContent=(totalXP%100)+' XP';
+  document.getElementById('lvl-badge').textContent='Lv.'+level;
+  document.getElementById('streak-val').textContent=streak;
+}
+function addXP(n){totalXP+=n; level=Math.floor(totalXP/100)+1; updateHUD();}
+function bumpStreak(ok){streak=ok?streak+1:0; document.getElementById('streak-val').textContent=streak;}
+
+function particle(x,y,ok){
+  const list=ok?['✨','⚡','🌿','💚']:['💨','😬'];
+  for(let i=0;i<5;i++){
+    const el=document.createElement('div'); el.className='ptcl';
+    el.textContent=list[Math.floor(Math.random()*list.length)];
+    const angle=Math.random()*Math.PI*2, dist=50+Math.random()*90;
+    el.style.left=x+'px'; el.style.top=y+'px';
+    el.style.setProperty('--dx',Math.cos(angle)*dist+'px');
+    el.style.setProperty('--dy',Math.sin(angle)*dist+'px');
+    document.body.appendChild(el); setTimeout(()=>el.remove(),950);
+  }
+}
+function xpPop(x,y,n){
+  const el=document.createElement('div'); el.className='xp-pop';
+  el.textContent='+'+n+' XP'; el.style.left=x+'px'; el.style.top=y+'px';
+  document.body.appendChild(el); setTimeout(()=>el.remove(),1300);
+}
+
+/* ════ HOME ════ */
+document.querySelectorAll('.topic-pill').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.topic-pill').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active'); cat=b.dataset.cat;
+  });
+});
+document.querySelectorAll('.mode-card').forEach(c=>{
+  c.addEventListener('click',()=>{mode=c.dataset.mode; startGame();});
+});
+document.getElementById('back-btn').addEventListener('click',()=>{stopTimer(); showScreen('screen-home');});
+document.getElementById('replay-btn').addEventListener('click',startGame);
+document.getElementById('home2-btn').addEventListener('click',()=>showScreen('screen-home'));
+
+/* ════ START ════ */
+function startGame(){
+  const pool=getPool(cat);
+  queue=shuf(pool).slice(0,mode==='match'?8:PER);
+  qIdx=0; qOk=0; qNo=0; roundXP=0;
+  const labels={quiz:'Trắc nghiệm',vn2en:'Việt → Anh',scramble:'Xếp chữ cái',match:'Ghép đôi'};
+  document.getElementById('mode-label-txt').textContent=labels[mode]||'';
+  showScreen('screen-game');
+  document.getElementById('sc-ok').textContent='0 đúng';
+  document.getElementById('sc-no').textContent='0 sai';
+
+  if(mode==='match'){
+    document.getElementById('card-wrap').style.display='none';
+    document.getElementById('match-area').style.display='block';
+    document.getElementById('prog-dots').innerHTML='';
+    document.getElementById('q-cur').textContent='—'; document.getElementById('q-tot').textContent='—';
+    document.getElementById('fb-bar').className='fb-bar';
+    document.getElementById('next-btn').className='next-btn';
+    stopTimer();
+    document.getElementById('timer-num').textContent='∞';
+    document.getElementById('timer-arc').style.strokeDashoffset='0';
+    renderMatch();
+  } else {
+    document.getElementById('card-wrap').style.display='block';
+    document.getElementById('match-area').style.display='none';
+    buildDots(); renderQ();
+  }
+}
+
+/* ════ DOTS ════ */
+function buildDots(){
+  const w=document.getElementById('prog-dots'); w.innerHTML='';
+  queue.forEach((_,i)=>{const d=document.createElement('div');d.className='pdot'+(i===0?' cur':'');d.id='pd'+i;w.appendChild(d);});
+}
+function dotDone(i,ok){
+  const d=document.getElementById('pd'+i); if(d) d.className='pdot '+(ok?'ok':'no');
+  const n=document.getElementById('pd'+(i+1)); if(n) n.className='pdot cur';
+}
+
+/* ════ RENDER Q ════ */
+function renderQ(){
+  if(qIdx>=queue.length){endGame();return;}
+  const it=queue[qIdx];
+  document.getElementById('q-cur').textContent=qIdx+1;
+  document.getElementById('q-tot').textContent=queue.length;
+  document.getElementById('fb-bar').className='fb-bar';
+  document.getElementById('next-btn').className='next-btn';
+  document.getElementById('word-card').className='word-card';
+  document.getElementById('opts-grid').style.display='none';
+  document.getElementById('scr-wrap').style.display='none';
+  document.getElementById('word-level').textContent=it.lvl;
+  document.getElementById('word-type').textContent=it.type;
+  const ph=document.getElementById('word-phonetic');
+  ph.textContent=it.ph||''; ph.style.display=it.ph?'block':'none';
+
+  if(mode==='quiz'){
+    document.getElementById('word-main').textContent=it.w;
+    document.getElementById('word-prompt').textContent='Chọn nghĩa tiếng Việt đúng:';
+    renderQuizOpts(it);
+  } else if(mode==='vn2en'){
+    document.getElementById('word-main').textContent='???';
+    document.getElementById('word-prompt').textContent='Nghĩa: '+it.vn;
+    renderVn2EnOpts(it);
+  } else if(mode==='scramble'){
+    document.getElementById('word-main').textContent='???';
+    document.getElementById('word-prompt').textContent='Nghĩa: '+it.vn;
+    renderScramble(it);
+  }
+  startTimer();
+}
+
+/* ── QUIZ ── */
+function renderQuizOpts(it){
+  const g=document.getElementById('opts-grid'); g.style.display='grid'; g.innerHTML='';
+  const pool=getPool(cat);
+  const wrongs=shuf(pool.filter(x=>x.vn!==it.vn)).slice(0,3).map(x=>x.vn);
+  shuf([it.vn,...wrongs]).forEach((o,i)=>{
+    const b=document.createElement('button'); b.className='opt';
+    b.innerHTML=`<span class="opt-key">${'ABCD'[i]}</span><span>${o}</span>`;
+    b.addEventListener('click',e=>{
+      if(b.disabled) return;
+      const ok=o===it.vn;
+      document.querySelectorAll('.opt').forEach(x=>{x.disabled=true;const t=x.querySelector('span:last-child').textContent;if(t===it.vn)x.classList.add('opt-ok');else if(x===b&&!ok)x.classList.add('opt-no');});
+      handleResult(ok,it,e);
+    });
+    g.appendChild(b);
+  });
+}
+
+/* ── VN2EN ── */
+function renderVn2EnOpts(it){
+  const g=document.getElementById('opts-grid'); g.style.display='grid'; g.innerHTML='';
+  const pool=getPool(cat);
+  const wrongs=shuf(pool.filter(x=>x.w!==it.w)).slice(0,3).map(x=>x.w);
+  shuf([it.w,...wrongs]).forEach((o,i)=>{
+    const b=document.createElement('button'); b.className='opt';
+    b.innerHTML=`<span class="opt-key">${'ABCD'[i]}</span><span>${o}</span>`;
+    b.addEventListener('click',e=>{
+      if(b.disabled) return;
+      const ok=o===it.w;
+      document.querySelectorAll('.opt').forEach(x=>{x.disabled=true;const t=x.querySelector('span:last-child').textContent;if(t===it.w)x.classList.add('opt-ok');else if(x===b&&!ok)x.classList.add('opt-no');});
+      handleResult(ok,it,e);
+    });
+    g.appendChild(b);
+  });
+}
+
+/* ── SCRAMBLE ── */
+function renderScramble(it){
+  const sw=document.getElementById('scr-wrap'); sw.style.display='block';
+  const ans=document.getElementById('ans-slots'); const tr=document.getElementById('tile-row');
+  ans.innerHTML=''; tr.innerHTML='';
+  const letters=shuf(it.w.toUpperCase().split(''));
+  let chosen=[];
+
+  it.w.split('').forEach((_,i)=>{
+    const s=document.createElement('div'); s.className='slot empty'; s.dataset.si=i;
+    s.addEventListener('click',()=>{
+      if(!s.textContent) return;
+      const ti=parseInt(s.dataset.ti);
+      const idx=chosen.findIndex(c=>c.ti===ti); if(idx===-1) return;
+      chosen.splice(idx,1);
+      Array.from(ans.children).forEach((sl,j)=>{if(chosen[j]){sl.textContent=chosen[j].ltr;sl.dataset.ti=chosen[j].ti;sl.classList.remove('empty');}else{sl.textContent='';sl.classList.add('empty');}});
+      const tile=tr.querySelector(`[data-ti="${ti}"]`); if(tile) tile.classList.remove('used');
+    });
+    ans.appendChild(s);
+  });
+
+  letters.forEach((ltr,i)=>{
+    const t=document.createElement('div'); t.className='tile'; t.textContent=ltr; t.dataset.ti=i;
+    t.addEventListener('click',()=>{
+      if(t.classList.contains('used')) return;
+      const si=chosen.length; if(si>=it.w.length) return;
+      chosen.push({ltr,ti:i}); t.classList.add('used');
+      const slot=ans.children[si]; slot.textContent=ltr; slot.classList.remove('empty'); slot.dataset.ti=i;
+      if(chosen.length===it.w.length){
+        const formed=chosen.map(c=>c.ltr).join('').toLowerCase();
+        if(formed===it.w.toLowerCase()){
+          handleResult(true,it,null);
+        } else {
+          Array.from(ans.children).forEach(s=>s.style.color='var(--red)');
+          setTimeout(()=>{chosen.length=0;Array.from(ans.children).forEach(s=>{s.textContent='';s.className='slot empty';s.style.color='';});Array.from(tr.children).forEach(t=>t.classList.remove('used'));},650);
+        }
+      }
+    });
+    tr.appendChild(t);
+  });
+}
+
+/* ── MATCH ── */
+function renderMatch(){
+  matchSel=null; matchDone=0;
+  const items=queue;
+  const wCol=document.getElementById('match-words'); const dCol=document.getElementById('match-defs');
+  wCol.innerHTML=''; dCol.innerHTML='';
+  const shuffled=shuf(items.map((it,i)=>({vn:it.vn,idx:i})));
+  items.forEach((it,i)=>{
+    const el=document.createElement('div'); el.className='match-item';
+    el.textContent=it.w; el.dataset.idx=i; el.dataset.type='w';
+    el.addEventListener('click',()=>matchClick(el,i,'w',items));
+    wCol.appendChild(el);
+  });
+  shuffled.forEach(({vn,idx})=>{
+    const el=document.createElement('div'); el.className='match-item';
+    el.textContent=vn; el.dataset.idx=idx; el.dataset.type='d';
+    el.addEventListener('click',()=>matchClick(el,idx,'d',items));
+    dCol.appendChild(el);
+  });
+}
+
+function matchClick(el,idx,type,items){
+  if(el.classList.contains('matched')) return;
+  if(!matchSel){el.classList.add('sel'); matchSel={el,idx,type}; return;}
+  if(matchSel.type===type){matchSel.el.classList.remove('sel'); el.classList.add('sel'); matchSel={el,idx,type}; return;}
+  const ok=matchSel.idx===idx;
+  matchSel.el.classList.remove('sel');
+  if(ok){
+    [el,matchSel.el].forEach(e=>e.classList.add('matched'));
+    matchDone++; qOk++;
+    const n=XP_MAP.match; roundXP+=n; addXP(n); bumpStreak(true);
+    document.getElementById('sc-ok').textContent=qOk+' đúng';
+    particle(el.getBoundingClientRect().left+40,el.getBoundingClientRect().top,true);
+    xpPop(el.getBoundingClientRect().left+40,el.getBoundingClientRect().top,n);
+    if(matchDone===items.length) setTimeout(endGame,700);
+  } else {
+    [el,matchSel.el].forEach(e=>e.classList.add('wrong'));
+    bumpStreak(false);
+    setTimeout(()=>[el,matchSel.el].forEach(e=>e.classList.remove('wrong','sel')),700);
+  }
+  matchSel=null;
+}
+
+/* ════ RESULT ════ */
+function handleResult(ok,it,e){
+  stopTimer(); dotDone(qIdx,ok);
+  if(ok) qOk++; else qNo++;
+  document.getElementById('sc-ok').textContent=qOk+' đúng';
+  document.getElementById('sc-no').textContent=qNo+' sai';
+  const n=ok?XP_MAP[mode]:0; if(ok){roundXP+=n; addXP(n);} bumpStreak(ok);
+  const card=document.getElementById('word-card');
+  card.classList.add(ok?'flash-ok':'flash-no'); setTimeout(()=>card.classList.remove('flash-ok','flash-no'),600);
+  const fb=document.getElementById('fb-bar');
+  if(ok){
+    fb.className='fb-bar ok show';
+    document.getElementById('fb-icon').textContent='✅';
+    document.getElementById('fb-main').textContent='Chính xác! "'+it.w+'"';
+    document.getElementById('fb-vn').textContent='Nghĩa: '+it.vn;
+    document.getElementById('fb-syn').textContent=it.syn?'Từ đồng nghĩa: '+it.syn:'';
+    if(e){particle(e.clientX,e.clientY,true); xpPop(e.clientX,e.clientY-20,n);}
+  } else {
+    fb.className='fb-bar no show';
+    document.getElementById('fb-icon').textContent='❌';
+    document.getElementById('fb-main').textContent='Chưa đúng! "'+it.w+'" nghĩa là:';
+    document.getElementById('fb-vn').textContent=it.vn;
+    document.getElementById('fb-syn').textContent=it.syn?'Từ đồng nghĩa: '+it.syn:'';
+    if(e) particle(e.clientX,e.clientY,false);
+  }
+  document.getElementById('next-btn').className='next-btn show';
+}
+
+document.getElementById('next-btn').addEventListener('click',()=>{qIdx++; qIdx>=queue.length?endGame():renderQ();});
+
+/* ════ TIMER ════ */
+function startTimer(){
+  stopTimer();
+  const secs=TIMER_MAP[mode];
+  if(secs>=9999){document.getElementById('timer-num').textContent='∞'; document.getElementById('timer-arc').style.strokeDashoffset='0'; return;}
+  timeLeft=secs;
+  const arc=document.getElementById('timer-arc'); const num=document.getElementById('timer-num');
+  arc.style.strokeDashoffset='0'; arc.style.stroke='#a8e063'; num.textContent=timeLeft;
+  timerID=setInterval(()=>{
+    timeLeft--; num.textContent=timeLeft;
+    arc.style.strokeDashoffset=(125.6*(1-timeLeft/secs)).toFixed(1);
+    if(timeLeft<=5) arc.style.stroke='var(--red)';
+    if(timeLeft<=0){stopTimer(); handleResult(false,queue[qIdx],null); document.getElementById('fb-main').textContent='Hết giờ! "'+queue[qIdx].w+'" nghĩa là:';}
+  },1000);
+}
+function stopTimer(){clearInterval(timerID);}
+
+/* ════ END ════ */
+function endGame(){
+  stopTimer(); showScreen('screen-end');
+  const total=queue.length, acc=Math.round((qOk/total)*100)||0;
+  const ranks=[
+    {min:90,emoji:'🏆',title:'Xuất sắc!',   sub:'Trí nhớ sắc bén — bạn thật tuyệt vời!'},
+    {min:75,emoji:'🌟',title:'Giỏi lắm!',   sub:'Tiếp tục luyện để giữ phong độ nhé!'},
+    {min:55,emoji:'👍',title:'Tốt đấy!',    sub:'Ôn lại những từ sai và thử lại nhé!'},
+    {min:0, emoji:'💪',title:'Cố lên!',     sub:'Mỗi lần sai là một lần học — đừng bỏ cuộc!'},
+  ];
+  const r=ranks.find(x=>acc>=x.min);
+  document.getElementById('end-emoji').textContent=r.emoji;
+  document.getElementById('end-title').textContent=r.title;
+  document.getElementById('end-sub').textContent=r.sub;
+  document.getElementById('es-cor').textContent=qOk+'/'+total;
+  document.getElementById('es-acc').textContent=acc+'%';
+  document.getElementById('es-xp').textContent='+'+roundXP;
+}
+
+showScreen('screen-home');
+updateHUD();
+</script>
+</body>
+</html>
