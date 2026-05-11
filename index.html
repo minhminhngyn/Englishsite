@@ -6,29 +6,15 @@
 <title>LexiViet – Luyện Từ Vựng Tiếng Anh</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg:#0a0f0a; --surface:#111911; --surface2:#192119; --surface3:#1f2a1f;
-  --border:rgba(180,220,120,0.08); --border2:rgba(180,220,120,0.18);
-  --text:#e8f0dc; --muted:#7a9060;
-  --accent:#a8e063; --accent2:#f0c040; --red:#ff6b6b; --green:#5effa0; --blue:#60c8f0;
-  --glow:0 0 24px rgba(168,224,99,0.25); --glow-gold:0 0 24px rgba(240,192,64,0.3);
-  --radius:18px;
-}
+:root{--bg:#0a0f0a;--surface:#111911;--surface2:#192119;--surface3:#1f2a1f;--border:rgba(180,220,120,0.08);--border2:rgba(180,220,120,0.18);--text:#e8f0dc;--muted:#7a9060;--accent:#a8e063;--accent2:#f0c040;--red:#ff6b6b;--green:#5effa0;--blue:#60c8f0;--glow:0 0 24px rgba(168,224,99,0.25);--glow-gold:0 0 24px rgba(240,192,64,0.3);--radius:18px;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
-
-.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;
-  background-image:linear-gradient(rgba(168,224,99,.03)1px,transparent 1px),linear-gradient(90deg,rgba(168,224,99,.03)1px,transparent 1px);
-  background-size:40px 40px;}
+.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(168,224,99,.03)1px,transparent 1px),linear-gradient(90deg,rgba(168,224,99,.03)1px,transparent 1px);background-size:40px 40px;}
 .bg-glow{position:fixed;width:600px;height:600px;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0;}
 .bg-glow-1{background:rgba(168,224,99,.06);top:-200px;left:-100px;}
 .bg-glow-2{background:rgba(240,192,64,.05);bottom:-200px;right:-100px;}
-
 .app{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:0 20px 80px;}
-
-/* HEADER */
-header{display:flex;align-items:center;justify-content:space-between;padding:28px 0 24px;
-  border-bottom:.5px solid var(--border2);margin-bottom:40px;gap:16px;flex-wrap:wrap;}
+header{display:flex;align-items:center;justify-content:space-between;padding:28px 0 24px;border-bottom:.5px solid var(--border2);margin-bottom:40px;gap:16px;flex-wrap:wrap;}
 .logo{display:flex;align-items:center;gap:12px;font-family:'Fraunces',serif;font-size:24px;font-weight:900;letter-spacing:-.5px;}
 .logo-mark{width:40px;height:40px;background:var(--accent);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:var(--glow);}
 .logo em{font-style:normal;color:var(--accent);}
@@ -39,13 +25,9 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
 .streak-val{color:var(--accent2);font-family:'Fraunces',serif;font-weight:700;}
 .xp-val{color:var(--accent);font-family:'Fraunces',serif;font-weight:700;font-size:12px;}
 .lvl-badge{background:var(--accent);color:var(--bg);border-radius:999px;padding:3px 10px;font-size:11px;font-weight:700;}
-
-/* SCREENS */
 #screen-home,#screen-game,#screen-end{display:none;}
 #screen-home.active,#screen-game.active,#screen-end.active{display:block;animation:slideUp .45s cubic-bezier(.22,1,.36,1) both;}
 @keyframes slideUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
-
-/* HOME */
 .hero{text-align:center;margin-bottom:44px;}
 .hero-tag{display:inline-block;background:rgba(168,224,99,.12);border:.5px solid rgba(168,224,99,.3);border-radius:999px;padding:5px 16px;font-size:12px;font-weight:600;color:var(--accent);letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px;}
 .hero h1{font-family:'Fraunces',serif;font-size:clamp(36px,7vw,62px);font-weight:900;letter-spacing:-2px;line-height:.95;margin-bottom:16px;}
@@ -55,13 +37,11 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
 .stat-item{text-align:center;}
 .stat-n{font-family:'Fraunces',serif;font-size:28px;font-weight:900;color:var(--accent2);}
 .stat-l{font-size:12px;color:var(--muted);margin-top:2px;}
-
 .section-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
 .topics-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;}
 .topic-pill{padding:8px 18px;border-radius:999px;border:.5px solid var(--border2);background:var(--surface);color:var(--muted);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;}
 .topic-pill:hover{color:var(--text);border-color:rgba(168,224,99,.4);}
 .topic-pill.active{background:var(--accent);color:var(--bg);border-color:var(--accent);box-shadow:var(--glow);}
-
 .modes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;}
 .mode-card{background:var(--surface);border:.5px solid var(--border2);border-radius:var(--radius);padding:26px 22px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden;}
 .mode-card::before{content:'';position:absolute;inset:0;border-radius:var(--radius);opacity:0;transition:opacity .3s;}
@@ -75,13 +55,11 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
 .mode-card:hover.co{border-color:rgba(240,192,64,.4);box-shadow:var(--glow-gold);}
 .mode-icon{font-size:30px;margin-bottom:14px;display:block;}
 .mode-badge{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
-.cg .mode-badge{color:var(--accent);} .co .mode-badge{color:var(--accent2);} .cb .mode-badge{color:var(--blue);} .cr .mode-badge{color:var(--red);}
+.cg .mode-badge{color:var(--accent);}.co .mode-badge{color:var(--accent2);}.cb .mode-badge{color:var(--blue);}.cr .mode-badge{color:var(--red);}
 .mode-name{font-family:'Fraunces',serif;font-size:19px;font-weight:700;margin-bottom:8px;}
 .mode-desc{font-size:13px;color:var(--muted);line-height:1.5;}
 .mode-xp{margin-top:14px;font-size:11px;font-weight:700;}
-.cg .mode-xp{color:var(--accent);} .co .mode-xp{color:var(--accent2);} .cb .mode-xp{color:var(--blue);} .cr .mode-xp{color:var(--red);}
-
-/* GAME */
+.cg .mode-xp{color:var(--accent);}.co .mode-xp{color:var(--accent2);}.cb .mode-xp{color:var(--blue);}.cr .mode-xp{color:var(--red);}
 .game-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;gap:12px;}
 .back-btn{background:var(--surface);border:.5px solid var(--border2);border-radius:12px;padding:9px 18px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;transition:all .2s;}
 .back-btn:hover{color:var(--text);}
@@ -89,31 +67,26 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
 .game-meta{display:flex;align-items:center;gap:14px;}
 .q-count{font-family:'Fraunces',serif;font-size:14px;color:var(--muted);}
 .q-count span{color:var(--text);font-weight:700;}
-
 .timer-wrap{position:relative;width:50px;height:50px;}
 .timer-wrap svg{transform:rotate(-90deg);}
 .timer-arc{transition:stroke-dashoffset 1s linear;}
 .timer-num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:14px;font-weight:700;}
-
 .prog-dots{display:flex;gap:5px;justify-content:center;margin-bottom:18px;}
 .pdot{height:4px;width:20px;border-radius:2px;background:var(--surface3);transition:all .3s;}
-.pdot.ok{background:var(--green);} .pdot.no{background:var(--red);width:8px;} .pdot.cur{background:var(--accent);}
-
+.pdot.ok{background:var(--green);}.pdot.no{background:var(--red);width:8px;}.pdot.cur{background:var(--accent);}
 .score-mini{display:flex;gap:14px;margin-bottom:18px;}
 .s-pill{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--muted);}
 .s-dot{width:8px;height:8px;border-radius:50%;}
-.s-green{background:var(--green);} .s-red{background:var(--red);}
-
+.s-green{background:var(--green);}.s-red{background:var(--red);}
 .word-card{background:var(--surface);border:.5px solid var(--border2);border-radius:24px;padding:36px 32px 28px;text-align:center;margin-bottom:16px;transition:border-color .3s,box-shadow .3s;position:relative;overflow:hidden;}
 .word-card::before{content:'';position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:280px;height:180px;background:radial-gradient(circle,rgba(168,224,99,.06),transparent 70%);pointer-events:none;}
 .word-card.flash-ok{border-color:var(--green);box-shadow:0 0 24px rgba(94,255,160,.3);}
 .word-card.flash-no{border-color:var(--red);box-shadow:0 0 24px rgba(255,107,107,.3);}
 .word-level{display:inline-flex;align-items:center;background:rgba(168,224,99,.1);border:.5px solid rgba(168,224,99,.25);border-radius:999px;padding:3px 12px;font-size:11px;font-weight:700;color:var(--accent);letter-spacing:.06em;text-transform:uppercase;margin-bottom:16px;}
 .word-type{font-size:12px;color:var(--muted);font-weight:600;font-style:italic;margin-bottom:6px;}
-.word-main{font-family:'Fraunces',serif;font-size:clamp(32px,6vw,52px);font-weight:900;letter-spacing:-1.5px;line-height:1;margin-bottom:8px;}
+.word-main{font-family:'Fraunces',serif;font-size:clamp(28px,5vw,48px);font-weight:900;letter-spacing:-1.5px;line-height:1;margin-bottom:8px;}
 .word-phonetic{font-size:14px;color:var(--blue);margin-bottom:14px;font-weight:500;}
 .word-prompt{font-size:15px;color:var(--muted);line-height:1.6;max-width:500px;margin:0 auto;}
-
 .opts-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
 .opt{background:var(--surface);border:.5px solid var(--border2);border-radius:16px;padding:16px 18px;display:flex;align-items:flex-start;gap:12px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;color:var(--text);cursor:pointer;text-align:left;line-height:1.4;transition:all .18s;}
 .opt-key{width:28px;height:28px;border-radius:8px;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--muted);flex-shrink:0;transition:all .18s;font-family:'Fraunces',serif;}
@@ -124,7 +97,6 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
 .opt.opt-no{border-color:var(--red);background:rgba(255,107,107,.07);color:var(--red);}
 .opt.opt-no .opt-key{background:var(--red);color:var(--bg);border-color:var(--red);}
 .opt:disabled{cursor:default;}
-
 .scr-wrap{margin-bottom:16px;}
 .ans-slots{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:16px;}
 .slot{width:42px;height:50px;border-bottom:2.5px solid var(--accent);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--accent);cursor:pointer;transition:all .15s;}
@@ -134,7 +106,6 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
 .tile{width:42px;height:50px;background:var(--surface2);border:.5px solid var(--border2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:20px;font-weight:700;cursor:pointer;transition:all .15s;user-select:none;}
 .tile:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px);}
 .tile.used{opacity:.2;pointer-events:none;}
-
 .match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;}
 .match-col-head{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
 .match-items{display:flex;flex-direction:column;gap:8px;}
@@ -143,7 +114,6 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
 .match-item.sel{background:rgba(168,224,99,.12);border-color:var(--accent);color:var(--accent);}
 .match-item.matched{background:rgba(94,255,160,.08);border-color:var(--green);color:var(--green);pointer-events:none;opacity:.7;}
 .match-item.wrong{background:rgba(255,107,107,.08);border-color:var(--red);color:var(--red);}
-
 .fb-bar{border-radius:14px;padding:14px 18px;display:none;align-items:flex-start;gap:12px;font-size:14px;font-weight:600;line-height:1.5;margin-bottom:14px;}
 .fb-bar.show{display:flex;}
 .fb-bar.ok{background:rgba(94,255,160,.08);border:.5px solid rgba(94,255,160,.4);color:var(--green);}
@@ -153,12 +123,9 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
 .fb-main{margin-bottom:3px;}
 .fb-vn{font-size:12px;opacity:.85;font-weight:400;}
 .fb-syn{font-size:11px;color:var(--blue);margin-top:4px;font-weight:500;}
-
 .next-btn{width:100%;display:none;background:var(--surface2);border:.5px solid var(--border2);border-radius:14px;padding:16px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:var(--text);cursor:pointer;transition:all .2s;}
 .next-btn.show{display:block;}
 .next-btn:hover{background:var(--surface3);border-color:rgba(255,255,255,.15);}
-
-/* END */
 .end-card{background:var(--surface);border:.5px solid var(--border2);border-radius:28px;padding:48px 40px;text-align:center;position:relative;overflow:hidden;}
 .end-card::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:320px;height:320px;background:radial-gradient(circle,rgba(168,224,99,.1),transparent 70%);pointer-events:none;}
 .end-emoji{font-size:64px;margin-bottom:10px;}
@@ -173,20 +140,11 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
 .btn-main:hover{transform:translateY(-2px);}
 .btn-ghost{background:transparent;border:.5px solid var(--border2);border-radius:14px;padding:14px 32px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;color:var(--muted);cursor:pointer;transition:all .2s;}
 .btn-ghost:hover{color:var(--text);border-color:rgba(255,255,255,.2);}
-
-/* particles */
 .ptcl{position:fixed;pointer-events:none;font-size:18px;z-index:999;animation:ptclFly .9s ease forwards;}
 @keyframes ptclFly{from{opacity:1;transform:translate(0,0) scale(1);}to{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.2);}}
 .xp-pop{position:fixed;pointer-events:none;font-family:'Fraunces',serif;font-size:14px;font-weight:700;color:var(--accent);z-index:999;animation:xpFloat 1.2s ease forwards;}
 @keyframes xpFloat{from{opacity:1;transform:translateY(0) scale(1);}to{opacity:0;transform:translateY(-70px) scale(.8);}}
-
-@media(max-width:580px){
-  .opts-grid{grid-template-columns:1fr;}
-  .match-wrap{grid-template-columns:1fr;}
-  .end-stats{grid-template-columns:1fr;}
-  .end-actions{flex-direction:column;}
-  .modes-grid{grid-template-columns:1fr 1fr;}
-}
+@media(max-width:580px){.opts-grid{grid-template-columns:1fr;}.match-wrap{grid-template-columns:1fr;}.end-stats{grid-template-columns:1fr;}.end-actions{flex-direction:column;}.modes-grid{grid-template-columns:1fr 1fr;}}
 @media(max-width:400px){.modes-grid{grid-template-columns:1fr;}}
 </style>
 </head>
@@ -194,33 +152,26 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
 <div class="bg-grid"></div>
 <div class="bg-glow bg-glow-1"></div>
 <div class="bg-glow bg-glow-2"></div>
-
 <div class="app">
 <header>
   <div class="logo"><div class="logo-mark">🌿</div>Lexi<em>Viet</em></div>
   <div class="hud">
-    <div class="hud-pill">
-      <span class="lvl-badge" id="lvl-badge">Lv.1</span>
-      <div class="xp-track"><div class="xp-fill" id="xp-fill"></div></div>
-      <span class="xp-val" id="xp-val">0 XP</span>
-    </div>
+    <div class="hud-pill"><span class="lvl-badge" id="lvl-badge">Lv.1</span><div class="xp-track"><div class="xp-fill" id="xp-fill"></div></div><span class="xp-val" id="xp-val">0 XP</span></div>
     <div class="hud-pill">🔥 <span class="streak-val" id="streak-val">0</span></div>
   </div>
 </header>
 
-<!-- HOME -->
 <div id="screen-home">
   <div class="hero">
     <div class="hero-tag">🇻🇳 Dành cho học sinh Việt Nam</div>
     <h1>Luyện từ vựng<span class="line2">thông minh hơn.</span></h1>
-    <p>Từ vựng tiếng Anh trọng tâm cho kỳ thi THPT & ĐGNL 2026 — biên soạn bởi Cô Vũ Thị Mai Phương.</p>
+    <p>Toàn bộ từ vựng, collocation & phrasal verb trọng tâm cho kỳ thi THPT & ĐGNL 2026 — biên soạn bởi Cô Vũ Thị Mai Phương.</p>
     <div class="stats-row">
-      <div class="stat-item"><div class="stat-n">100+</div><div class="stat-l">Từ vựng</div></div>
+      <div class="stat-item"><div class="stat-n" id="total-words">500+</div><div class="stat-l">Từ vựng</div></div>
       <div class="stat-item"><div class="stat-n">4</div><div class="stat-l">Chế độ chơi</div></div>
       <div class="stat-item"><div class="stat-n">C1–C2</div><div class="stat-l">Cấp độ</div></div>
     </div>
   </div>
-
   <div class="section-label">📚 Chọn chủ đề</div>
   <div class="topics-row" id="topics-row">
     <button class="topic-pill active" data-cat="all">Tất cả</button>
@@ -229,41 +180,15 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
     <button class="topic-pill" data-cat="collocation">Collocation</button>
     <button class="topic-pill" data-cat="phrasal">Phrasal Verbs</button>
   </div>
-
   <div class="section-label" style="margin-top:8px">🎮 Chọn chế độ chơi</div>
   <div class="modes-grid">
-    <div class="mode-card cg" data-mode="quiz">
-      <span class="mode-icon">⚡</span>
-      <div class="mode-badge">Cổ điển</div>
-      <div class="mode-name">Trắc nghiệm</div>
-      <div class="mode-desc">Xem từ tiếng Anh, chọn nghĩa tiếng Việt đúng trong 4 đáp án.</div>
-      <div class="mode-xp">+10 XP / câu đúng</div>
-    </div>
-    <div class="mode-card co" data-mode="vn2en">
-      <span class="mode-icon">🔄</span>
-      <div class="mode-badge">Dịch ngược</div>
-      <div class="mode-name">Việt → Anh</div>
-      <div class="mode-desc">Đọc nghĩa tiếng Việt, chọn từ tiếng Anh tương ứng — khó hơn!</div>
-      <div class="mode-xp">+15 XP / câu đúng</div>
-    </div>
-    <div class="mode-card cb" data-mode="scramble">
-      <span class="mode-icon">🔀</span>
-      <div class="mode-badge">Ghép chữ</div>
-      <div class="mode-name">Xếp chữ cái</div>
-      <div class="mode-desc">Đọc nghĩa tiếng Việt, sắp xếp các chữ cái thành từ đúng.</div>
-      <div class="mode-xp">+18 XP / câu đúng</div>
-    </div>
-    <div class="mode-card cr" data-mode="match">
-      <span class="mode-icon">🎯</span>
-      <div class="mode-badge">Nối từ</div>
-      <div class="mode-name">Ghép đôi</div>
-      <div class="mode-desc">Nối từ tiếng Anh với nghĩa tiếng Việt. Không được sai!</div>
-      <div class="mode-xp">+12 XP / cặp đúng</div>
-    </div>
+    <div class="mode-card cg" data-mode="quiz"><span class="mode-icon">⚡</span><div class="mode-badge">Cổ điển</div><div class="mode-name">Trắc nghiệm</div><div class="mode-desc">Xem từ tiếng Anh, chọn nghĩa tiếng Việt đúng trong 4 đáp án.</div><div class="mode-xp">+10 XP / câu đúng</div></div>
+    <div class="mode-card co" data-mode="vn2en"><span class="mode-icon">🔄</span><div class="mode-badge">Dịch ngược</div><div class="mode-name">Việt → Anh</div><div class="mode-desc">Đọc nghĩa tiếng Việt, chọn từ tiếng Anh tương ứng — khó hơn!</div><div class="mode-xp">+15 XP / câu đúng</div></div>
+    <div class="mode-card cb" data-mode="scramble"><span class="mode-icon">🔀</span><div class="mode-badge">Ghép chữ</div><div class="mode-name">Xếp chữ cái</div><div class="mode-desc">Đọc nghĩa tiếng Việt, sắp xếp các chữ cái thành từ đúng.</div><div class="mode-xp">+18 XP / câu đúng</div></div>
+    <div class="mode-card cr" data-mode="match"><span class="mode-icon">🎯</span><div class="mode-badge">Nối từ</div><div class="mode-name">Ghép đôi</div><div class="mode-desc">Nối từ tiếng Anh với nghĩa tiếng Việt. Không được sai!</div><div class="mode-xp">+12 XP / cặp đúng</div></div>
   </div>
 </div>
 
-<!-- GAME -->
 <div id="screen-game">
   <div class="game-bar">
     <button class="back-btn" id="back-btn">← Quay lại</button>
@@ -271,24 +196,16 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
     <div class="game-meta">
       <span class="q-count"><span id="q-cur">1</span> / <span id="q-tot">8</span></span>
       <div class="timer-wrap">
-        <svg width="50" height="50" viewBox="0 0 50 50">
-          <circle cx="25" cy="25" r="20" fill="none" stroke="#192119" stroke-width="4"/>
-          <circle class="timer-arc" id="timer-arc" cx="25" cy="25" r="20"
-            fill="none" stroke="#a8e063" stroke-width="4"
-            stroke-linecap="round" stroke-dasharray="125.6" stroke-dashoffset="0"/>
-        </svg>
+        <svg width="50" height="50" viewBox="0 0 50 50"><circle cx="25" cy="25" r="20" fill="none" stroke="#192119" stroke-width="4"/><circle class="timer-arc" id="timer-arc" cx="25" cy="25" r="20" fill="none" stroke="#a8e063" stroke-width="4" stroke-linecap="round" stroke-dasharray="125.6" stroke-dashoffset="0"/></svg>
         <div class="timer-num" id="timer-num">15</div>
       </div>
     </div>
   </div>
-
   <div class="score-mini">
     <div class="s-pill"><span class="s-dot s-green"></span><span id="sc-ok">0 đúng</span></div>
     <div class="s-pill"><span class="s-dot s-red"></span><span id="sc-no">0 sai</span></div>
   </div>
-
   <div class="prog-dots" id="prog-dots"></div>
-
   <div id="card-wrap">
     <div class="word-card" id="word-card">
       <div class="word-level" id="word-level">B2</div>
@@ -303,32 +220,16 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
       <div class="tile-row" id="tile-row"></div>
     </div>
   </div>
-
   <div id="match-area" style="display:none">
     <div class="match-wrap">
-      <div>
-        <div class="match-col-head">Từ tiếng Anh</div>
-        <div class="match-items" id="match-words"></div>
-      </div>
-      <div>
-        <div class="match-col-head">Nghĩa tiếng Việt</div>
-        <div class="match-items" id="match-defs"></div>
-      </div>
+      <div><div class="match-col-head">Từ tiếng Anh</div><div class="match-items" id="match-words"></div></div>
+      <div><div class="match-col-head">Nghĩa tiếng Việt</div><div class="match-items" id="match-defs"></div></div>
     </div>
   </div>
-
-  <div class="fb-bar" id="fb-bar">
-    <span class="fb-icon" id="fb-icon"></span>
-    <div class="fb-body">
-      <div class="fb-main" id="fb-main"></div>
-      <div class="fb-vn" id="fb-vn"></div>
-      <div class="fb-syn" id="fb-syn"></div>
-    </div>
-  </div>
+  <div class="fb-bar" id="fb-bar"><span class="fb-icon" id="fb-icon"></span><div class="fb-body"><div class="fb-main" id="fb-main"></div><div class="fb-vn" id="fb-vn"></div><div class="fb-syn" id="fb-syn"></div></div></div>
   <button class="next-btn" id="next-btn">Tiếp theo →</button>
 </div>
 
-<!-- END -->
 <div id="screen-end">
   <div class="end-card">
     <div class="end-emoji" id="end-emoji">🏆</div>
@@ -339,166 +240,682 @@ header{display:flex;align-items:center;justify-content:space-between;padding:28p
       <div class="end-stat"><div class="end-stat-n" id="es-acc" style="color:var(--accent)">—</div><div class="end-stat-l">Chính xác</div></div>
       <div class="end-stat"><div class="end-stat-n" id="es-xp" style="color:var(--accent2)">—</div><div class="end-stat-l">XP kiếm được</div></div>
     </div>
-    <div class="end-actions">
-      <button class="btn-main" id="replay-btn">Chơi lại</button>
-      <button class="btn-ghost" id="home2-btn">Đổi chế độ</button>
-    </div>
+    <div class="end-actions"><button class="btn-main" id="replay-btn">Chơi lại</button><button class="btn-ghost" id="home2-btn">Đổi chế độ</button></div>
   </div>
 </div>
-</div><!-- .app -->
+</div>
 
 <script>
-/* ════ DATA ════ */
+/* ════ FULL WORD DATA ════ */
 const WORDS = {
   sgk: [
-    {w:'adulthood',    vn:'tuổi trưởng thành',              ph:'/ˈædʌlthʊd/',    type:'n',   lvl:'B2', syn:'maturity'},
-    {w:'ambitious',    vn:'đầy tham vọng',                  ph:'/æmˈbɪʃəs/',     type:'adj', lvl:'B2', syn:'aspiring'},
-    {w:'anxious',      vn:'lo lắng, bồn chồn',              ph:'/ˈæŋkʃəs/',      type:'adj', lvl:'B1', syn:'worried, nervous'},
-    {w:'assistance',   vn:'sự hỗ trợ, giúp đỡ',            ph:'/əˈsɪstəns/',    type:'n',   lvl:'B2', syn:'help, support'},
-    {w:'cautious',     vn:'thận trọng',                     ph:'/ˈkɔːʃəs/',      type:'adj', lvl:'B2', syn:'careful, wary'},
-    {w:'commitment',   vn:'sự cam kết, tận tâm',            ph:'/kəˈmɪtmənt/',   type:'n',   lvl:'B2', syn:'dedication'},
-    {w:'competence',   vn:'năng lực, khả năng',             ph:'/ˈkɒmpɪtəns/',   type:'n',   lvl:'C1', syn:'capability, ability'},
-    {w:'concern',      vn:'mối lo ngại',                    ph:'/kənˈsɜːn/',     type:'n',   lvl:'B2', syn:'worry, apprehension'},
-    {w:'consistency',  vn:'sự nhất quán, sự kiên định',     ph:'/kənˈsɪstənsi/', type:'n',   lvl:'C1', syn:'steadfastness'},
-    {w:'demanding',    vn:'đòi hỏi cao, khó khăn',          ph:'/dɪˈmɑːndɪŋ/',  type:'adj', lvl:'B2', syn:'challenging, taxing'},
-    {w:'desperate',    vn:'tuyệt vọng',                     ph:'/ˈdespərət/',    type:'adj', lvl:'B2', syn:'hopeless'},
-    {w:'enhance',      vn:'nâng cao, tăng cường',           ph:'/ɪnˈhɑːns/',     type:'v',   lvl:'B2', syn:'improve, boost'},
-    {w:'essential',    vn:'cần thiết, thiết yếu',           ph:'/ɪˈsenʃl/',      type:'adj', lvl:'B1', syn:'vital, crucial'},
-    {w:'evolve',       vn:'phát triển, tiến hóa',           ph:'/ɪˈvɒlv/',       type:'v',   lvl:'C1', syn:'develop, grow'},
-    {w:'expert',       vn:'chuyên gia',                     ph:'/ˈekspɜːt/',     type:'n',   lvl:'B1', syn:'specialist, master'},
-    {w:'firm',         vn:'kiên quyết',                     ph:'/fɜːm/',         type:'adj', lvl:'B2', syn:'resolute, determined'},
-    {w:'genuine',      vn:'chân thật, thật sự',             ph:'/ˈdʒenjuɪn/',    type:'adj', lvl:'B2', syn:'sincere, authentic'},
-    {w:'hopeful',      vn:'đầy hy vọng',                    ph:'/ˈhəʊpfl/',      type:'adj', lvl:'B1', syn:'optimistic'},
-    {w:'implement',    vn:'thực hiện, thi hành',            ph:'/ˈɪmplɪment/',   type:'v',   lvl:'B2', syn:'execute, carry out'},
-    {w:'innovation',   vn:'sự đổi mới, sự sáng tạo',       ph:'/ˌɪnəˈveɪʃn/',   type:'n',   lvl:'C1', syn:'creativity, novelty'},
-    {w:'mindful',      vn:'lưu tâm, chú ý',                 ph:'/ˈmaɪndfl/',     type:'adj', lvl:'B2', syn:'thoughtful, aware'},
-    {w:'noticeable',   vn:'đáng chú ý, dễ nhận thấy',      ph:'/ˈnəʊtɪsəbl/',   type:'adj', lvl:'B2', syn:'evident, obvious'},
-    {w:'prioritise',   vn:'ưu tiên',                        ph:'/praɪˈɒrɪtaɪz/', type:'v',   lvl:'B2', syn:'put first'},
-    {w:'promote',      vn:'thúc đẩy, quảng bá',             ph:'/prəˈməʊt/',     type:'v',   lvl:'B2', syn:'foster, encourage'},
-    {w:'resilience',   vn:'khả năng phục hồi, sự kiên cường',ph:'/rɪˈzɪliəns/', type:'n',   lvl:'C2', syn:'toughness'},
-    {w:'sustainability',vn:'sự bền vững',                   ph:'/səˌsteɪnəˈbɪləti/',type:'n',lvl:'C2',syn:'durability'},
-    {w:'tension',      vn:'sự căng thẳng, áp lực',          ph:'/ˈtenʃn/',       type:'n',   lvl:'B2', syn:'stress, strain'},
-    {w:'urgent',       vn:'khẩn cấp',                       ph:'/ˈɜːdʒənt/',     type:'adj', lvl:'B1', syn:'pressing, critical'},
-    {w:'valuable',     vn:'có giá trị',                     ph:'/ˈvæljuəbl/',    type:'adj', lvl:'B2', syn:'precious, worthwhile'},
-    {w:'verify',       vn:'xác minh, kiểm chứng',           ph:'/ˈverɪfaɪ/',     type:'v',   lvl:'C1', syn:'confirm, authenticate'},
-    {w:'vulnerable',   vn:'dễ bị tổn thương',               ph:'/ˈvʌlnərəbl/',   type:'adj', lvl:'C1', syn:'susceptible, fragile'},
-    {w:'contaminate',  vn:'làm ô nhiễm',                    ph:'/kənˈtæmɪneɪt/', type:'v',   lvl:'C1', syn:'pollute'},
-    {w:'decompose',    vn:'phân hủy',                       ph:'/ˌdiːkəmˈpəʊz/', type:'v',   lvl:'C1', syn:'decay, rot'},
-    {w:'degradation',  vn:'sự suy thoái, sự hủy hoại',     ph:'/deɡrəˈdeɪʃən/', type:'n',   lvl:'C1', syn:'deterioration'},
-    {w:'durable',      vn:'bền bỉ, lâu dài',                ph:'/ˈdjʊərəbl/',    type:'adj', lvl:'B2', syn:'long-lasting'},
-    {w:'transformation',vn:'sự biến đổi, chuyển đổi',      ph:'/ˌtrænsfəˈmeɪʃən/',type:'n',lvl:'C1',syn:'change, conversion'},
-    {w:'transparency', vn:'tính minh bạch, rõ ràng',        ph:'/trænsˈpærənsi/',type:'n',   lvl:'C1', syn:'clarity, openness'},
-    {w:'synthetic',    vn:'tổng hợp, nhân tạo',             ph:'/sɪnˈθetɪk/',    type:'adj', lvl:'C1', syn:'artificial, man-made'},
-    {w:'upcycling',    vn:'tái chế sáng tạo',               ph:'/ˌʌpˈsaɪklɪŋ/', type:'n',   lvl:'C1', syn:'creative recycling'},
-    {w:'scam',         vn:'trò lừa đảo',                    ph:'/skæm/',         type:'n',   lvl:'C1', syn:'fraud, hoax'},
-    {w:'scammer',      vn:'kẻ lừa đảo',                     ph:'/ˈskæmər/',      type:'n',   lvl:'C1', syn:'fraudster'},
+    {w:'adulthood',vn:'tuổi trưởng thành',ph:'/ˈædʌlthʊd/',type:'n',lvl:'B2',syn:'maturity'},
+    {w:'advanced',vn:'tiên tiến, nâng cao',ph:'/ədˈvɑːnst/',type:'adj',lvl:'B1',syn:'sophisticated, cutting-edge'},
+    {w:'ambitious',vn:'đầy tham vọng',ph:'/æmˈbɪʃəs/',type:'adj',lvl:'B2',syn:'aspiring'},
+    {w:'anxious',vn:'lo lắng, bồn chồn',ph:'/ˈæŋkʃəs/',type:'adj',lvl:'B1',syn:'worried, nervous'},
+    {w:'assistance',vn:'sự hỗ trợ, giúp đỡ',ph:'/əˈsɪstəns/',type:'n',lvl:'B2',syn:'help, support'},
+    {w:'attempt',vn:'nỗ lực, sự cố gắng',ph:'/əˈtempt/',type:'n',lvl:'B2',syn:'effort, endeavour'},
+    {w:'blur',vn:'làm mờ, trở nên mờ',ph:'/blɜːr/',type:'v',lvl:'B2',syn:'obscure'},
+    {w:'bypass',vn:'bỏ qua; đi đường vòng; tránh cái gì',ph:'/ˈbaɪpɑːs/',type:'v',lvl:'C1',syn:'avoid'},
+    {w:'cautious',vn:'thận trọng',ph:'/ˈkɔːʃəs/',type:'adj',lvl:'B2',syn:'careful, wary'},
+    {w:'clink',vn:'tiếng leng keng',ph:'/klɪŋk/',type:'n',lvl:'B1',syn:''},
+    {w:'commitment',vn:'sự cam kết, tận tâm',ph:'/kəˈmɪtmənt/',type:'n',lvl:'B2',syn:'dedication'},
+    {w:'competence',vn:'năng lực, khả năng',ph:'/ˈkɒmpɪtəns/',type:'n',lvl:'C1',syn:'capability, ability'},
+    {w:'compulsive',vn:'không thể cưỡng lại',ph:'/kəmˈpʌlsɪv/',type:'adj',lvl:'C2',syn:''},
+    {w:'concern',vn:'mối lo ngại',ph:'/kənˈsɜːn/',type:'n',lvl:'B2',syn:'worry, apprehension'},
+    {w:'confuse',vn:'làm bối rối',ph:'/kənˈfjuːz/',type:'v',lvl:'B2',syn:'bewilder, puzzle, perplex'},
+    {w:'consistency',vn:'sự nhất quán, sự kiên định',ph:'/kənˈsɪstənsi/',type:'n',lvl:'C1',syn:'steadfastness'},
+    {w:'demanding',vn:'đòi hỏi cao, khó khăn',ph:'/dɪˈmɑːndɪŋ/',type:'adj',lvl:'B2',syn:'challenging, taxing'},
+    {w:'desperate',vn:'tuyệt vọng',ph:'/ˈdespərət/',type:'adj',lvl:'B2',syn:'hopeless'},
+    {w:'distribution',vn:'sự phân phối, phân bố',ph:'/ˌdɪstrɪˈbjuːʃn/',type:'n',lvl:'B2',syn:'allocation'},
+    {w:'emergence',vn:'sự xuất hiện, nổi lên',ph:'/ɪˈmɜːdʒəns/',type:'n',lvl:'C1',syn:'appearance, rise'},
+    {w:'enemy',vn:'kẻ thù',ph:'/ˈenəmi/',type:'n',lvl:'B1',syn:'foe, adversary'},
+    {w:'enhance',vn:'nâng cao, tăng cường',ph:'/ɪnˈhɑːns/',type:'v',lvl:'B2',syn:'improve, boost'},
+    {w:'essential',vn:'cần thiết, thiết yếu',ph:'/ɪˈsenʃl/',type:'adj',lvl:'B1',syn:'vital, crucial, necessary'},
+    {w:'ethically',vn:'về mặt đạo đức, có đạo đức',ph:'/ˈeθɪkli/',type:'adv',lvl:'C1',syn:'morally'},
+    {w:'evolve',vn:'phát triển, tiến hóa',ph:'/ɪˈvɒlv/',type:'v',lvl:'C1',syn:'develop, grow'},
+    {w:'expense',vn:'chi phí',ph:'/ɪkˈspens/',type:'n',lvl:'B2',syn:'outlay'},
+    {w:'expert',vn:'chuyên gia',ph:'/ˈekspɜːt/',type:'n',lvl:'B1',syn:'specialist, master'},
+    {w:'exploit',vn:'khai thác, bóc lột, lợi dụng',ph:'/ɪkˈsplɔɪt/',type:'v',lvl:'B2',syn:''},
+    {w:'financial',vn:'thuộc về tài chính',ph:'/faɪˈnænʃl/',type:'adj',lvl:'B1',syn:''},
+    {w:'firm',vn:'kiên quyết',ph:'/fɜːm/',type:'adj',lvl:'B2',syn:'resolute, determined'},
+    {w:'frustrated',vn:'thất vọng, chán nản, bực bội',ph:'/frʌˈstreɪtɪd/',type:'adj',lvl:'C1',syn:'annoyed, angry'},
+    {w:'generate',vn:'tạo ra, sản xuất',ph:'/ˈdʒenəreɪt/',type:'v',lvl:'B2',syn:'produce, create'},
+    {w:'genuine',vn:'chân thật; thật',ph:'/ˈdʒenjuɪn/',type:'adj',lvl:'B2',syn:'sincere, authentic, real'},
+    {w:'hands-on',vn:'thực hành, thực tế',ph:'/ˌhændzˈɒn/',type:'adj',lvl:'B2',syn:'practical'},
+    {w:'helpful',vn:'hữu ích',ph:'/ˈhelpfl/',type:'adj',lvl:'B1',syn:'useful, beneficial'},
+    {w:'honesty',vn:'sự trung thực',ph:'/ˈɒnɪsti/',type:'n',lvl:'B2',syn:'sincerity, integrity'},
+    {w:'hopeful',vn:'đầy hy vọng',ph:'/ˈhəʊpfl/',type:'adj',lvl:'B1',syn:'optimistic'},
+    {w:'hopeless',vn:'vô vọng, tuyệt vọng',ph:'/ˈhəʊpləs/',type:'adj',lvl:'B1',syn:'despairing, pessimistic'},
+    {w:'ignorance',vn:'sự thiếu hiểu biết',ph:'/ˈɪɡnərəns/',type:'n',lvl:'C2',syn:''},
+    {w:'implement',vn:'thực hiện, thi hành',ph:'/ˈɪmplɪment/',type:'v',lvl:'B2',syn:'execute, carry out'},
+    {w:'impose',vn:'áp đặt',ph:'/ɪmˈpəʊz/',type:'v',lvl:'C1',syn:'force'},
+    {w:'improvement',vn:'sự cải thiện',ph:'/ɪmˈpruːvmənt/',type:'n',lvl:'B1',syn:'enhancement, betterment'},
+    {w:'income',vn:'thu nhập',ph:'/ˈɪnkʌm/',type:'n',lvl:'B2',syn:'earnings, revenue'},
+    {w:'independent',vn:'độc lập (không phụ thuộc vào ai)',ph:'/ˌɪndɪˈpendənt/',type:'adj',lvl:'B1',syn:'autonomous, self-reliant'},
+    {w:'infrastructure',vn:'cơ sở hạ tầng',ph:'/ˈɪnfrəstrʌktʃər/',type:'n',lvl:'C1',syn:''},
+    {w:'innovation',vn:'sự đổi mới, sự sáng tạo',ph:'/ˌɪnəˈveɪʃn/',type:'n',lvl:'C1',syn:'creativity, novelty'},
+    {w:'innovative',vn:'sáng tạo, đổi mới',ph:'/ˈɪnəvətɪv/',type:'adj',lvl:'C1',syn:'novel, creative'},
+    {w:'mindful',vn:'lưu tâm, chú ý',ph:'/ˈmaɪndfl/',type:'adj',lvl:'B2',syn:'thoughtful, aware, conscious'},
+    {w:'noticeable',vn:'đáng chú ý, dễ nhận thấy',ph:'/ˈnəʊtɪsəbl/',type:'adj',lvl:'B2',syn:'evident, obvious'},
+    {w:'overspending',vn:'chi tiêu quá mức',ph:'/ˌəʊvərˈspendɪŋ/',type:'n',lvl:'B2',syn:''},
+    {w:'plagiarism',vn:'sự đạo văn',ph:'/ˈpleɪdʒərɪzəm/',type:'n',lvl:'C1',syn:''},
+    {w:'positive',vn:'tích cực',ph:'/ˈpɒzətɪv/',type:'adj',lvl:'B1',syn:'optimistic'},
+    {w:'practical',vn:'thực tế, thiết thực',ph:'/ˈpræktɪkl/',type:'adj',lvl:'B1',syn:'hands-on, realistic'},
+    {w:'praise',vn:'ca ngợi, khen ngợi',ph:'/preɪz/',type:'v',lvl:'B2',syn:'commend, compliment'},
+    {w:'prioritise',vn:'ưu tiên',ph:'/praɪˈɒrɪtaɪz/',type:'v',lvl:'B2',syn:'put first'},
+    {w:'private',vn:'riêng tư',ph:'/ˈpraɪvət/',type:'adj',lvl:'B1',syn:'personal'},
+    {w:'proceeds',vn:'tiền thu được (từ việc bán hàng, sự kiện...)',ph:'/ˈprəʊsiːdz/',type:'n',lvl:'C1',syn:''},
+    {w:'professional',vn:'chuyên nghiệp',ph:'/prəˈfeʃənl/',type:'adj',lvl:'B1',syn:'expert, skilled, experienced'},
+    {w:'promote',vn:'thúc đẩy, quảng bá',ph:'/prəˈməʊt/',type:'v',lvl:'B2',syn:'foster, encourage'},
+    {w:'prompt',vn:'lời nhắc, gợi ý',ph:'/prɒmpt/',type:'n',lvl:'C1',syn:'cue, hint'},
+    {w:'reliance',vn:'sự phụ thuộc',ph:'/rɪˈlaɪəns/',type:'n',lvl:'C1',syn:'dependence'},
+    {w:'require',vn:'yêu cầu, đòi hỏi',ph:'/rɪˈkwaɪər/',type:'v',lvl:'B1',syn:'necessitate, demand'},
+    {w:'resistance',vn:'sự kháng cự',ph:'/rɪˈzɪstəns/',type:'n',lvl:'C1',syn:'opposition, defiance'},
+    {w:'restless',vn:'bồn chồn, không yên',ph:'/ˈrestləs/',type:'adj',lvl:'B2',syn:'uneasy, nervous'},
+    {w:'scam',vn:'trò lừa đảo',ph:'/skæm/',type:'n',lvl:'C1',syn:'fraud, hoax'},
+    {w:'scammer',vn:'kẻ lừa đảo',ph:'/ˈskæmər/',type:'n',lvl:'C1',syn:'fraudster'},
+    {w:'spot',vn:'phát hiện, nhận ra',ph:'/spɒt/',type:'v',lvl:'B2',syn:'identify, detect'},
+    {w:'subsidy',vn:'tiền trợ cấp',ph:'/ˈsʌbsɪdi/',type:'n',lvl:'C1',syn:''},
+    {w:'sustainability',vn:'sự bền vững',ph:'/səˌsteɪnəˈbɪləti/',type:'n',lvl:'C2',syn:''},
+    {w:'tension',vn:'sự căng thẳng, áp lực',ph:'/ˈtenʃn/',type:'n',lvl:'B2',syn:'stress, strain'},
+    {w:'trick',vn:'thủ thuật, trò gian trá; lừa gạt',ph:'/trɪk/',type:'n/v',lvl:'B1',syn:'deception, hoax'},
+    {w:'undeniably',vn:'không thể phủ nhận',ph:'/ˌʌndɪˈnaɪəbli/',type:'adv',lvl:'C1',syn:'undoubtedly, definitely'},
+    {w:'unimaginable',vn:'không thể tưởng tượng được',ph:'/ˌʌnɪˈmædʒɪnəbl/',type:'adj',lvl:'C1',syn:'inconceivable'},
+    {w:'urgent',vn:'khẩn cấp',ph:'/ˈɜːdʒənt/',type:'adj',lvl:'B1',syn:'pressing, critical'},
+    {w:'valuable',vn:'có giá trị',ph:'/ˈvæljuəbl/',type:'adj',lvl:'B2',syn:'precious, worthwhile'},
+    {w:'verify',vn:'xác minh, kiểm chứng',ph:'/ˈverɪfaɪ/',type:'v',lvl:'C1',syn:'confirm, authenticate'},
+    {w:'vulnerable',vn:'dễ bị tổn thương, tấn công, ảnh hưởng',ph:'/ˈvʌlnərəbl/',type:'adj',lvl:'C1',syn:'susceptible, fragile'},
+    {w:'wisely',vn:'một cách khôn ngoan',ph:'/ˈwaɪzli/',type:'adv',lvl:'C1',syn:'prudently, judiciously'},
+    {w:'climate change',vn:'biến đổi khí hậu',ph:'/ˈklaɪmɪt tʃeɪndʒ/',type:'n',lvl:'B2',syn:''},
+    {w:'contaminate',vn:'làm ô nhiễm',ph:'/kənˈtæmɪneɪt/',type:'v',lvl:'C1',syn:'pollute'},
+    {w:'counteract',vn:'chống lại',ph:'/ˌkaʊntəˈækt/',type:'v',lvl:'C1',syn:''},
+    {w:'cultural heritage',vn:'di sản văn hóa',ph:'/ˈkʌltʃərəl ˈherɪtɪdʒ/',type:'n',lvl:'B2',syn:''},
+    {w:'cyberbully',vn:'bắt nạt qua mạng internet',ph:'/ˈsaɪbəˌbʊli/',type:'v',lvl:'C1',syn:''},
+    {w:'decompose',vn:'phân hủy',ph:'/ˌdiːkəmˈpəʊz/',type:'v',lvl:'C1',syn:'decay'},
+    {w:'degradation',vn:'sự suy thoái, sự hủy hoại',ph:'/deɡrəˈdeɪʃən/',type:'n',lvl:'C1',syn:'deterioration'},
+    {w:'devastating',vn:'tàn phá, phá hủy nghiêm trọng',ph:'/ˈdevəsteɪtɪŋ/',type:'adj',lvl:'C2',syn:'destructive'},
+    {w:'dumping',vn:'sự xả thải, sự đổ bỏ bừa bãi',ph:'/ˈdʌmpɪŋ/',type:'n',lvl:'C1',syn:''},
+    {w:'durable',vn:'bền bỉ, lâu dài',ph:'/ˈdjʊərəbl/',type:'adj',lvl:'B2',syn:'long-lasting'},
+    {w:'dweller',vn:'cư dân',ph:'/ˈdwelər/',type:'n',lvl:'C1',syn:'inhabitant'},
+    {w:'eco-conscious',vn:'có ý thức bảo vệ môi trường',ph:'/ˌiːkəʊˈkɒnʃəs/',type:'adj',lvl:'C1',syn:''},
+    {w:'enact',vn:'ban hành (luật), đưa vào thực thi',ph:'/ɪˈnækt/',type:'v',lvl:'C1',syn:''},
+    {w:'enforce',vn:'thi hành, thực thi luật lệ',ph:'/ɪnˈfɔːs/',type:'v',lvl:'C1',syn:'implement, impose'},
+    {w:'escalation',vn:'sự leo thang (căng thẳng, bạo lực...)',ph:'/ˌeskəˈleɪʃən/',type:'n',lvl:'C1',syn:'intensification'},
+    {w:'ever-changing',vn:'luôn thay đổi',ph:'/ˌevəˈtʃeɪndʒɪŋ/',type:'adj',lvl:'C1',syn:''},
+    {w:'food chain',vn:'chuỗi thức ăn',ph:'/ˈfuːd tʃeɪn/',type:'n',lvl:'B2',syn:''},
+    {w:'fragile',vn:'dễ vỡ, mong manh',ph:'/ˈfrædʒaɪl/',type:'adj',lvl:'C2',syn:'frail, vulnerable'},
+    {w:'garment',vn:'áo quần, trang phục',ph:'/ˈɡɑːmənt/',type:'n',lvl:'C1',syn:'clothes'},
+    {w:'illegal',vn:'bất hợp pháp, trái phép',ph:'/ɪˈliːɡl/',type:'adj',lvl:'B2',syn:'unlawful'},
+    {w:'instability',vn:'sự bất ổn, không ổn định',ph:'/ˌɪnstəˈbɪlɪti/',type:'n',lvl:'C1',syn:''},
+    {w:'integration',vn:'sự hội nhập, tích hợp',ph:'/ˌɪntɪˈɡreɪʃən/',type:'n',lvl:'C1',syn:'incorporation'},
+    {w:'long-distance',vn:'khoảng cách xa',ph:'/ˌlɒŋˈdɪstəns/',type:'adj',lvl:'B2',syn:''},
+    {w:'manufacturing',vn:'sự sản xuất',ph:'/ˌmænjʊˈfæktʃərɪŋ/',type:'n',lvl:'B2',syn:'production'},
+    {w:'maritime',vn:'thuộc về biển, hàng hải',ph:'/ˈmærɪtaɪm/',type:'adj',lvl:'C1',syn:''},
+    {w:'microplastic',vn:'vi nhựa (những hạt nhựa rất nhỏ gây ô nhiễm)',ph:'/ˌmaɪkrəʊˈplæstɪk/',type:'n',lvl:'C1',syn:''},
+    {w:'natural disaster',vn:'thảm họa thiên nhiên',ph:'/ˈnætʃrəl dɪˈzɑːstər/',type:'n',lvl:'B2',syn:''},
+    {w:'neglect',vn:'bỏ mặc, sự bỏ bê',ph:'/nɪˈɡlekt/',type:'v/n',lvl:'C1',syn:'ignore, abandon'},
+    {w:'opaque',vn:'mờ đục, không rõ ràng',ph:'/əʊˈpeɪk/',type:'adj',lvl:'C1',syn:'unclear'},
+    {w:'perpetuate',vn:'duy trì, làm cho tồn tại mãi',ph:'/pəˈpetʃʊeɪt/',type:'v',lvl:'C1',syn:'sustain, maintain'},
+    {w:'persistence',vn:'sự kiên trì, sự dai dẳng',ph:'/pəˈsɪstəns/',type:'n',lvl:'C2',syn:'determination'},
+    {w:'pledge',vn:'cam kết, hứa một cách trang trọng',ph:'/pledʒ/',type:'v',lvl:'C1',syn:'promise'},
+    {w:'prolonged',vn:'kéo dài',ph:'/prəˈlɒŋd/',type:'adj',lvl:'C1',syn:'extended'},
+    {w:'proper',vn:'phù hợp, thích hợp',ph:'/ˈprɒpər/',type:'adj',lvl:'B1',syn:'appropriate, suitable'},
+    {w:'repurpose',vn:'tái sử dụng cho mục đích khác',ph:'/ˌriːˈpɜːpəs/',type:'v',lvl:'C1',syn:''},
+    {w:'reputation',vn:'danh tiếng, uy tín',ph:'/ˌrepjʊˈteɪʃən/',type:'n',lvl:'B2',syn:''},
+    {w:'resilience',vn:'khả năng phục hồi, sự kiên cường',ph:'/rɪˈzɪliəns/',type:'n',lvl:'C2',syn:'toughness, adaptability'},
+    {w:'restoration',vn:'sự phục hồi, khôi phục',ph:'/ˌrestəˈreɪʃən/',type:'n',lvl:'C1',syn:'revival'},
+    {w:'setting',vn:'bối cảnh (kịch, phim ảnh...)',ph:'/ˈsetɪŋ/',type:'n',lvl:'B2',syn:''},
+    {w:'shift',vn:'chuyển đổi, thay đổi',ph:'/ʃɪft/',type:'v',lvl:'C1',syn:'change'},
+    {w:'simplicity',vn:'sự đơn giản, giản dị',ph:'/sɪmˈplɪsəti/',type:'n',lvl:'C1',syn:'plainness'},
+    {w:'supply chain',vn:'chuỗi cung ứng',ph:'/səˈplaɪ tʃeɪn/',type:'n',lvl:'C1',syn:''},
+    {w:'synthetic',vn:'tổng hợp, nhân tạo',ph:'/sɪnˈθetɪk/',type:'adj',lvl:'C1',syn:'artificial, man-made'},
+    {w:'textile',vn:'dệt may',ph:'/ˈtekstaɪl/',type:'n',lvl:'B2',syn:'fabric, cloth'},
+    {w:'transformation',vn:'sự biến đổi, chuyển đổi',ph:'/ˌtrænsfəˈmeɪʃən/',type:'n',lvl:'C1',syn:'change, conversion'},
+    {w:'transparency',vn:'tính minh bạch, rõ ràng',ph:'/trænsˈpærənsi/',type:'n',lvl:'C1',syn:'clarity, openness'},
+    {w:'uneven',vn:'không đều, không đồng đều',ph:'/ʌnˈiːvn/',type:'adj',lvl:'C2',syn:''},
+    {w:'upcycling',vn:'tái chế sáng tạo, tái chế nâng cấp',ph:'/ˌʌpˈsaɪklɪŋ/',type:'n',lvl:'C1',syn:'creative recycling'},
+    {w:'commit',vn:'cam kết',ph:'/kəˈmɪt/',type:'v',lvl:'B1',syn:'promise'},
+    {w:'thoughtful',vn:'chu đáo, sâu sắc',ph:'/ˈθɔːtfəl/',type:'adj',lvl:'B2',syn:'considerate, kind'},
+    {w:'incredibly',vn:'cực kỳ, đáng kinh ngạc',ph:'/ɪnˈkredəbli/',type:'adv',lvl:'B1',syn:'extremely, unbelievably'},
+    {w:'perspective',vn:'quan điểm, góc nhìn',ph:'/pəˈspektɪv/',type:'n',lvl:'B2',syn:'viewpoint'},
+    {w:'overwhelmed',vn:'choáng ngợp, tràn ngập',ph:'/ˌəʊvəˈwelmd/',type:'adj',lvl:'B2',syn:'swamped'},
+    {w:'validation',vn:'sự xác nhận, phê chuẩn',ph:'/ˌvælɪˈdeɪʃən/',type:'n',lvl:'C1',syn:'confirmation'},
+    {w:'constant',vn:'liên tục, không đổi',ph:'/ˈkɒnstənt/',type:'adj',lvl:'B2',syn:'continuous'},
+    {w:'self-esteem',vn:'lòng tự trọng',ph:'/ˌself ɪˈstiːm/',type:'n',lvl:'C1',syn:'self-worth'},
+    {w:'ethical',vn:'đạo đức, có đạo lý',ph:'/ˈeθɪkl/',type:'adj',lvl:'B2',syn:'moral'},
+    {w:'existence',vn:'sự tồn tại',ph:'/ɪɡˈzɪstəns/',type:'n',lvl:'B2',syn:'being'},
+    {w:'captivity',vn:'tình trạng bị giam cầm',ph:'/kæpˈtɪvəti/',type:'n',lvl:'C1',syn:'confinement, imprisonment'},
+    {w:'aggression',vn:'sự hung hăng, hiếu chiến',ph:'/əˈɡreʃn/',type:'n',lvl:'C1',syn:'hostility'},
+    {w:'sake',vn:'lợi ích',ph:'/seɪk/',type:'n',lvl:'C1',syn:'benefit'},
+    {w:'replicate',vn:'tái tạo, sao chép, mô phỏng',ph:'/ˈreplɪkeɪt/',type:'v',lvl:'C1',syn:'copy, duplicate'},
+    {w:'construct',vn:'xây dựng',ph:'/kənˈstrʌkt/',type:'v',lvl:'B2',syn:'build, erect'},
+    {w:'distress',vn:'nỗi đau khổ, phiền muộn',ph:'/dɪˈstres/',type:'n',lvl:'C1',syn:'anguish, suffering'},
+    {w:'honour',vn:'danh dự, vinh dự',ph:'/ˈɒnər/',type:'n',lvl:'B2',syn:'privilege'},
+    {w:'exhaustion',vn:'sự kiệt sức',ph:'/ɪɡˈzɔːstʃən/',type:'n',lvl:'B2',syn:'fatigue, tiredness'},
+    {w:'permanently',vn:'vĩnh viễn, lâu dài',ph:'/ˈpɜːmənəntli/',type:'adv',lvl:'B2',syn:'eternally'},
+    {w:'acceptable',vn:'chấp nhận được',ph:'/əkˈseptəbl/',type:'adj',lvl:'B1',syn:'satisfactory'},
+    {w:'regulation',vn:'quy định, điều lệ',ph:'/ˌreɡjəˈleɪʃən/',type:'n',lvl:'B2',syn:'rule'},
+    {w:'boredom',vn:'sự buồn chán',ph:'/ˈbɔːdəm/',type:'n',lvl:'B2',syn:'tedium'},
+    {w:'gymnasium',vn:'phòng tập thể dục',ph:'/dʒɪmˈneɪziəm/',type:'n',lvl:'B2',syn:'gym'},
+    {w:'meaningful',vn:'có ý nghĩa, đầy ý nghĩa',ph:'/ˈmiːnɪŋfəl/',type:'adj',lvl:'B2',syn:'significant'},
+    {w:'intensify',vn:'tăng cường, làm mạnh thêm',ph:'/ɪnˈtensɪfaɪ/',type:'v',lvl:'C1',syn:'escalate, heighten'},
+    {w:'expand',vn:'mở rộng, giãn ra',ph:'/ɪkˈspænd/',type:'v',lvl:'B1',syn:'grow, enlarge'},
+    {w:'strengthen',vn:'củng cố, làm mạnh mẽ hơn',ph:'/ˈstreŋθən/',type:'v',lvl:'B2',syn:'reinforce'},
+    {w:'plague',vn:'gây phiền toái; dịch bệnh',ph:'/pleɪɡ/',type:'v/n',lvl:'C1',syn:'trouble, afflict'},
+    {w:'procrastination',vn:'sự trì hoãn',ph:'/prəˌkræstɪˈneɪʃən/',type:'n',lvl:'C1',syn:'delay, postponement'},
+    {w:'destructive',vn:'mang tính phá hoại',ph:'/dɪˈstrʌktɪv/',type:'adj',lvl:'C1',syn:'harmful, damaging'},
+    {w:'temporary',vn:'tạm thời',ph:'/ˈtempərəri/',type:'adj',lvl:'B1',syn:'short-term'},
+    {w:'perfectionism',vn:'chủ nghĩa hoàn hảo',ph:'/pəˈfekʃənɪzəm/',type:'n',lvl:'C1',syn:''},
+    {w:'exacerbate',vn:'làm trầm trọng thêm',ph:'/ɪɡˈzæsəbeɪt/',type:'v',lvl:'C1',syn:'worsen, aggravate'},
+    {w:'distraction',vn:'sự xao nhãng',ph:'/dɪˈstrækʃən/',type:'n',lvl:'B2',syn:'diversion'},
+    {w:'dull',vn:'tẻ nhạt, đần độn',ph:'/dʌl/',type:'adj',lvl:'B1',syn:'boring, tedious'},
+    {w:'internalise',vn:'tiếp thu, làm cho thành tư tưởng cá nhân',ph:'/ɪnˈtɜːnəlaɪz/',type:'v',lvl:'C1',syn:''},
+    {w:'accountability',vn:'trách nhiệm (giải trình)',ph:'/əˌkaʊntəˈbɪlɪti/',type:'n',lvl:'C1',syn:'responsibility'},
+    {w:'avoidance',vn:'sự né tránh',ph:'/əˈvɔɪdəns/',type:'n',lvl:'C1',syn:'evasion'},
+    {w:'sustainable',vn:'bền vững',ph:'/səˈsteɪnəbl/',type:'adj',lvl:'B2',syn:'eco-friendly, lasting'},
+    {w:'self-compassion',vn:'lòng từ bi với bản thân',ph:'/ˌselfkəmˈpæʃən/',type:'n',lvl:'C1',syn:'self-kindness'},
+    {w:'reclaim',vn:'giành lại, đòi lại',ph:'/rɪˈkleɪm/',type:'v',lvl:'B2',syn:'recover, regain'},
+    {w:'repetitive',vn:'lặp đi lặp lại',ph:'/rɪˈpetɪtɪv/',type:'adj',lvl:'B2',syn:'monotonous'},
+    {w:'self-discipline',vn:'kỷ luật bản thân',ph:'/ˌselfˈdɪsəplɪn/',type:'n',lvl:'C2',syn:'self-control'},
+    {w:'tedious',vn:'tẻ nhạt, chán ngắt',ph:'/ˈtiːdiəs/',type:'adj',lvl:'C1',syn:'boring, dull'},
+    {w:'diminish',vn:'giảm bớt, thu nhỏ',ph:'/dɪˈmɪnɪʃ/',type:'v',lvl:'C1',syn:'decrease, lessen'},
+    {w:'moderate',vn:'điều độ, tiết chế',ph:'/ˈmɒdərət/',type:'v',lvl:'C1',syn:''},
+    {w:'modify',vn:'sửa đổi, thay đổi',ph:'/ˈmɒdɪfaɪ/',type:'v',lvl:'B2',syn:'adapt'},
+    {w:'customise',vn:'tùy chỉnh',ph:'/ˈkʌstəmaɪz/',type:'v',lvl:'B2',syn:'personalize, tailor'},
+    {w:'erode',vn:'xói mòn, bào mòn',ph:'/ɪˈrəʊd/',type:'v',lvl:'C2',syn:'wear away'},
+    {w:'gentleness',vn:'sự nhẹ nhàng, dịu dàng',ph:'/ˈdʒentəlnəs/',type:'n',lvl:'B2',syn:'softness'},
+    {w:'consistent',vn:'nhất quán',ph:'/kənˈsɪstənt/',type:'adj',lvl:'B2',syn:'unchanging, steady'},
+    {w:'unfold',vn:'mở ra, bộc lộ (diễn biến)',ph:'/ʌnˈfəʊld/',type:'v',lvl:'B2',syn:'reveal, disclose'},
+    {w:'earplug',vn:'nút tai',ph:'/ˈɪəplʌɡ/',type:'n',lvl:'B1',syn:''},
+    {w:'engaging',vn:'thu hút, lôi cuốn',ph:'/ɪnˈɡeɪdʒɪŋ/',type:'adj',lvl:'C1',syn:'attractive, appealing'},
+    {w:'engaged',vn:'đính hôn; bận rộn; tham gia vào',ph:'/ɪnˈɡeɪdʒd/',type:'adj',lvl:'B1',syn:'involved, occupied'},
+    {w:'engagingly',vn:'một cách lôi cuốn',ph:'/ɪnˈɡeɪdʒɪŋli/',type:'adv',lvl:'C1',syn:'attractively'},
+    {w:'engagement',vn:'sự đính hôn, sự tham gia, sự cam kết',ph:'/ɪnˈɡeɪdʒmənt/',type:'n',lvl:'C1',syn:'involvement, participation'},
+    {w:'achievement',vn:'thành tựu, sự đạt được',ph:'/əˈtʃiːvmənt/',type:'n',lvl:'B1',syn:'accomplishment'},
+    {w:'witness',vn:'chứng kiến',ph:'/ˈwɪtnəs/',type:'v',lvl:'B2',syn:'observe, see'},
+    {w:'absorb',vn:'hấp thụ',ph:'/əbˈzɔːb/',type:'v',lvl:'B2',syn:'soak, take in'},
+    {w:'alert',vn:'cảnh báo, cảnh giác',ph:'/əˈlɜːt/',type:'adj/n/v',lvl:'B2',syn:'attentive, aware'},
+    {w:'alternative',vn:'thay thế, lựa chọn khác',ph:'/ɔːlˈtɜːnətɪv/',type:'n/adj',lvl:'B2',syn:'option, substitute'},
+    {w:'appeal',vn:'hấp dẫn, lời kêu gọi',ph:'/əˈpiːl/',type:'v/n',lvl:'B2',syn:'attract, request'},
+    {w:'architectural',vn:'thuộc kiến trúc',ph:'/ˌɑːkɪˈtektʃərəl/',type:'adj',lvl:'C1',syn:'structural'},
+    {w:'assignment',vn:'bài tập, nhiệm vụ',ph:'/əˈsaɪnmənt/',type:'n',lvl:'B1',syn:'task, duty'},
+    {w:'auditorium',vn:'khán phòng',ph:'/ˌɔːdɪˈtɔːriəm/',type:'n',lvl:'C2',syn:'hall'},
+    {w:'beyond',vn:'vượt ra ngoài',ph:'/bɪˈjɒnd/',type:'prep',lvl:'B2',syn:'past, outside'},
+    {w:'blend',vn:'pha trộn, kết hợp',ph:'/blend/',type:'v',lvl:'C1',syn:'mix, combine'},
+    {w:'cognitive',vn:'liên quan đến nhận thức',ph:'/ˈkɒɡnətɪv/',type:'adj',lvl:'C1',syn:'mental, intellectual'},
+    {w:'competition',vn:'sự cạnh tranh',ph:'/ˌkɒmpəˈtɪʃn/',type:'n',lvl:'B1',syn:'rivalry, contest'},
+    {w:'concept',vn:'khái niệm',ph:'/ˈkɒnsept/',type:'n',lvl:'B2',syn:'idea, notion'},
+    {w:'consumption',vn:'sự tiêu dùng',ph:'/kənˈsʌmpʃn/',type:'n',lvl:'B2',syn:'usage, use'},
+    {w:'cooperation',vn:'sự hợp tác',ph:'/kəʊˌɒpəˈreɪʃn/',type:'n',lvl:'B2',syn:'collaboration, teamwork'},
+    {w:'critically',vn:'một cách phê bình',ph:'/ˈkrɪtɪkli/',type:'adv',lvl:'B2',syn:'analytically'},
+    {w:'currently',vn:'hiện tại',ph:'/ˈkʌrəntli/',type:'adv',lvl:'B2',syn:'now, presently'},
+    {w:'dependence',vn:'sự phụ thuộc',ph:'/dɪˈpendəns/',type:'n',lvl:'C1',syn:'reliance'},
+    {w:'determination',vn:'sự quyết tâm',ph:'/dɪˌtɜːmɪˈneɪʃn/',type:'n',lvl:'B2',syn:'resolve, perseverance'},
+    {w:'drainage',vn:'hệ thống thoát nước',ph:'/ˈdreɪnɪdʒ/',type:'n',lvl:'C1',syn:'outflow system'},
+    {w:'ease',vn:'làm dịu, giảm bớt',ph:'/iːz/',type:'v',lvl:'C1',syn:'relieve, lessen'},
+    {w:'embark',vn:'bắt đầu (hành trình, dự án)',ph:'/ɪmˈbɑːk/',type:'v',lvl:'C1',syn:'begin, commence'},
+    {w:'emergency',vn:'trường hợp khẩn cấp',ph:'/ɪˈmɜːdʒənsi/',type:'n',lvl:'B1',syn:'urgency'},
+    {w:'empower',vn:'trao quyền, làm cho ai đó mạnh hơn',ph:'/ɪmˈpaʊər/',type:'v',lvl:'C1',syn:'authorize, enable'},
+    {w:'entirely',vn:'hoàn toàn',ph:'/ɪnˈtaɪəli/',type:'adv',lvl:'B2',syn:'completely, totally'},
+    {w:'especially',vn:'đặc biệt là',ph:'/ɪˈspeʃəli/',type:'adv',lvl:'A2',syn:'particularly'},
+    {w:'excessively',vn:'quá mức',ph:'/ɪkˈsesɪvli/',type:'adv',lvl:'C1',syn:'overly, extremely'},
+    {w:'filter',vn:'lọc',ph:'/ˈfɪltər/',type:'v',lvl:'C1',syn:'purify, refine'},
+    {w:'flexible',vn:'linh hoạt',ph:'/ˈfleksəbl/',type:'adj',lvl:'B2',syn:'adaptable, adjustable'},
+    {w:'heritage',vn:'di sản',ph:'/ˈherɪtɪdʒ/',type:'n',lvl:'B2',syn:'legacy'},
+    {w:'humble',vn:'khiêm tốn, giản dị',ph:'/ˈhʌmbl/',type:'adj',lvl:'C1',syn:'modest, unassuming'},
+    {w:'identity',vn:'danh tính',ph:'/aɪˈdentɪti/',type:'n',lvl:'B2',syn:'individuality'},
+    {w:'immigrant',vn:'người nhập cư',ph:'/ˈɪmɪɡrənt/',type:'n',lvl:'B2',syn:'newcomer, migrant'},
+    {w:'ingredient',vn:'thành phần',ph:'/ɪnˈɡriːdiənt/',type:'n',lvl:'B1',syn:'component, element'},
+    {w:'inspire',vn:'truyền cảm hứng',ph:'/ɪnˈspaɪər/',type:'v',lvl:'B2',syn:'motivate, encourage'},
+    {w:'insulation',vn:'vật liệu cách nhiệt',ph:'/ˌɪnsjʊˈleɪʃn/',type:'n',lvl:'B2',syn:''},
+    {w:'interpretation',vn:'sự diễn giải',ph:'/ɪnˌtɜːprəˈteɪʃən/',type:'n',lvl:'C1',syn:'explanation, analysis'},
+    {w:'navigate',vn:'điều hướng, định hướng',ph:'/ˈnævɪɡeɪt/',type:'v',lvl:'B2',syn:'guide, steer'},
+    {w:'nursery',vn:'nhà trẻ, vườn ươm',ph:'/ˈnɜːsəri/',type:'n',lvl:'B2',syn:'daycare, kindergarten'},
+    {w:'odd',vn:'kỳ lạ, lạ lùng',ph:'/ɒd/',type:'adj',lvl:'B2',syn:'strange, weird, unusual'},
+    {w:'outstanding',vn:'nổi bật, xuất sắc',ph:'/aʊtˈstændɪŋ/',type:'adj',lvl:'B2',syn:'exceptional, excellent'},
+    {w:'phenomenon',vn:'hiện tượng',ph:'/fəˈnɒmɪnən/',type:'n',lvl:'C1',syn:'event, occurrence'},
+    {w:'plot',vn:'cốt truyện, âm mưu',ph:'/plɒt/',type:'n',lvl:'B1',syn:'storyline'},
+    {w:'practicality',vn:'tính thực tế',ph:'/ˌpræktɪˈkæləti/',type:'n',lvl:'C1',syn:'usefulness'},
+    {w:'preserve',vn:'bảo tồn, giữ gìn',ph:'/prɪˈzɜːv/',type:'v',lvl:'B2',syn:'conserve, maintain'},
+    {w:'redemption',vn:'sự chuộc lỗi, cứu rỗi',ph:'/rɪˈdempʃn/',type:'n',lvl:'C2',syn:'atonement, salvation'},
+    {w:'relevant',vn:'có liên quan',ph:'/ˈreləvənt/',type:'adj',lvl:'B2',syn:'related, applicable'},
+    {w:'renewal',vn:'sự đổi mới, phục hồi',ph:'/rɪˈnjuːəl/',type:'n',lvl:'C1',syn:'restoration, revival'},
+    {w:'rooftop',vn:'mái nhà, sân thượng',ph:'/ˈruːftɒp/',type:'n',lvl:'B1',syn:''},
+    {w:'shortcut',vn:'đường tắt, lối tắt; cách nhanh',ph:'/ˈʃɔːtkʌt/',type:'n',lvl:'B1',syn:'hack, quick method'},
+    {w:'split',vn:'chia ra',ph:'/splɪt/',type:'v',lvl:'B2',syn:'divide, separate'},
+    {w:'streak',vn:'chạy vụt qua, để lại vệt',ph:'/striːk/',type:'v',lvl:'C1',syn:'dash, race, flash'},
+    {w:'stride',vn:'sải bước',ph:'/straɪd/',type:'n/v',lvl:'C1',syn:''},
+    {w:'strike',vn:'tấn công',ph:'/straɪk/',type:'v/n',lvl:'B2',syn:'hit'},
+    {w:'stroll',vn:'đi dạo',ph:'/strəʊl/',type:'v/n',lvl:'B2',syn:'walk, saunter'},
+    {w:'sudden',vn:'đột ngột',ph:'/ˈsʌdn/',type:'adj',lvl:'B2',syn:'abrupt, unexpected'},
+    {w:'thoughtfully',vn:'một cách sâu sắc, chu đáo',ph:'/ˈθɔːtfəli/',type:'adv',lvl:'C1',syn:'reflectively, carefully'},
+    {w:'unforgettable',vn:'không thể quên được',ph:'/ˌʌnfəˈɡetəbl/',type:'adj',lvl:'B2',syn:'memorable, remarkable'},
+    {w:'unusual',vn:'bất thường',ph:'/ʌnˈjuːʒuəl/',type:'adj',lvl:'A2',syn:'rare, strange'},
+    {w:'upgrade',vn:'nâng cấp',ph:'/ˈʌpɡreɪd/',type:'v/n',lvl:'B2',syn:'improve, enhance'},
+    {w:'urban',vn:'thuộc thành phố',ph:'/ˈɜːbən/',type:'adj',lvl:'B2',syn:'city, metropolitan'},
+    {w:'abbreviation',vn:'chữ viết tắt',ph:'/əˌbriːviˈeɪʃn/',type:'n',lvl:'B2',syn:'acronym'},
+    {w:'abrupt',vn:'đột ngột',ph:'/əˈbrʌpt/',type:'adj',lvl:'C1',syn:'sudden'},
+    {w:'apprentice',vn:'người học việc',ph:'/əˈprentɪs/',type:'n',lvl:'B2',syn:'trainee'},
+    {w:'apprenticeship',vn:'thời kỳ học việc',ph:'/əˈprentɪʃɪp/',type:'n',lvl:'C1',syn:'traineeship'},
+    {w:'approach',vn:'tiếp cận',ph:'/əˈprəʊtʃ/',type:'v/n',lvl:'B1',syn:'method'},
+    {w:'catastrophe',vn:'thảm họa',ph:'/kəˈtæstrəfi/',type:'n',lvl:'C2',syn:'disaster'},
+    {w:'catastrophic',vn:'thảm khốc',ph:'/ˌkætəˈstrɒfɪk/',type:'adj',lvl:'C1',syn:'disastrous'},
+    {w:'ceremony',vn:'nghi lễ',ph:'/ˈserəməni/',type:'n',lvl:'B1',syn:'ritual'},
+    {w:'civilisation',vn:'nền văn minh',ph:'/ˌsɪvəlaɪˈzeɪʃn/',type:'n',lvl:'B2',syn:'culture'},
+    {w:'coherence',vn:'tính mạch lạc',ph:'/kəʊˈhɪərəns/',type:'n',lvl:'C2',syn:''},
+    {w:'competent',vn:'có năng lực',ph:'/ˈkɒmpɪtənt/',type:'adj',lvl:'C1',syn:'capable'},
+    {w:'consequence',vn:'hậu quả',ph:'/ˈkɒnsɪkwəns/',type:'n',lvl:'B2',syn:'result'},
+    {w:'definitely',vn:'chắc chắn',ph:'/ˈdefɪnɪtli/',type:'adv',lvl:'B1',syn:'certainly'},
+    {w:'deliberate',vn:'cố ý',ph:'/dɪˈlɪbərət/',type:'adj',lvl:'B2',syn:'intentional'},
+    {w:'determine',vn:'xác định',ph:'/dɪˈtɜːmɪn/',type:'v',lvl:'C1',syn:'decide'},
+    {w:'dominant',vn:'thống trị, chủ yếu',ph:'/ˈdɒmɪnənt/',type:'adj',lvl:'B2',syn:'powerful, predominant'},
+    {w:'dominate',vn:'thống trị',ph:'/ˈdɒmɪneɪt/',type:'v',lvl:'B2',syn:'control'},
+    {w:'dwindling',vn:'suy giảm',ph:'/ˈdwɪndlɪŋ/',type:'adj',lvl:'C1',syn:'decreasing'},
+    {w:'economically',vn:'về mặt kinh tế',ph:'/ˌiːkəˈnɒmɪkli/',type:'adv',lvl:'B2',syn:'financially'},
+    {w:'electrify',vn:'điện khí hóa',ph:'/ɪˈlektrɪfaɪ/',type:'v',lvl:'C1',syn:''},
+    {w:'embrace',vn:'đón nhận',ph:'/ɪmˈbreɪs/',type:'v',lvl:'B2',syn:'accept'},
+    {w:'erosion',vn:'sự xói mòn',ph:'/ɪˈrəʊʒn/',type:'n',lvl:'B2',syn:'wearing away'},
+    {w:'expiration',vn:'sự hết hạn',ph:'/ˌekspəˈreɪʃn/',type:'n',lvl:'B2',syn:'expiry'},
+    {w:'finite',vn:'hữu hạn',ph:'/ˈfaɪnaɪt/',type:'adj',lvl:'C1',syn:'limited'},
+    {w:'frequent',vn:'thường xuyên',ph:'/ˈfriːkwənt/',type:'adj',lvl:'B1',syn:'regular'},
+    {w:'globalisation',vn:'toàn cầu hóa',ph:'/ˌɡləʊbəlaɪˈzeɪʃn/',type:'n',lvl:'B2',syn:'internationalisation'},
+    {w:'grid',vn:'lưới điện',ph:'/ɡrɪd/',type:'n',lvl:'C1',syn:''},
+    {w:'harsh',vn:'khắc nghiệt',ph:'/hɑːʃ/',type:'adj',lvl:'C1',syn:'severe'},
+    {w:'inappropriate',vn:'không phù hợp',ph:'/ˌɪnəˈprəʊpriət/',type:'adj',lvl:'C1',syn:'unsuitable'},
+    {w:'indicate',vn:'chỉ ra',ph:'/ˈɪndɪkeɪt/',type:'v',lvl:'B1',syn:'show'},
+    {w:'industrialisation',vn:'công nghiệp hóa',ph:'/ɪnˌdʌstriəlaɪˈzeɪʃn/',type:'n',lvl:'C1',syn:''},
+    {w:'intermittency',vn:'tính gián đoạn',ph:'/ˌɪntəˈmɪtənsi/',type:'n',lvl:'C1',syn:'irregularity'},
+    {w:'maintenance',vn:'sự bảo trì',ph:'/ˈmeɪntənəns/',type:'n',lvl:'B2',syn:'upkeep'},
+    {w:'memorably',vn:'một cách đáng nhớ',ph:'/ˈmemrəbli/',type:'adv',lvl:'C1',syn:'unforgettably'},
+    {w:'memorise',vn:'ghi nhớ',ph:'/ˈmeməraɪz/',type:'v',lvl:'B1',syn:'keep in mind'},
+    {w:'offensive',vn:'xúc phạm',ph:'/əˈfensɪv/',type:'adj',lvl:'B2',syn:'insulting'},
+    {w:'openly',vn:'công khai',ph:'/ˈəʊpənli/',type:'adv',lvl:'C1',syn:'publicly'},
+    {w:'possible',vn:'có thể',ph:'/ˈpɒsəbl/',type:'adj',lvl:'A2',syn:'feasible'},
+    {w:'postpone',vn:'hoãn lại',ph:'/pəˈspəʊn/',type:'v',lvl:'B1',syn:'delay'},
+    {w:'premature',vn:'sớm, non nớt',ph:'/ˈpremətʃər/',type:'adj',lvl:'C1',syn:'early'},
+    {w:'profitable',vn:'có lợi nhuận',ph:'/ˈprɒfɪtəbl/',type:'adj',lvl:'B2',syn:'lucrative'},
+    {w:'prominent',vn:'nổi bật',ph:'/ˈprɒmɪnənt/',type:'adj',lvl:'C1',syn:'famous'},
+    {w:'punctuation',vn:'dấu câu',ph:'/ˌpʌŋktʃuˈeɪʃn/',type:'n',lvl:'B1',syn:''},
+    {w:'relentless',vn:'không ngừng nghỉ',ph:'/rɪˈlentləs/',type:'adj',lvl:'C2',syn:'persistent'},
+    {w:'reliable',vn:'đáng tin cậy',ph:'/rɪˈlaɪəbl/',type:'adj',lvl:'B1',syn:'trustworthy'},
+    {w:'represent',vn:'đại diện',ph:'/ˌreprɪˈzent/',type:'v',lvl:'B1',syn:'stand for'},
+    {w:'reserve',vn:'dự trữ',ph:'/rɪˈzɜːv/',type:'v/n',lvl:'B2',syn:'save'},
+    {w:'rewarding',vn:'bổ ích',ph:'/rɪˈwɔːdɪŋ/',type:'adj',lvl:'B2',syn:'fulfilling'},
+    {w:'routine',vn:'thói quen',ph:'/ruːˈtiːn/',type:'n/adj',lvl:'B1',syn:'habit'},
+    {w:'scalability',vn:'khả năng mở rộng',ph:'/ˌskeɪləˈbɪlɪti/',type:'n',lvl:'C1',syn:'expandability'},
+    {w:'scattered',vn:'rải rác',ph:'/ˈskætəd/',type:'adj',lvl:'C1',syn:'dispersed'},
+    {w:'stable',vn:'ổn định',ph:'/ˈsteɪbl/',type:'adj',lvl:'B2',syn:'steady'},
+    {w:'staggering',vn:'kinh ngạc',ph:'/ˈstæɡərɪŋ/',type:'adj',lvl:'C1',syn:'astonishing'},
+    {w:'supercharge',vn:'tăng cường mạnh',ph:'/ˈsuːpətʃɑːdʒ/',type:'v',lvl:'C1',syn:'boost'},
+    {w:'tout',vn:'quảng cáo rầm rộ',ph:'/taʊt/',type:'v',lvl:'C1',syn:'promote'},
+    {w:'trillion',vn:'nghìn tỷ',ph:'/ˈtrɪljən/',type:'n',lvl:'C1',syn:''},
+    {w:'uniformity',vn:'sự đồng nhất',ph:'/ˌjuːnɪˈfɔːməti/',type:'n',lvl:'C1',syn:'consistency, sameness'},
+    {w:'unprecedented',vn:'chưa từng có',ph:'/ʌnˈpresɪdentɪd/',type:'adj',lvl:'C1',syn:'unparalleled'},
+    {w:'unviable',vn:'không khả thi',ph:'/ʌnˈvaɪəbl/',type:'adj',lvl:'C2',syn:'impractical'},
+    {w:'urge',vn:'thúc giục',ph:'/ɜːdʒ/',type:'v/n',lvl:'B2',syn:'encourage, impulse'},
+    {w:'viable',vn:'khả thi',ph:'/ˈvaɪəbl/',type:'adj',lvl:'C1',syn:'feasible, workable'},
+    {w:'volatile',vn:'biến động',ph:'/ˈvɒlətaɪl/',type:'adj',lvl:'C1',syn:'unstable, unpredictable'},
   ],
   advanced: [
-    {w:'accountability',vn:'trách nhiệm giải trình',        ph:'/əˌkaʊntəˈbɪləti/',type:'n',lvl:'C1',syn:'responsibility'},
-    {w:'adaptability', vn:'khả năng thích nghi',            ph:'/əˌdæptəˈbɪləti/',type:'n',lvl:'C1',syn:'flexibility'},
-    {w:'aggression',   vn:'sự hung hăng, hiếu chiến',       ph:'/əˈɡreʃn/',      type:'n',   lvl:'C1', syn:'hostility'},
-    {w:'aspiration',   vn:'khát vọng, nguyện vọng',         ph:'/ˌæspəˈreɪʃn/',  type:'n',   lvl:'C1', syn:'ambition'},
-    {w:'avoidance',    vn:'sự né tránh',                    ph:'/əˈvɔɪdəns/',    type:'n',   lvl:'C1', syn:'evasion'},
-    {w:'burden',       vn:'gánh nặng',                      ph:'/ˈbɜːdn/',       type:'n',   lvl:'C1', syn:'load, weight'},
-    {w:'captivity',    vn:'tình trạng bị giam cầm',         ph:'/kæpˈtɪvəti/',   type:'n',   lvl:'C1', syn:'confinement'},
-    {w:'collective',   vn:'tập thể, chung',                 ph:'/kəˈlektɪv/',    type:'adj', lvl:'C1', syn:'joint, shared'},
-    {w:'dignity',      vn:'phẩm giá, sự cao quý',           ph:'/ˈdɪɡnəti/',     type:'n',   lvl:'C1', syn:'honour, pride'},
-    {w:'disrupt',      vn:'làm gián đoạn, phá vỡ',          ph:'/dɪsˈrʌpt/',     type:'v',   lvl:'C1', syn:'disturb, interrupt'},
-    {w:'distress',     vn:'nỗi đau khổ, phiền muộn',        ph:'/dɪˈstres/',     type:'n',   lvl:'C1', syn:'anguish, suffering'},
-    {w:'drawback',     vn:'hạn chế, nhược điểm',            ph:'/ˈdrɔːbæk/',     type:'n',   lvl:'C1', syn:'disadvantage'},
-    {w:'efficiency',   vn:'sự hiệu quả',                    ph:'/ɪˈfɪʃnsi/',     type:'n',   lvl:'C1', syn:'effectiveness'},
-    {w:'empower',      vn:'trao quyền, làm cho mạnh hơn',   ph:'/ɪmˈpaʊər/',     type:'v',   lvl:'C1', syn:'authorize, enable'},
-    {w:'empathy',      vn:'sự đồng cảm',                    ph:'/ˈempəθi/',      type:'n',   lvl:'C2', syn:'compassion'},
-    {w:'equity',       vn:'sự công bằng',                   ph:'/ˈekwəti/',      type:'n',   lvl:'C1', syn:'fairness, justice'},
-    {w:'exacerbate',   vn:'làm trầm trọng thêm',            ph:'/ɪɡˈzæsəbeɪt/',  type:'v',   lvl:'C1', syn:'worsen, aggravate'},
-    {w:'flawless',     vn:'hoàn hảo, không tì vết',         ph:'/ˈflɔːləs/',     type:'adj', lvl:'C2', syn:'perfect, impeccable'},
-    {w:'gratitude',    vn:'lòng biết ơn',                   ph:'/ˈɡrætɪtjuːd/',  type:'n',   lvl:'C1', syn:'thankfulness'},
-    {w:'hinder',       vn:'cản trở, gây trở ngại',          ph:'/ˈhɪndər/',      type:'v',   lvl:'C1', syn:'hamper, obstruct'},
-    {w:'impulsive',    vn:'bốc đồng, hấp tấp',              ph:'/ɪmˈpʌlsɪv/',   type:'adj', lvl:'C2', syn:'rash, impetuous'},
-    {w:'influential',  vn:'có ảnh hưởng',                   ph:'/ˌɪnfluˈenʃl/',  type:'adj', lvl:'C1', syn:'powerful, impactful'},
-    {w:'integration',  vn:'sự hội nhập, tích hợp',          ph:'/ˌɪntɪˈɡreʃən/', type:'n',   lvl:'C1', syn:'incorporation'},
-    {w:'irreversible', vn:'không thể đảo ngược',            ph:'/ɪˌrɪˈvɜːsəbl/', type:'adj', lvl:'C2', syn:'permanent'},
-    {w:'mindfulness',  vn:'sự chánh niệm, sự lưu tâm',      ph:'/ˈmaɪndflnəs/',  type:'n',   lvl:'C1', syn:'awareness, presence'},
-    {w:'obsolete',     vn:'lỗi thời, lạc hậu',              ph:'/ˈɒbsəliːt/',    type:'adj', lvl:'C1', syn:'outdated, old-fashioned'},
-    {w:'open-minded',  vn:'cởi mở, thoải mái',              ph:'/ˌoʊpənˈmaɪndɪd/',type:'adj',lvl:'C1',syn:'tolerant, broad-minded'},
-    {w:'outweigh',     vn:'lớn hơn, quan trọng hơn',         ph:'/ˌaʊtˈweɪ/',     type:'v',   lvl:'C1', syn:'surpass, overshadow'},
-    {w:'perfectionism',vn:'chủ nghĩa hoàn hảo',             ph:'/pəˈfekʃənɪzəm/',type:'n',   lvl:'C1', syn:'idealism'},
-    {w:'perpetuate',   vn:'duy trì, làm cho tồn tại mãi',   ph:'/pəˈpetʃʊeɪt/',  type:'v',   lvl:'C1', syn:'sustain, maintain'},
-    {w:'persistence',  vn:'sự kiên trì, sự dai dẳng',        ph:'/pəˈsɪstəns/',   type:'n',   lvl:'C2', syn:'determination'},
-    {w:'precarious',   vn:'bấp bênh, không chắc chắn',       ph:'/prɪˈkeəriəs/',  type:'adj', lvl:'C1', syn:'uncertain, insecure'},
-    {w:'procrastination',vn:'sự trì hoãn',                  ph:'/prəˌkræstɪˈneɪʃən/',type:'n',lvl:'C1',syn:'delay, postponement'},
-    {w:'prosperity',   vn:'sự thịnh vượng',                  ph:'/prɒsˈperəti/',  type:'n',   lvl:'C1', syn:'wealth, affluence'},
-    {w:'self-discipline',vn:'kỷ luật bản thân',             ph:'/ˌselfˈdɪsəplɪn/',type:'n',  lvl:'C2', syn:'self-control'},
-    {w:'self-esteem',  vn:'lòng tự trọng',                   ph:'/ˌself ɪˈstiːm/', type:'n',  lvl:'C1', syn:'self-worth'},
-    {w:'solidarity',   vn:'sự đoàn kết',                    ph:'/ˌsɒlɪˈdærəti/', type:'n',   lvl:'C1', syn:'unity, togetherness'},
-    {w:'stereotype',   vn:'khuôn mẫu, định kiến',            ph:'/ˈsteriətaɪp/',  type:'n',   lvl:'C1', syn:'cliché'},
-    {w:'stigma',       vn:'sự kỳ thị',                       ph:'/ˈstɪɡmə/',      type:'n',   lvl:'C1', syn:'shame, disgrace'},
-    {w:'undermine',    vn:'làm suy yếu',                     ph:'/ˌʌndərˈmaɪn/',  type:'v',   lvl:'C1', syn:'weaken, erode'},
-    {w:'unprecedented',vn:'chưa từng có',                   ph:'/ʌnˈpresɪdentɪd/',type:'adj',lvl:'C1',syn:'unparalleled'},
-    {w:'viable',       vn:'khả thi, có thể thực hiện',        ph:'/ˈvaɪəbl/',      type:'adj', lvl:'C1', syn:'feasible, workable'},
-    {w:'vibrant',      vn:'sôi động, rực rỡ, đầy sức sống',  ph:'/ˈvaɪbrənt/',    type:'adj', lvl:'C1', syn:'lively, energetic'},
-    {w:'volatile',     vn:'biến động, không ổn định',         ph:'/ˈvɒlətaɪl/',    type:'adj', lvl:'C1', syn:'unstable, unpredictable'},
+    {w:'address',vn:'giải quyết',ph:'/əˈdres/',type:'v',lvl:'C1',syn:'deal with, tackle'},
+    {w:'beautify',vn:'làm đẹp, tô điểm',ph:'/ˈbjuːtɪfaɪ/',type:'v',lvl:'C1',syn:'adorn, grace'},
+    {w:'differentiate',vn:'phân biệt',ph:'/ˌdɪfəˈrenʃieɪt/',type:'v',lvl:'C1',syn:'distinguish'},
+    {w:'drive',vn:'thúc đẩy',ph:'/draɪv/',type:'v',lvl:'C1',syn:'force, compel'},
+    {w:'gratification',vn:'sự hài lòng, thỏa mãn',ph:'/ˌɡrætɪfɪˈkeɪʃn/',type:'n',lvl:'C1',syn:'satisfaction, pleasure'},
+    {w:'impulsive',vn:'bốc đồng, hấp tấp',ph:'/ɪmˈpʌlsɪv/',type:'adj',lvl:'C2',syn:'rash, impetuous'},
+    {w:'inconsiderate',vn:'thiếu chu đáo, thiếu suy nghĩ',ph:'/ˌɪnkənˈsɪdərət/',type:'adj',lvl:'C1',syn:'thoughtless, selfish'},
+    {w:'irrigation',vn:'sự tưới tiêu',ph:'/ˌɪrɪˈɡeɪʃn/',type:'n',lvl:'C2',syn:''},
+    {w:'mindfulness',vn:'sự chánh niệm, sự lưu tâm',ph:'/ˈmaɪndflnəs/',type:'n',lvl:'C1',syn:'awareness, presence'},
+    {w:'necessity',vn:'nhu cầu thiết yếu',ph:'/nəˈsesɪti/',type:'n',lvl:'C1',syn:''},
+    {w:'restrictive',vn:'hạn chế',ph:'/rɪˈstrɪktɪv/',type:'adj',lvl:'C2',syn:''},
+    {w:'unaffordable',vn:'quá đắt, không đủ khả năng chi trả',ph:'/ˌʌnəˈfɔːdəbl/',type:'adj',lvl:'C1',syn:'expensive, costly'},
+    {w:'adaptability',vn:'khả năng thích nghi',ph:'/əˌdæptəˈbɪlɪti/',type:'n',lvl:'C1',syn:'flexibility'},
+    {w:'designated',vn:'được chỉ định',ph:'/ˈdezɪɡneɪtɪd/',type:'adj',lvl:'C1',syn:''},
+    {w:'diplomacy',vn:'ngoại giao',ph:'/dɪˈpləʊməsi/',type:'n',lvl:'C2',syn:''},
+    {w:'drawback',vn:'hạn chế, nhược điểm',ph:'/ˈdrɔːbæk/',type:'n',lvl:'C1',syn:'disadvantage'},
+    {w:'employability',vn:'khả năng có việc làm',ph:'/ɪmˌplɔɪəˈbɪlɪti/',type:'n',lvl:'C1',syn:''},
+    {w:'inconvenience',vn:'sự bất tiện',ph:'/ˌɪnkənˈviːniəns/',type:'n',lvl:'C1',syn:'annoyance'},
+    {w:'openness',vn:'sự cởi mở',ph:'/ˈəʊpənnəs/',type:'n',lvl:'C1',syn:''},
+    {w:'outweigh',vn:'lớn hơn, quan trọng hơn',ph:'/ˌaʊtˈweɪ/',type:'v',lvl:'C1',syn:'surpass, overshadow'},
+    {w:'stereotype',vn:'khuôn mẫu, định kiến',ph:'/ˈsteriətaɪp/',type:'n',lvl:'C1',syn:'cliché'},
+    {w:'flawless',vn:'hoàn hảo, không tì vết',ph:'/ˈflɔːləs/',type:'adj',lvl:'C2',syn:'perfect, impeccable'},
+    {w:'idealised',vn:'được lý tưởng hóa',ph:'/aɪˈdiːəlaɪzd/',type:'adj',lvl:'C1',syn:''},
+    {w:'insecure',vn:'thiếu tự tin, bất an',ph:'/ˌɪnsɪˈkjʊər/',type:'adj',lvl:'C1',syn:'unconfident'},
+    {w:'opt',vn:'lựa chọn',ph:'/ɒpt/',type:'v',lvl:'C1',syn:'choose, select'},
+    {w:'undermine',vn:'làm suy yếu',ph:'/ˌʌndərˈmaɪn/',type:'v',lvl:'C1',syn:'weaken'},
+    {w:'collective',vn:'tập thể, chung',ph:'/kəˈlektɪv/',type:'adj',lvl:'C1',syn:'joint, shared'},
+    {w:'commercialism',vn:'chủ nghĩa thương mại',ph:'/kəˈmɜːʃəlɪzəm/',type:'n',lvl:'C1',syn:''},
+    {w:'obsolete',vn:'lỗi thời, lạc hậu',ph:'/ˈɒbsəliːt/',type:'adj',lvl:'C1',syn:'outdated, old-fashioned'},
+    {w:'overshadow',vn:'làm lu mờ',ph:'/ˌəʊvəˈʃædəʊ/',type:'v',lvl:'C1',syn:'eclipse, outshine'},
+    {w:'reenact',vn:'tái hiện',ph:'/ˌriːɪˈnækt/',type:'v',lvl:'C1',syn:''},
+    {w:'respiratory',vn:'thuộc về hô hấp',ph:'/rəˈspɪrətri/',type:'adj',lvl:'C1',syn:''},
+    {w:'restrict',vn:'hạn chế, giới hạn',ph:'/rɪˈstrɪkt/',type:'v',lvl:'C1',syn:'limit'},
+    {w:'revive',vn:'hồi sinh',ph:'/rɪˈvaɪv/',type:'v',lvl:'C1',syn:''},
+    {w:'significance',vn:'ý nghĩa, tầm quan trọng',ph:'/sɪɡˈnɪfɪkəns/',type:'n',lvl:'C1',syn:'importance, meaning'},
+    {w:'spark',vn:'châm ngòi, khơi dậy',ph:'/spɑːk/',type:'v',lvl:'C1',syn:'trigger'},
+    {w:'urbanisation',vn:'sự đô thị hóa',ph:'/ˌɜːbənaɪˈzeɪʃən/',type:'n',lvl:'C1',syn:''},
+    {w:'vibrant',vn:'sôi động, rực rỡ, đầy sức sống',ph:'/ˈvaɪbrənt/',type:'adj',lvl:'C1',syn:'lively, energetic, exciting'},
+    {w:'open-minded',vn:'cởi mở, thoải mái',ph:'/ˌoʊpənˈmaɪndɪd/',type:'adj',lvl:'C1',syn:'tolerant, broad-minded'},
+    {w:'accelerate',vn:'tăng tốc, thúc đẩy',ph:'/əkˈseləreɪt/',type:'v',lvl:'C1',syn:'speed up'},
+    {w:'aspiration',vn:'khát vọng, nguyện vọng',ph:'/ˌæspəˈreɪʃn/',type:'n',lvl:'C1',syn:'ambition'},
+    {w:'breadwinner',vn:'trụ cột gia đình',ph:'/ˈbredwɪnər/',type:'n',lvl:'C1',syn:''},
+    {w:'coexist',vn:'cùng tồn tại',ph:'/ˌkəʊɪɡˈzɪst/',type:'v',lvl:'C1',syn:''},
+    {w:'contradiction',vn:'sự mâu thuẫn',ph:'/ˌkɒntrəˈdɪkʃn/',type:'n',lvl:'C2',syn:''},
+    {w:'converge',vn:'hội tụ, đồng quy',ph:'/kənˈvɜːdʒ/',type:'v',lvl:'C1',syn:''},
+    {w:'correspondence',vn:'thư từ',ph:'/ˌkɒrəˈspɒndəns/',type:'n',lvl:'C1',syn:''},
+    {w:'counselling',vn:'sự tư vấn',ph:'/ˈkaʊnsəlɪŋ/',type:'n',lvl:'C2',syn:''},
+    {w:'decisively',vn:'một cách dứt khoát, quả quyết',ph:'/dɪˈsaɪsɪvli/',type:'adv',lvl:'C2',syn:''},
+    {w:'dignity',vn:'phẩm giá, sự cao quý',ph:'/ˈdɪɡnɪti/',type:'n',lvl:'C1',syn:'honour, pride'},
+    {w:'disapproval',vn:'sự không tán thành, sự phản đối',ph:'/ˌdɪsəˈpruːvl/',type:'n',lvl:'C1',syn:'objection'},
+    {w:'discard',vn:'vứt bỏ',ph:'/dɪˈskɑːd/',type:'v',lvl:'C1',syn:'throw away, dispose of'},
+    {w:'disrupt',vn:'làm gián đoạn, phá vỡ',ph:'/dɪsˈrʌpt/',type:'v',lvl:'C1',syn:'disturb, interrupt'},
+    {w:'distinct',vn:'khác biệt, riêng biệt',ph:'/dɪˈstɪŋkt/',type:'adj',lvl:'C1',syn:'different'},
+    {w:'encounter',vn:'chạm trán, gặp phải',ph:'/ɪnˈkaʊntər/',type:'v',lvl:'C1',syn:'face'},
+    {w:'equity',vn:'sự công bằng',ph:'/ˈekwɪti/',type:'n',lvl:'C1',syn:'fairness, justice'},
+    {w:'exclusion',vn:'sự loại trừ',ph:'/ɪkˈskluːʒn/',type:'n',lvl:'C1',syn:''},
+    {w:'exclusivity',vn:'sự độc quyền',ph:'/ˌekskluːˈsɪvɪti/',type:'n',lvl:'C1',syn:''},
+    {w:'fair-minded',vn:'công bằng',ph:'/ˌfeəˈmaɪndɪd/',type:'adj',lvl:'C1',syn:'fair, equitable'},
+    {w:'flee',vn:'chạy trốn',ph:'/fliː/',type:'v',lvl:'C1',syn:''},
+    {w:'hardship',vn:'sự gian khổ, khó khăn',ph:'/ˈhɑːdʃɪp/',type:'n',lvl:'C1',syn:''},
+    {w:'homogeneity',vn:'sự đồng nhất',ph:'/ˌhəʊməʊdʒəˈniːɪti/',type:'n',lvl:'C1',syn:'uniformity, sameness'},
+    {w:'impersonal',vn:'thiếu tính cá nhân, lạnh lùng, vô cảm',ph:'/ɪmˈpɜːsənl/',type:'adj',lvl:'C1',syn:''},
+    {w:'intervention',vn:'sự can thiệp (mang hàm ý tích cực)',ph:'/ˌɪntəˈvenʃn/',type:'n',lvl:'C1',syn:''},
+    {w:'irreversible',vn:'không thể đảo ngược',ph:'/ɪˌrɪˈvɜːsəbl/',type:'adj',lvl:'C2',syn:'permanent'},
+    {w:'isolation',vn:'sự cô lập',ph:'/ˌaɪsəˈleɪʃn/',type:'n',lvl:'C1',syn:''},
+    {w:'like-minded',vn:'cùng chí hướng, cùng suy nghĩ',ph:'/ˌlaɪkˈmaɪndɪd/',type:'adj',lvl:'C1',syn:''},
+    {w:'long-standing',vn:'lâu đời, lâu năm',ph:'/ˌlɒŋˈstændɪŋ/',type:'adj',lvl:'C1',syn:''},
+    {w:'overriding',vn:'quan trọng hơn hết',ph:'/ˌəʊvəˈraɪdɪŋ/',type:'adj',lvl:'C1',syn:'primary, paramount'},
+    {w:'permanence',vn:'sự vĩnh viễn, lâu dài',ph:'/ˈpɜːmənəns/',type:'n',lvl:'C1',syn:''},
+    {w:'precarious',vn:'bấp bênh, không chắc chắn',ph:'/prɪˈkeəriəs/',type:'adj',lvl:'C1',syn:'uncertain, insecure'},
+    {w:'prosperity',vn:'sự thịnh vượng',ph:'/prɒsˈperɪti/',type:'n',lvl:'C1',syn:'wealth, affluence'},
+    {w:'reverse',vn:'đảo ngược',ph:'/rɪˈvɜːs/',type:'v',lvl:'C1',syn:''},
+    {w:'sensitivity',vn:'sự nhạy cảm',ph:'/ˌsensɪˈtɪvɪti/',type:'n',lvl:'C1',syn:''},
+    {w:'sincerity',vn:'sự chân thành',ph:'/sɪnˈserɪti/',type:'n',lvl:'C2',syn:'honesty, genuineness'},
+    {w:'solidarity',vn:'sự đoàn kết',ph:'/ˌsɒlɪˈdærɪti/',type:'n',lvl:'C1',syn:'unity, togetherness'},
+    {w:'stigma',vn:'sự kỳ thị',ph:'/ˈstɪɡmə/',type:'n',lvl:'C1',syn:'shame, disgrace'},
+    {w:'tangible',vn:'hữu hình',ph:'/ˈtændʒɪbl/',type:'adj',lvl:'C2',syn:''},
+    {w:'unite',vn:'đoàn kết, hợp nhất',ph:'/juˈnaɪt/',type:'v',lvl:'C1',syn:'unify, combine'},
+    {w:'unnoticed',vn:'không bị nhận thấy, chú ý',ph:'/ʌnˈnəʊtɪst/',type:'adj',lvl:'C1',syn:'unobserved'},
+    {w:'vulnerability',vn:'sự dễ bị tổn thương',ph:'/ˌvʌlnərəˈbɪlɪti/',type:'n',lvl:'C1',syn:'fragility, weakness'},
+    {w:'advancement',vn:'sự tiến bộ; sự thăng tiến (công việc)',ph:'/ədˈvɑːnsmənt/',type:'n',lvl:'C1',syn:'progress, development'},
+    {w:'algorithm',vn:'thuật toán',ph:'/ˈælɡərɪðəm/',type:'n',lvl:'C2',syn:''},
+    {w:'burden',vn:'gánh nặng',ph:'/ˈbɜːdn/',type:'n',lvl:'C1',syn:'load, weight'},
+    {w:'efficiency',vn:'sự hiệu quả',ph:'/ɪˈfɪʃnsi/',type:'n',lvl:'C1',syn:'effectiveness'},
+    {w:'empathy',vn:'sự đồng cảm',ph:'/ˈempəθi/',type:'n',lvl:'C2',syn:'compassion'},
+    {w:'exclude',vn:'loại trừ, loại bỏ',ph:'/ɪkˈskluːd/',type:'v',lvl:'C1',syn:''},
+    {w:'far-reaching',vn:'có tầm ảnh hưởng sâu rộng',ph:'/ˌfɑːˈriːtʃɪŋ/',type:'adj',lvl:'C1',syn:''},
+    {w:'gratitude',vn:'lòng biết ơn',ph:'/ˈɡrætɪtjuːd/',type:'n',lvl:'C1',syn:'thankfulness, appreciation'},
+    {w:'hesitation',vn:'sự do dự',ph:'/ˌhezɪˈteɪʃn/',type:'n',lvl:'C1',syn:''},
+    {w:'hinder',vn:'cản trở, gây trở ngại',ph:'/ˈhɪndər/',type:'v',lvl:'C1',syn:'hamper, obstruct'},
+    {w:'hybrid',vn:'lai, kết hợp',ph:'/ˈhaɪbrɪd/',type:'adj',lvl:'C1',syn:''},
+    {w:'influential',vn:'có ảnh hưởng',ph:'/ˌɪnfluˈenʃl/',type:'adj',lvl:'C1',syn:'powerful, impactful'},
+    {w:'insufficient',vn:'không đủ',ph:'/ˌɪnsəˈfɪʃnt/',type:'adj',lvl:'C1',syn:'inadequate'},
+    {w:'domain',vn:'lĩnh vực',ph:'/dəˈmeɪn/',type:'n',lvl:'C1',syn:'field, area'},
+    {w:'double helix',vn:'chuỗi xoắn kép của DNA',ph:'/ˌdʌbl ˈhiːlɪks/',type:'n',lvl:'C1',syn:''},
+    {w:'oppressive',vn:'ngột ngạt, nặng nề',ph:'/əˈpresɪv/',type:'adj',lvl:'C1',syn:''},
+    {w:'overestimate',vn:'đánh giá quá cao',ph:'/ˌəʊvərˈestɪmeɪt/',type:'v',lvl:'C1',syn:'overrate, overvalue'},
+    {w:'overlook',vn:'không chú ý tới, bỏ sót',ph:'/ˌəʊvəˈlʊk/',type:'v',lvl:'C2',syn:'disregard, ignore'},
+    {w:'overwhelming',vn:'áp đảo, choáng ngợp',ph:'/ˌəʊvəˈwelmɪŋ/',type:'adj',lvl:'C1',syn:''},
+    {w:'persist',vn:'tiếp tục tồn tại, kéo dài',ph:'/pəˈsɪst/',type:'v',lvl:'C2',syn:'last, continue'},
+    {w:'pioneer',vn:'người tiên phong',ph:'/ˌpaɪəˈnɪər/',type:'n',lvl:'C2',syn:'trailblazer'},
+    {w:'restless',vn:'bồn chồn, không yên',ph:'/ˈrestləs/',type:'adj',lvl:'C1',syn:'restive'},
+    {w:'undervaluation',vn:'sự đánh giá thấp',ph:'/ˌʌndəˌvæljʊˈeɪʃn/',type:'n',lvl:'C1',syn:'underestimation'},
+    {w:'untapped',vn:'chưa được khai thác',ph:'/ʌnˈtæpt/',type:'adj',lvl:'C1',syn:''},
+    {w:'upkeep',vn:'sự bảo dưỡng, chi phí bảo dưỡng',ph:'/ˈʌpkiːp/',type:'n',lvl:'C2',syn:'maintenance'},
+    {w:'uprush',vn:'sự dâng lên, sự bùng phát',ph:'/ˈʌprʌʃ/',type:'n',lvl:'C2',syn:'surge, outburst'},
+    {w:'visibility',vn:'mức độ được chú ý, được nhận diện',ph:'/ˌvɪzəˈbɪlɪti/',type:'n',lvl:'C1',syn:''},
+    {w:'administration',vn:'sự quản lý, sự quản trị',ph:'/ədˌmɪnɪˈstreɪʃn/',type:'n',lvl:'C1',syn:'management'},
+    {w:'bias',vn:'sự thiên vị; thành kiến',ph:'/ˈbaɪəs/',type:'n',lvl:'C2',syn:'prejudice'},
+    {w:'comprehend',vn:'hiểu, lĩnh hội',ph:'/ˌkɒmprɪˈhend/',type:'v',lvl:'C1',syn:'understand, grasp'},
+    {w:'critical thinking',vn:'tư duy phản biện',ph:'/ˌkrɪtɪkl ˈθɪŋkɪŋ/',type:'n',lvl:'C1',syn:''},
+    {w:'disinterest',vn:'sự thờ ơ, sự không quan tâm',ph:'/dɪsˈɪntrəst/',type:'n',lvl:'C1',syn:'indifference'},
+    {w:'disloyalty',vn:'sự không trung thành',ph:'/dɪsˈlɔɪəlti/',type:'n',lvl:'C1',syn:''},
+    {w:'framework',vn:'khuôn khổ',ph:'/ˈfreɪmwɜːk/',type:'n',lvl:'C2',syn:''},
+    {w:'self-esteem',vn:'lòng tự trọng, tự tôn',ph:'/ˌself ɪˈstiːm/',type:'n',lvl:'C1',syn:'self-worth, self-confidence'},
+    {w:'self-compassion',vn:'lòng từ bi với bản thân',ph:'/ˌselfkəmˈpæʃən/',type:'n',lvl:'C1',syn:'self-kindness'},
+    {w:'self-discipline',vn:'kỷ luật bản thân',ph:'/ˌselfˈdɪsəplɪn/',type:'n',lvl:'C2',syn:'self-control'},
+    {w:'perfectionism',vn:'chủ nghĩa hoàn hảo',ph:'/pəˈfekʃənɪzəm/',type:'n',lvl:'C1',syn:''},
+    {w:'procrastination',vn:'sự trì hoãn',ph:'/prəˌkræstɪˈneɪʃən/',type:'n',lvl:'C1',syn:'delay, postponement'},
+    {w:'persistence',vn:'sự kiên trì, sự dai dẳng',ph:'/pəˈsɪstəns/',type:'n',lvl:'C2',syn:'determination'},
   ],
   collocation: [
-    {w:'take a break',          vn:'nghỉ giải lao',                       ph:'',type:'collocation',lvl:'B1',syn:'rest'},
-    {w:'make a decision',       vn:'đưa ra quyết định',                   ph:'',type:'collocation',lvl:'B1',syn:'decide'},
-    {w:'make progress',         vn:'tiến bộ, đạt được tiến bộ',           ph:'',type:'collocation',lvl:'B2',syn:'advance'},
-    {w:'make a difference',     vn:'tạo ra sự khác biệt',                 ph:'',type:'collocation',lvl:'B2',syn:'have impact'},
-    {w:'make an effort',        vn:'nỗ lực, gắng hết sức',                ph:'',type:'collocation',lvl:'B2',syn:'try hard'},
-    {w:'take action',           vn:'hành động, thực hiện hành động',      ph:'',type:'collocation',lvl:'B2',syn:'act'},
-    {w:'raise awareness',       vn:'nâng cao nhận thức',                  ph:'',type:'collocation',lvl:'B2',syn:'spread knowledge'},
-    {w:'have an impact on',     vn:'có ảnh hưởng đến',                    ph:'',type:'collocation',lvl:'B2',syn:'affect, influence'},
-    {w:'do research',           vn:'thực hiện nghiên cứu',                ph:'',type:'collocation',lvl:'B2',syn:'investigate'},
-    {w:'take precautions',      vn:'thực hiện biện pháp phòng ngừa',      ph:'',type:'collocation',lvl:'B2',syn:'be careful'},
-    {w:'make a complaint',      vn:'phàn nàn, khiếu nại',                 ph:'',type:'collocation',lvl:'B2',syn:'complain'},
-    {w:'break down barriers',   vn:'phá bỏ rào cản',                      ph:'',type:'collocation',lvl:'C1',syn:'overcome obstacles'},
-    {w:'garner attention',      vn:'thu hút sự chú ý',                    ph:'',type:'collocation',lvl:'C1',syn:'attract notice'},
-    {w:'maintain eye contact',  vn:'duy trì giao tiếp bằng mắt',          ph:'',type:'collocation',lvl:'B2',syn:'look directly'},
-    {w:'make a commitment',     vn:'đưa ra lời cam kết',                  ph:'',type:'collocation',lvl:'B2',syn:'promise, pledge'},
-    {w:'join hands',            vn:'chung tay, cùng nhau',                ph:'',type:'collocation',lvl:'B2',syn:'cooperate'},
-    {w:'draw a distinction',    vn:'phân biệt, tạo sự khác biệt',         ph:'',type:'collocation',lvl:'C1',syn:'differentiate'},
-    {w:'make a good impression',vn:'gây ấn tượng tốt',                    ph:'',type:'collocation',lvl:'B2',syn:'impress someone'},
-    {w:'take measures',         vn:'áp dụng biện pháp',                   ph:'',type:'collocation',lvl:'B2',syn:'act, intervene'},
-    {w:'express appreciation',  vn:'bày tỏ sự trân trọng',                ph:'',type:'collocation',lvl:'C1',syn:'show gratitude'},
+    {w:'take a break',vn:'nghỉ giải lao',ph:'',type:'collocation',lvl:'B1',syn:'rest'},
+    {w:'take a chance',vn:'đùa với sự may rủi',ph:'',type:'collocation',lvl:'B2',syn:'risk it'},
+    {w:'take a look',vn:'hãy nhìn; xem xét',ph:'',type:'collocation',lvl:'A2',syn:'have a look'},
+    {w:'take a rest',vn:'nghỉ ngơi; đi nằm nghỉ',ph:'',type:'collocation',lvl:'A2',syn:'rest'},
+    {w:'take a seat',vn:'tìm một chỗ ngồi',ph:'',type:'collocation',lvl:'A2',syn:'sit down'},
+    {w:'take an exam',vn:'đi thi, kiểm tra',ph:'',type:'collocation',lvl:'B1',syn:'sit an exam'},
+    {w:'take notes',vn:'ghi chú',ph:'',type:'collocation',lvl:'B1',syn:'jot down'},
+    {w:'take action',vn:'hành động, thực hiện hành động',ph:'',type:'collocation',lvl:'B2',syn:'act'},
+    {w:'take measures',vn:'áp dụng biện pháp',ph:'',type:'collocation',lvl:'B2',syn:'act, intervene'},
+    {w:'take precautions',vn:'thực hiện biện pháp phòng ngừa',ph:'',type:'collocation',lvl:'B2',syn:'be careful'},
+    {w:'take notice of something',vn:'chú ý đến cái gì',ph:'',type:'collocation',lvl:'B2',syn:'pay attention to'},
+    {w:'take charge of something',vn:'đảm trách cái gì',ph:'',type:'collocation',lvl:'C1',syn:'take control of'},
+    {w:'make a decision',vn:'đưa ra quyết định',ph:'',type:'collocation',lvl:'B1',syn:'decide'},
+    {w:'make a discovery',vn:'khám phá ra',ph:'',type:'collocation',lvl:'B2',syn:'discover'},
+    {w:'make a complaint',vn:'phàn nàn, khiếu nại',ph:'',type:'collocation',lvl:'B2',syn:'complain'},
+    {w:'make an effort',vn:'nỗ lực, gắng hết sức',ph:'',type:'collocation',lvl:'B2',syn:'try hard'},
+    {w:'make a suggestion',vn:'đưa ra một đề nghị',ph:'',type:'collocation',lvl:'B2',syn:'suggest'},
+    {w:'make a difference',vn:'tạo ra sự khác biệt',ph:'',type:'collocation',lvl:'B2',syn:'have impact'},
+    {w:'make a mistake',vn:'mắc một lỗi',ph:'',type:'collocation',lvl:'A2',syn:'err'},
+    {w:'make progress',vn:'tiến bộ, đạt được tiến bộ',ph:'',type:'collocation',lvl:'B2',syn:'advance'},
+    {w:'make money',vn:'làm ra tiền',ph:'',type:'collocation',lvl:'A2',syn:'earn money'},
+    {w:'make a promise',vn:'hứa một điều gì',ph:'',type:'collocation',lvl:'B1',syn:'promise'},
+    {w:'make a commitment',vn:'đưa ra lời cam kết',ph:'',type:'collocation',lvl:'B2',syn:'promise, pledge'},
+    {w:'make a good impression',vn:'gây ấn tượng tốt',ph:'',type:'collocation',lvl:'B2',syn:'impress someone'},
+    {w:'make a connection',vn:'tạo một kết nối',ph:'',type:'collocation',lvl:'B2',syn:'connect'},
+    {w:'make sure',vn:'đảm bảo, chắc chắn',ph:'',type:'collocation',lvl:'A2',syn:'ensure'},
+    {w:'do research',vn:'thực hiện nghiên cứu',ph:'',type:'collocation',lvl:'B2',syn:'investigate'},
+    {w:'do harm to',vn:'gây hại đến',ph:'',type:'collocation',lvl:'B2',syn:'damage'},
+    {w:'do the housework',vn:'làm việc nhà',ph:'',type:'collocation',lvl:'A2',syn:'clean'},
+    {w:'do your best',vn:'làm hết sức mình',ph:'',type:'collocation',lvl:'A2',syn:'try your hardest'},
+    {w:'do the shopping',vn:'mua sắm / đi chợ',ph:'',type:'collocation',lvl:'A2',syn:'go shopping'},
+    {w:'do someone a favor',vn:'làm ơn hay giúp ai đó',ph:'',type:'collocation',lvl:'B1',syn:'help someone'},
+    {w:'have a headache',vn:'bị đau đầu',ph:'',type:'collocation',lvl:'A2',syn:''},
+    {w:'have a baby',vn:'có một em bé',ph:'',type:'collocation',lvl:'A2',syn:''},
+    {w:'have a party',vn:'tổ chức một bữa tiệc',ph:'',type:'collocation',lvl:'A2',syn:''},
+    {w:'have fun',vn:'vui vẻ; vui chơi',ph:'',type:'collocation',lvl:'A2',syn:'enjoy yourself'},
+    {w:'have a good time',vn:'đi chơi vui vẻ nhé',ph:'',type:'collocation',lvl:'A2',syn:'enjoy yourself'},
+    {w:'have a break',vn:'nghỉ mệt, thư giãn',ph:'',type:'collocation',lvl:'A2',syn:'rest'},
+    {w:'have an impact on',vn:'có ảnh hưởng đến',ph:'',type:'collocation',lvl:'B2',syn:'affect, influence'},
+    {w:'have the tendency of doing something',vn:'có xu hướng làm gì',ph:'',type:'collocation',lvl:'B2',syn:'tend to'},
+    {w:'raise awareness',vn:'nâng cao nhận thức',ph:'',type:'collocation',lvl:'B2',syn:'spread knowledge'},
+    {w:'break down barriers',vn:'phá bỏ rào cản',ph:'',type:'collocation',lvl:'C1',syn:'overcome obstacles'},
+    {w:'garner attention',vn:'thu hút sự chú ý',ph:'',type:'collocation',lvl:'C1',syn:'attract notice'},
+    {w:'maintain eye contact',vn:'duy trì giao tiếp bằng mắt',ph:'',type:'collocation',lvl:'B2',syn:'look directly'},
+    {w:'join hands',vn:'chung tay, cùng nhau',ph:'',type:'collocation',lvl:'B2',syn:'cooperate'},
+    {w:'draw a distinction',vn:'phân biệt, tạo sự khác biệt',ph:'',type:'collocation',lvl:'C1',syn:'differentiate'},
+    {w:'accumulate experience',vn:'tích lũy kinh nghiệm',ph:'',type:'collocation',lvl:'C1',syn:'build experience'},
+    {w:'express appreciation',vn:'bày tỏ sự trân trọng',ph:'',type:'collocation',lvl:'C1',syn:'show gratitude'},
+    {w:'resolve a conflict',vn:'giải quyết xung đột',ph:'',type:'collocation',lvl:'C1',syn:'settle a dispute'},
+    {w:'be under pressure',vn:'đang chịu áp lực',ph:'',type:'collocation',lvl:'B2',syn:'feel stressed'},
+    {w:'pay a visit to',vn:'đến thăm ai/cái gì',ph:'',type:'collocation',lvl:'B1',syn:'visit'},
+    {w:'earn a living',vn:'kiếm tiền để nuôi sống bản thân',ph:'',type:'collocation',lvl:'B2',syn:'make a living'},
+    {w:'make a profit',vn:'có lời, có lãi',ph:'',type:'collocation',lvl:'B2',syn:'earn profit'},
+    {w:'attract attention',vn:'thu hút sự chú ý',ph:'',type:'collocation',lvl:'B1',syn:'draw attention'},
+    {w:'meet a deadline',vn:'hoàn thành một công việc đúng thời hạn',ph:'',type:'collocation',lvl:'B2',syn:'finish on time'},
+    {w:'conduct a survey',vn:'thực hiện một cuộc khảo sát',ph:'',type:'collocation',lvl:'B2',syn:'carry out a survey'},
+    {w:'take effect',vn:'có tác dụng, có hiệu quả',ph:'',type:'collocation',lvl:'B2',syn:'work, function'},
+    {w:'cultural identity',vn:'bản sắc văn hóa',ph:'',type:'collocation',lvl:'B2',syn:''},
+    {w:'social isolation',vn:'sự cô lập xã hội',ph:'',type:'collocation',lvl:'C1',syn:''},
+    {w:'wildlife protection',vn:'việc bảo tồn động vật hoang dã',ph:'',type:'collocation',lvl:'B2',syn:''},
+    {w:'life skills',vn:'kỹ năng sống',ph:'',type:'collocation',lvl:'B1',syn:''},
+    {w:'chronic respiratory illness',vn:'bệnh hô hấp mãn tính',ph:'',type:'collocation',lvl:'C1',syn:''},
+    {w:'urban sprawl',vn:'sự mở rộng đô thị tràn lan',ph:'',type:'collocation',lvl:'C1',syn:''},
+    {w:'habitat destruction',vn:'sự phá huỷ môi trường',ph:'',type:'collocation',lvl:'B2',syn:''},
+    {w:'permanent solution',vn:'giải pháp lâu dài',ph:'',type:'collocation',lvl:'B2',syn:'long-term solution'},
+    {w:'mortality rate',vn:'tỷ lệ tử vong',ph:'',type:'collocation',lvl:'C1',syn:''},
+    {w:'remarkable achievement',vn:'thành tích đáng chú ý',ph:'',type:'collocation',lvl:'B2',syn:'notable accomplishment'},
+    {w:'a lucrative job',vn:'công việc lương cao',ph:'',type:'collocation',lvl:'C1',syn:'well-paying job'},
+    {w:'good concentration power',vn:'năng lực tập trung tốt',ph:'',type:'collocation',lvl:'B2',syn:''},
   ],
   phrasal: [
-    {w:'come across',      vn:'tình cờ gặp, tình cờ thấy',               ph:'',type:'phrasal verb',lvl:'B2',syn:'encounter by chance'},
-    {w:'come up with',     vn:'nảy ra ý tưởng, tìm ra giải pháp',        ph:'',type:'phrasal verb',lvl:'B2',syn:'think of, devise'},
-    {w:'get along with',   vn:'có mối quan hệ tốt với',                  ph:'',type:'phrasal verb',lvl:'B1',syn:'be friendly with'},
-    {w:'get over',         vn:'vượt qua, hồi phục từ',                   ph:'',type:'phrasal verb',lvl:'B2',syn:'recover from'},
-    {w:'get rid of',       vn:'vứt bỏ, loại bỏ',                         ph:'',type:'phrasal verb',lvl:'B2',syn:'eliminate, remove'},
-    {w:'go through',       vn:'trải qua, xem xét kỹ',                    ph:'',type:'phrasal verb',lvl:'B2',syn:'experience, examine'},
-    {w:'look forward to',  vn:'mong đợi, mong chờ điều sắp đến',         ph:'',type:'phrasal verb',lvl:'A2',syn:'anticipate'},
-    {w:'look after',       vn:'chăm sóc, trông nom',                     ph:'',type:'phrasal verb',lvl:'A2',syn:'take care of'},
-    {w:'look up to',       vn:'tôn trọng, ngưỡng mộ',                    ph:'',type:'phrasal verb',lvl:'B2',syn:'admire, respect'},
-    {w:'make up for',      vn:'bù đắp cho, đền bù cho',                  ph:'',type:'phrasal verb',lvl:'B2',syn:'compensate for'},
-    {w:'put off',          vn:'trì hoãn, hoãn lại',                      ph:'',type:'phrasal verb',lvl:'B2',syn:'postpone, delay'},
-    {w:'put up with',      vn:'chịu đựng, chấp nhận',                    ph:'',type:'phrasal verb',lvl:'B2',syn:'tolerate, endure'},
-    {w:'take over',        vn:'tiếp quản, đảm nhận',                     ph:'',type:'phrasal verb',lvl:'B2',syn:'take control of'},
-    {w:'take up',          vn:'bắt đầu theo đuổi (sở thích, thói quen)', ph:'',type:'phrasal verb',lvl:'B2',syn:'begin, start'},
-    {w:'turn down',        vn:'từ chối',                                  ph:'',type:'phrasal verb',lvl:'B2',syn:'reject, refuse'},
-    {w:'catch up on',      vn:'bắt kịp, làm bù',                         ph:'',type:'phrasal verb',lvl:'B2',syn:'make up for lost time'},
-    {w:'break out',        vn:'bùng nổ, nổ ra',                           ph:'',type:'phrasal verb',lvl:'B2',syn:'erupt, start suddenly'},
-    {w:'carry out',        vn:'thực hiện, tiến hành',                    ph:'',type:'phrasal verb',lvl:'B2',syn:'execute, conduct'},
-    {w:'find out',         vn:'phát hiện ra, tìm hiểu',                  ph:'',type:'phrasal verb',lvl:'A2',syn:'discover, learn'},
-    {w:'give up',          vn:'từ bỏ',                                    ph:'',type:'phrasal verb',lvl:'A2',syn:'quit, stop trying'},
-    {w:'run out of',       vn:'hết, cạn kiệt',                            ph:'',type:'phrasal verb',lvl:'B1',syn:'exhaust, deplete'},
-    {w:'speed up',         vn:'tăng tốc, xảy ra nhanh hơn',              ph:'',type:'phrasal verb',lvl:'B1',syn:'accelerate'},
-    {w:'die out',          vn:'diệt vong, không còn tồn tại',             ph:'',type:'phrasal verb',lvl:'B2',syn:'become extinct'},
-    {w:'bounce back',      vn:'hồi phục nhanh chóng',                    ph:'',type:'phrasal verb',lvl:'C1',syn:'recover quickly'},
-    {w:'stand for',        vn:'viết tắt của; đại diện cho',              ph:'',type:'phrasal verb',lvl:'B1',syn:'represent, abbreviate'},
-    {w:'stem from',        vn:'xuất phát từ',                             ph:'',type:'phrasal verb',lvl:'C1',syn:'originate from'},
-    {w:'call off',         vn:'hủy bỏ',                                   ph:'',type:'phrasal verb',lvl:'B2',syn:'cancel'},
-    {w:'set off',          vn:'khởi hành; gây ra (chuông, bom nổ)',       ph:'',type:'phrasal verb',lvl:'B2',syn:'depart; trigger'},
+    {w:'come across',vn:'tình cờ gặp, tình cờ thấy',ph:'',type:'phrasal verb',lvl:'B2',syn:'encounter by chance'},
+    {w:'come around',vn:'thay đổi quan điểm',ph:'',type:'phrasal verb',lvl:'B2',syn:'change one\'s mind'},
+    {w:'come by',vn:'có được (một cách may mắn)',ph:'',type:'phrasal verb',lvl:'B2',syn:'obtain'},
+    {w:'come down with',vn:'ngã bệnh, đổ bệnh',ph:'',type:'phrasal verb',lvl:'B2',syn:'get ill with'},
+    {w:'come out',vn:'rõ ràng, được xuất bản',ph:'',type:'phrasal verb',lvl:'B1',syn:'become known'},
+    {w:'come up with',vn:'nảy ra ý tưởng, tìm ra giải pháp',ph:'',type:'phrasal verb',lvl:'B2',syn:'think of, devise'},
+    {w:'come up',vn:'xuất hiện, xảy ra',ph:'',type:'phrasal verb',lvl:'B1',syn:'appear, occur'},
+    {w:'come in for',vn:'bị chỉ trích',ph:'',type:'phrasal verb',lvl:'C1',syn:'be criticized'},
+    {w:'get along with',vn:'có mối quan hệ tốt với',ph:'',type:'phrasal verb',lvl:'B1',syn:'be friendly with'},
+    {w:'get away',vn:'chạy trốn, tẩu thoát',ph:'',type:'phrasal verb',lvl:'B1',syn:'escape'},
+    {w:'get by',vn:'xoay xở sống',ph:'',type:'phrasal verb',lvl:'B2',syn:'manage'},
+    {w:'get sb down',vn:'khiến ai buồn, chán nản',ph:'',type:'phrasal verb',lvl:'B2',syn:'make depressed'},
+    {w:'get into',vn:'đam mê, thích thú với cái gì',ph:'',type:'phrasal verb',lvl:'B1',syn:'become interested in'},
+    {w:'get off',vn:'xuống tàu, xe',ph:'',type:'phrasal verb',lvl:'A2',syn:'disembark'},
+    {w:'get over',vn:'vượt qua, hồi phục từ',ph:'',type:'phrasal verb',lvl:'B2',syn:'recover from'},
+    {w:'get rid of',vn:'vứt bỏ, loại bỏ',ph:'',type:'phrasal verb',lvl:'B2',syn:'eliminate, remove'},
+    {w:'go along with',vn:'chấp nhận, ủng hộ',ph:'',type:'phrasal verb',lvl:'B2',syn:'accept, support'},
+    {w:'go away',vn:'rời đi',ph:'',type:'phrasal verb',lvl:'A2',syn:'leave'},
+    {w:'go by',vn:'trôi qua',ph:'',type:'phrasal verb',lvl:'B1',syn:'pass'},
+    {w:'go down with',vn:'bị bệnh',ph:'',type:'phrasal verb',lvl:'B2',syn:'become ill with'},
+    {w:'go for',vn:'cố gắng đạt được',ph:'',type:'phrasal verb',lvl:'B2',syn:'try to achieve'},
+    {w:'go off',vn:'nổ tung; đổ chuông; bị ôi thiu',ph:'',type:'phrasal verb',lvl:'B2',syn:'explode; ring; go bad'},
+    {w:'go over',vn:'xem xét lại',ph:'',type:'phrasal verb',lvl:'B2',syn:'review'},
+    {w:'go through',vn:'trải qua, được chính thức công nhận',ph:'',type:'phrasal verb',lvl:'B2',syn:'experience'},
+    {w:'go up',vn:'tăng',ph:'',type:'phrasal verb',lvl:'A2',syn:'increase'},
+    {w:'keep down',vn:'kiểm soát, kìm nén',ph:'',type:'phrasal verb',lvl:'B2',syn:'restrain, control'},
+    {w:'keep on',vn:'tiếp tục',ph:'',type:'phrasal verb',lvl:'A2',syn:'continue'},
+    {w:'keep out of',vn:'tránh ra khỏi',ph:'',type:'phrasal verb',lvl:'B2',syn:'stay away from'},
+    {w:'keep at',vn:'tiếp tục với thứ gì đó khó khăn',ph:'',type:'phrasal verb',lvl:'B2',syn:'persist'},
+    {w:'keep away from',vn:'tránh',ph:'',type:'phrasal verb',lvl:'B1',syn:'avoid'},
+    {w:'keep up with',vn:'bắt kịp ai',ph:'',type:'phrasal verb',lvl:'B2',syn:'match the pace of'},
+    {w:'look after',vn:'chăm sóc, trông nom',ph:'',type:'phrasal verb',lvl:'A2',syn:'take care of'},
+    {w:'look ahead',vn:'lên kế hoạch cho tương lai',ph:'',type:'phrasal verb',lvl:'B2',syn:'plan the future'},
+    {w:'look back on',vn:'hồi tưởng lại',ph:'',type:'phrasal verb',lvl:'B2',syn:'remember'},
+    {w:'look down on',vn:'khinh thường',ph:'',type:'phrasal verb',lvl:'B2',syn:'despise'},
+    {w:'look for',vn:'tìm kiếm, nghiên cứu',ph:'',type:'phrasal verb',lvl:'A2',syn:'search for'},
+    {w:'look forward to',vn:'mong đợi, mong chờ điều sắp đến',ph:'',type:'phrasal verb',lvl:'A2',syn:'anticipate'},
+    {w:'look into',vn:'điều tra',ph:'',type:'phrasal verb',lvl:'B2',syn:'investigate'},
+    {w:'look out',vn:'cẩn trọng',ph:'',type:'phrasal verb',lvl:'A2',syn:'be careful'},
+    {w:'look up',vn:'tìm kiếm thông tin',ph:'',type:'phrasal verb',lvl:'A2',syn:'search for information'},
+    {w:'look up to',vn:'tôn trọng, ngưỡng mộ',ph:'',type:'phrasal verb',lvl:'B2',syn:'admire, respect'},
+    {w:'make do with',vn:'miễn cưỡng tận dụng',ph:'',type:'phrasal verb',lvl:'B2',syn:'use as substitute'},
+    {w:'make fun of',vn:'cười nhạo',ph:'',type:'phrasal verb',lvl:'B1',syn:'mock, laugh at'},
+    {w:'make out',vn:'hiểu, xác định',ph:'',type:'phrasal verb',lvl:'B2',syn:'understand'},
+    {w:'make up',vn:'bịa chuyện; trang điểm; làm hòa',ph:'',type:'phrasal verb',lvl:'B1',syn:'invent; reconcile'},
+    {w:'make up with',vn:'làm hòa với ai',ph:'',type:'phrasal verb',lvl:'B2',syn:'reconcile with'},
+    {w:'make up for',vn:'bù đắp cho, đền bù cho',ph:'',type:'phrasal verb',lvl:'B2',syn:'compensate for'},
+    {w:'make off with',vn:'ăn cắp rồi tẩu thoát',ph:'',type:'phrasal verb',lvl:'C1',syn:'steal and run away'},
+    {w:'put off',vn:'trì hoãn, hoãn lại',ph:'',type:'phrasal verb',lvl:'B2',syn:'postpone, delay'},
+    {w:'put up with',vn:'chịu đựng, chấp nhận',ph:'',type:'phrasal verb',lvl:'B2',syn:'tolerate, endure'},
+    {w:'take over',vn:'tiếp quản, đảm nhận',ph:'',type:'phrasal verb',lvl:'B2',syn:'take control of'},
+    {w:'take up',vn:'bắt đầu theo đuổi (sở thích, thói quen)',ph:'',type:'phrasal verb',lvl:'B2',syn:'begin, start'},
+    {w:'turn down',vn:'từ chối',ph:'',type:'phrasal verb',lvl:'B2',syn:'reject, refuse'},
+    {w:'catch up on',vn:'bắt kịp, làm bù',ph:'',type:'phrasal verb',lvl:'B2',syn:'make up for lost time'},
+    {w:'break out',vn:'bùng nổ, nổ ra',ph:'',type:'phrasal verb',lvl:'B2',syn:'erupt, start suddenly'},
+    {w:'carry out',vn:'thực hiện, tiến hành',ph:'',type:'phrasal verb',lvl:'B2',syn:'execute, conduct'},
+    {w:'find out',vn:'phát hiện ra, tìm hiểu',ph:'',type:'phrasal verb',lvl:'A2',syn:'discover, learn'},
+    {w:'give up',vn:'từ bỏ',ph:'',type:'phrasal verb',lvl:'A2',syn:'quit, stop trying'},
+    {w:'run out of',vn:'hết, cạn kiệt',ph:'',type:'phrasal verb',lvl:'B1',syn:'exhaust, deplete'},
+    {w:'set off',vn:'khởi hành; gây ra (chuông, bom nổ)',ph:'',type:'phrasal verb',lvl:'B2',syn:'depart; trigger'},
+    {w:'speed up',vn:'tăng tốc, xảy ra nhanh hơn',ph:'',type:'phrasal verb',lvl:'B1',syn:'accelerate'},
+    {w:'die out',vn:'diệt vong, không còn tồn tại',ph:'',type:'phrasal verb',lvl:'B2',syn:'become extinct'},
+    {w:'bounce back',vn:'hồi phục nhanh chóng',ph:'',type:'phrasal verb',lvl:'C1',syn:'recover quickly'},
+    {w:'stand for',vn:'viết tắt của; đại diện cho',ph:'',type:'phrasal verb',lvl:'B1',syn:'represent, abbreviate'},
+    {w:'stem from',vn:'xuất phát từ',ph:'',type:'phrasal verb',lvl:'C1',syn:'originate from'},
+    {w:'call off',vn:'hủy bỏ',ph:'',type:'phrasal verb',lvl:'B2',syn:'cancel'},
+    {w:'bring about',vn:'gây ra, mang lại cái gì',ph:'',type:'phrasal verb',lvl:'B2',syn:'cause'},
+    {w:'bring in',vn:'đưa ra (luật, quy định...); thu hút',ph:'',type:'phrasal verb',lvl:'B2',syn:'introduce; attract'},
+    {w:'bring up',vn:'nuôi dưỡng ai; đề cập, nhắc đến cái gì',ph:'',type:'phrasal verb',lvl:'B2',syn:'raise; mention'},
+    {w:'turn up',vn:'xuất hiện, đến',ph:'',type:'phrasal verb',lvl:'B2',syn:'arrive, appear'},
+    {w:'deal with',vn:'đối phó với ai/cái gì',ph:'',type:'phrasal verb',lvl:'A2',syn:'handle'},
+    {w:'break up',vn:'chia tay',ph:'',type:'phrasal verb',lvl:'B1',syn:'separate'},
+    {w:'pass away',vn:'chết, qua đời',ph:'',type:'phrasal verb',lvl:'B1',syn:'die'},
+    {w:'switch off',vn:'ngừng suy nghĩ đến điều gì; tắt cái gì',ph:'',type:'phrasal verb',lvl:'B2',syn:'stop thinking about; turn off'},
+    {w:'run into',vn:'tình cờ gặp ai đó; đâm vào ai/cái gì',ph:'',type:'phrasal verb',lvl:'B2',syn:'encounter; collide with'},
+    {w:'drop off',vn:'chìm vào giấc ngủ; giảm sút',ph:'',type:'phrasal verb',lvl:'B2',syn:'fall asleep; decrease'},
+    {w:'build up',vn:'tạo ra hoặc phát triển cái gì',ph:'',type:'phrasal verb',lvl:'B2',syn:'develop, accumulate'},
+    {w:'check out',vn:'thanh toán và rời khỏi khách sạn',ph:'',type:'phrasal verb',lvl:'B1',syn:'leave hotel'},
+    {w:'check in',vn:'đến lễ tân của khách sạn, sân bay, xác nhận đã đến',ph:'',type:'phrasal verb',lvl:'B1',syn:'register arrival'},
+    {w:'break in',vn:'xông vào tòa nhà; ngắt lời',ph:'',type:'phrasal verb',lvl:'B2',syn:'force entry; interrupt'},
+    {w:'note down',vn:'ghi chú, ghi lại',ph:'',type:'phrasal verb',lvl:'B1',syn:'write down'},
+    {w:'see through',vn:'nhận ra sự thật về ai/cái gì',ph:'',type:'phrasal verb',lvl:'C1',syn:'see the truth about'},
+    {w:'take on',vn:'thuê, tuyển dụng ai; đảm nhận công việc/trách nhiệm mới',ph:'',type:'phrasal verb',lvl:'B2',syn:'hire; undertake'},
+    {w:'catch on',vn:'trở nên phổ biến, thịnh hành; hiểu cái gì',ph:'',type:'phrasal verb',lvl:'B2',syn:'become popular; understand'},
+    {w:'seal off',vn:'phong toả',ph:'',type:'phrasal verb',lvl:'C1',syn:'cordon off'},
+    {w:'carry on',vn:'tiếp tục',ph:'',type:'phrasal verb',lvl:'A2',syn:'continue'},
+    {w:'hold on',vn:'chờ đợi; giữ',ph:'',type:'phrasal verb',lvl:'A2',syn:'wait; grip'},
+    {w:'give in',vn:'đồng ý, nhượng bộ',ph:'',type:'phrasal verb',lvl:'B2',syn:'surrender, yield'},
+    {w:'cool off',vn:'làm cho ai/cái gì mát hơn',ph:'',type:'phrasal verb',lvl:'B1',syn:'cool down'},
+    {w:'give out',vn:'hết sạch; ngừng hoạt động',ph:'',type:'phrasal verb',lvl:'B2',syn:'run out; stop working'},
+    {w:'hold off',vn:'(mưa, bão) không xảy ra',ph:'',type:'phrasal verb',lvl:'C1',syn:'not happen'},
+    {w:'fall over',vn:'ngã',ph:'',type:'phrasal verb',lvl:'A2',syn:'trip, topple'},
+    {w:'fall back',vn:'rút lui',ph:'',type:'phrasal verb',lvl:'B2',syn:'retreat'},
+    {w:'fall off',vn:'giảm xuống',ph:'',type:'phrasal verb',lvl:'B2',syn:'decrease'},
+    {w:'fall out',vn:'tranh cãi, có mối quan hệ xấu với ai',ph:'',type:'phrasal verb',lvl:'B2',syn:'quarrel, argue'},
+    {w:'hand in',vn:'nộp, giao nộp',ph:'',type:'phrasal verb',lvl:'B1',syn:'submit'},
+    {w:'show up',vn:'đến, có mặt',ph:'',type:'phrasal verb',lvl:'B1',syn:'arrive, appear'},
+    {w:'pass over',vn:'phớt lờ đi, tránh đi, bỏ qua',ph:'',type:'phrasal verb',lvl:'C1',syn:'ignore, overlook'},
+    {w:'catch up with',vn:'bắt kịp, đuổi kịp',ph:'',type:'phrasal verb',lvl:'B2',syn:'reach same level'},
+    {w:'come up to',vn:'đạt đến một tiêu chuẩn',ph:'',type:'phrasal verb',lvl:'C1',syn:'meet a standard'},
+    {w:'run over',vn:'đâm bằng phương tiện giao thông',ph:'',type:'phrasal verb',lvl:'B2',syn:'hit with vehicle'},
+    {w:'bring back',vn:'gợi lại, làm nhớ lại điều gì đó',ph:'',type:'phrasal verb',lvl:'B2',syn:'remind of, recall'},
+    {w:'put down',vn:'ngừng giữ, đặt xuống',ph:'',type:'phrasal verb',lvl:'A2',syn:'set down'},
+    {w:'put in',vn:'cài đặt, thiết lập',ph:'',type:'phrasal verb',lvl:'B2',syn:'install, set up'},
+    {w:'come between',vn:'ngăn ai đó làm điều gì họ thích',ph:'',type:'phrasal verb',lvl:'C1',syn:'interfere between'},
+    {w:'take out',vn:'loại bỏ, lấy ra',ph:'',type:'phrasal verb',lvl:'B1',syn:'remove'},
+    {w:'take after',vn:'giống',ph:'',type:'phrasal verb',lvl:'B2',syn:'resemble'},
+    {w:'fill out',vn:'điền vào',ph:'',type:'phrasal verb',lvl:'B1',syn:'complete a form'},
+    {w:'hold up',vn:'ách tắc, đình trệ',ph:'',type:'phrasal verb',lvl:'B2',syn:'delay'},
+    {w:'get on',vn:'thành công trong sự nghiệp',ph:'',type:'phrasal verb',lvl:'B2',syn:'succeed, progress'},
+    {w:'bring down',vn:'giảm',ph:'',type:'phrasal verb',lvl:'B2',syn:'reduce, lower'},
+    {w:'turn away',vn:'quay đi',ph:'',type:'phrasal verb',lvl:'B2',syn:'turn the other way'},
+    {w:'apply oneself to',vn:'làm việc / nghiên cứu kỹ lưỡng / chăm chỉ',ph:'',type:'phrasal verb',lvl:'C1',syn:'focus on'},
+    {w:'cut down on',vn:'cắt giảm',ph:'',type:'phrasal verb',lvl:'B2',syn:'reduce'},
+    {w:'wear off',vn:'dần dần biến mất hoặc dừng lại',ph:'',type:'phrasal verb',lvl:'B2',syn:'fade, diminish'},
+    {w:'drop by',vn:'ghé qua nơi nào',ph:'',type:'phrasal verb',lvl:'B2',syn:'visit briefly'},
+    {w:'pop in',vn:'ghé qua nơi nào',ph:'',type:'phrasal verb',lvl:'B2',syn:'drop by'},
+    {w:'sell out',vn:'(vé) được bán hết',ph:'',type:'phrasal verb',lvl:'B1',syn:'be fully booked'},
+    {w:'date back to',vn:'có niên đại từ khi nào',ph:'',type:'phrasal verb',lvl:'B2',syn:'originate from'},
+    {w:'think back on',vn:'hồi tưởng về cái gì',ph:'',type:'phrasal verb',lvl:'B2',syn:'remember, recall'},
+    {w:'talk back to',vn:'cãi lại ai',ph:'',type:'phrasal verb',lvl:'B1',syn:'answer back'},
+    {w:'care for',vn:'chăm sóc ai/cái gì',ph:'',type:'phrasal verb',lvl:'B1',syn:'look after'},
+    {w:'put away',vn:'cất cái gì',ph:'',type:'phrasal verb',lvl:'A2',syn:'store away'},
+    {w:'face up to',vn:'đối diện với cái gì',ph:'',type:'phrasal verb',lvl:'B2',syn:'confront'},
+    {w:'go in for',vn:'làm bài kiểm tra hoặc tham gia cuộc thi',ph:'',type:'phrasal verb',lvl:'B2',syn:'enter a competition'},
+    {w:'put through',vn:'kết nối với ai đó qua điện thoại',ph:'',type:'phrasal verb',lvl:'B2',syn:'connect by phone'},
+    {w:'knock down',vn:'đánh/tông ai đó và làm họ ngã',ph:'',type:'phrasal verb',lvl:'B2',syn:'hit and topple'},
+    {w:'bear out',vn:'cho thấy ai đó đúng hoặc điều gì đó đúng',ph:'',type:'phrasal verb',lvl:'C1',syn:'confirm, support'},
+    {w:'shrug off',vn:'cho qua, bỏ qua cái gì',ph:'',type:'phrasal verb',lvl:'C1',syn:'dismiss, ignore'},
+    {w:'blow over',vn:'biến mất mà không có ảnh hưởng nghiêm trọng',ph:'',type:'phrasal verb',lvl:'C1',syn:'pass'},
+    {w:'team up with',vn:'lập nhóm với ai, đứng về phe ai',ph:'',type:'phrasal verb',lvl:'B2',syn:'join forces with'},
+    {w:'fight off',vn:'chống lại ai/cái gì',ph:'',type:'phrasal verb',lvl:'B2',syn:'repel, resist'},
+    {w:'go out with',vn:'hẹn hò với ai',ph:'',type:'phrasal verb',lvl:'B1',syn:'date someone'},
+    {w:'engage in',vn:'tham gia vào một cái gì đó',ph:'',type:'phrasal verb',lvl:'B2',syn:'take part in'},
+    {w:'set up',vn:'thiết lập, thành lập cái gì đó',ph:'',type:'phrasal verb',lvl:'B1',syn:'establish, create'},
+    {w:'try out',vn:'kiểm tra ai/cái gì để xem chúng tốt như thế nào',ph:'',type:'phrasal verb',lvl:'B2',syn:'test, trial'},
+    {w:'walk away from',vn:'rời một tình huống hoặc mối quan hệ khó khăn',ph:'',type:'phrasal verb',lvl:'C1',syn:'leave a difficult situation'},
+    {w:'drop out of',vn:'bỏ học, không còn tham gia',ph:'',type:'phrasal verb',lvl:'B2',syn:'quit school'},
+    {w:'blow away',vn:'gây ấn tượng với ai đó rất nhiều',ph:'',type:'phrasal verb',lvl:'C1',syn:'amaze, impress greatly'},
+    {w:'look on',vn:'xem cái gì đó mà không tham gia vào',ph:'',type:'phrasal verb',lvl:'B2',syn:'watch passively'},
+    {w:'drift off',vn:'buồn ngủ',ph:'',type:'phrasal verb',lvl:'B2',syn:'fall asleep gradually'},
+    {w:'sit for an exam',vn:'tham gia một kỳ thi',ph:'',type:'phrasal verb',lvl:'B1',syn:'take an exam'},
+    {w:'water down',vn:'pha loãng',ph:'',type:'phrasal verb',lvl:'C1',syn:'dilute'},
+    {w:'come over',vn:'được hiểu thấu, gây ấn tượng',ph:'',type:'phrasal verb',lvl:'C1',syn:'be understood; impress'},
+    {w:'give off',vn:'toả ra',ph:'',type:'phrasal verb',lvl:'B2',syn:'emit, release'},
+    {w:'leave out',vn:'không bao gồm, không đề cập đến cái gì',ph:'',type:'phrasal verb',lvl:'B2',syn:'exclude, omit'},
+    {w:'turn on',vn:'bật',ph:'',type:'phrasal verb',lvl:'A2',syn:'switch on'},
+    {w:'make off',vn:'vội vàng bỏ đi',ph:'',type:'phrasal verb',lvl:'C1',syn:'hurry away'},
+    {w:'get out',vn:'được biết đến',ph:'',type:'phrasal verb',lvl:'B1',syn:'become known'},
+    {w:'put on',vn:'mặc cái gì; tổ chức (ca nhạc, kịch)',ph:'',type:'phrasal verb',lvl:'A2',syn:'wear; organize a show'},
+    {w:'put up',vn:'đề xuất, xây hoặc đặt cái gì; cho ai ở nhờ',ph:'',type:'phrasal verb',lvl:'B2',syn:'erect; accommodate'},
+    {w:'put aside',vn:'tiết kiệm tiền; bỏ qua hoặc quên điều gì',ph:'',type:'phrasal verb',lvl:'B2',syn:'save; set aside'},
   ]
 };
 
+// Count and display total
+const totalCount = Object.values(WORDS).flat().length;
+document.getElementById('total-words').textContent = totalCount + '+';
+
 /* ════ STATE ════ */
-let totalXP=0, level=1, streak=0;
-let mode='', cat='all';
-let queue=[], qIdx=0, qOk=0, qNo=0, roundXP=0;
-let timerID=null, timeLeft=15;
-let matchSel=null, matchDone=0;
+let totalXP=0,level=1,streak=0;
+let mode='',cat='all';
+let queue=[],qIdx=0,qOk=0,qNo=0,roundXP=0;
+let timerID=null,timeLeft=15;
+let matchSel=null,matchDone=0;
 const PER=8;
 const XP_MAP={quiz:10,vn2en:15,scramble:18,match:12};
 const TIMER_MAP={quiz:15,vn2en:15,scramble:25,match:9999};
@@ -506,17 +923,10 @@ const TIMER_MAP={quiz:15,vn2en:15,scramble:25,match:9999};
 /* ════ HELPERS ════ */
 const shuf=a=>[...a].sort(()=>Math.random()-.5);
 function getPool(c){return c==='all'?Object.values(WORDS).flat():(WORDS[c]||[]);}
-
 function showScreen(id){
-  ['screen-home','screen-game','screen-end'].forEach(s=>{
-    const el=document.getElementById(s);
-    el.classList.remove('active'); el.style.display='none';
-  });
-  const t=document.getElementById(id);
-  t.style.display='block';
-  requestAnimationFrame(()=>t.classList.add('active'));
+  ['screen-home','screen-game','screen-end'].forEach(s=>{const el=document.getElementById(s);el.classList.remove('active');el.style.display='none';});
+  const t=document.getElementById(id);t.style.display='block';requestAnimationFrame(()=>t.classList.add('active'));
 }
-
 function updateHUD(){
   const pct=((totalXP%100)/100)*100;
   document.getElementById('xp-fill').style.width=pct+'%';
@@ -524,78 +934,71 @@ function updateHUD(){
   document.getElementById('lvl-badge').textContent='Lv.'+level;
   document.getElementById('streak-val').textContent=streak;
 }
-function addXP(n){totalXP+=n; level=Math.floor(totalXP/100)+1; updateHUD();}
-function bumpStreak(ok){streak=ok?streak+1:0; document.getElementById('streak-val').textContent=streak;}
-
+function addXP(n){totalXP+=n;level=Math.floor(totalXP/100)+1;updateHUD();}
+function bumpStreak(ok){streak=ok?streak+1:0;document.getElementById('streak-val').textContent=streak;}
 function particle(x,y,ok){
   const list=ok?['✨','⚡','🌿','💚']:['💨','😬'];
   for(let i=0;i<5;i++){
-    const el=document.createElement('div'); el.className='ptcl';
+    const el=document.createElement('div');el.className='ptcl';
     el.textContent=list[Math.floor(Math.random()*list.length)];
-    const angle=Math.random()*Math.PI*2, dist=50+Math.random()*90;
-    el.style.left=x+'px'; el.style.top=y+'px';
+    const angle=Math.random()*Math.PI*2,dist=50+Math.random()*90;
+    el.style.left=x+'px';el.style.top=y+'px';
     el.style.setProperty('--dx',Math.cos(angle)*dist+'px');
     el.style.setProperty('--dy',Math.sin(angle)*dist+'px');
-    document.body.appendChild(el); setTimeout(()=>el.remove(),950);
+    document.body.appendChild(el);setTimeout(()=>el.remove(),950);
   }
 }
 function xpPop(x,y,n){
-  const el=document.createElement('div'); el.className='xp-pop';
-  el.textContent='+'+n+' XP'; el.style.left=x+'px'; el.style.top=y+'px';
-  document.body.appendChild(el); setTimeout(()=>el.remove(),1300);
+  const el=document.createElement('div');el.className='xp-pop';
+  el.textContent='+'+n+' XP';el.style.left=x+'px';el.style.top=y+'px';
+  document.body.appendChild(el);setTimeout(()=>el.remove(),1300);
 }
 
 /* ════ HOME ════ */
 document.querySelectorAll('.topic-pill').forEach(b=>{
-  b.addEventListener('click',()=>{
-    document.querySelectorAll('.topic-pill').forEach(x=>x.classList.remove('active'));
-    b.classList.add('active'); cat=b.dataset.cat;
-  });
+  b.addEventListener('click',()=>{document.querySelectorAll('.topic-pill').forEach(x=>x.classList.remove('active'));b.classList.add('active');cat=b.dataset.cat;});
 });
-document.querySelectorAll('.mode-card').forEach(c=>{
-  c.addEventListener('click',()=>{mode=c.dataset.mode; startGame();});
-});
-document.getElementById('back-btn').addEventListener('click',()=>{stopTimer(); showScreen('screen-home');});
+document.querySelectorAll('.mode-card').forEach(c=>{c.addEventListener('click',()=>{mode=c.dataset.mode;startGame();});});
+document.getElementById('back-btn').addEventListener('click',()=>{stopTimer();showScreen('screen-home');});
 document.getElementById('replay-btn').addEventListener('click',startGame);
 document.getElementById('home2-btn').addEventListener('click',()=>showScreen('screen-home'));
 
 /* ════ START ════ */
 function startGame(){
   const pool=getPool(cat);
-  queue=shuf(pool).slice(0,mode==='match'?8:PER);
-  qIdx=0; qOk=0; qNo=0; roundXP=0;
+  // filter out words too long for scramble
+  const usable = mode==='scramble' ? pool.filter(x=>!x.w.includes(' ')&&x.w.length<=12) : pool;
+  queue=shuf(usable).slice(0,mode==='match'?8:PER);
+  qIdx=0;qOk=0;qNo=0;roundXP=0;
   const labels={quiz:'Trắc nghiệm',vn2en:'Việt → Anh',scramble:'Xếp chữ cái',match:'Ghép đôi'};
   document.getElementById('mode-label-txt').textContent=labels[mode]||'';
   showScreen('screen-game');
   document.getElementById('sc-ok').textContent='0 đúng';
   document.getElementById('sc-no').textContent='0 sai';
-
   if(mode==='match'){
     document.getElementById('card-wrap').style.display='none';
     document.getElementById('match-area').style.display='block';
     document.getElementById('prog-dots').innerHTML='';
-    document.getElementById('q-cur').textContent='—'; document.getElementById('q-tot').textContent='—';
+    document.getElementById('q-cur').textContent='—';document.getElementById('q-tot').textContent='—';
     document.getElementById('fb-bar').className='fb-bar';
     document.getElementById('next-btn').className='next-btn';
-    stopTimer();
-    document.getElementById('timer-num').textContent='∞';
-    document.getElementById('timer-arc').style.strokeDashoffset='0';
+    stopTimer();document.getElementById('timer-num').textContent='∞';document.getElementById('timer-arc').style.strokeDashoffset='0';
     renderMatch();
   } else {
     document.getElementById('card-wrap').style.display='block';
     document.getElementById('match-area').style.display='none';
-    buildDots(); renderQ();
+    buildDots();renderQ();
   }
 }
 
 /* ════ DOTS ════ */
 function buildDots(){
-  const w=document.getElementById('prog-dots'); w.innerHTML='';
+  const w=document.getElementById('prog-dots');w.innerHTML='';
   queue.forEach((_,i)=>{const d=document.createElement('div');d.className='pdot'+(i===0?' cur':'');d.id='pd'+i;w.appendChild(d);});
 }
 function dotDone(i,ok){
-  const d=document.getElementById('pd'+i); if(d) d.className='pdot '+(ok?'ok':'no');
-  const n=document.getElementById('pd'+(i+1)); if(n) n.className='pdot cur';
+  const d=document.getElementById('pd'+i);if(d)d.className='pdot '+(ok?'ok':'no');
+  const n=document.getElementById('pd'+(i+1));if(n)n.className='pdot cur';
 }
 
 /* ════ RENDER Q ════ */
@@ -612,16 +1015,15 @@ function renderQ(){
   document.getElementById('word-level').textContent=it.lvl;
   document.getElementById('word-type').textContent=it.type;
   const ph=document.getElementById('word-phonetic');
-  ph.textContent=it.ph||''; ph.style.display=it.ph?'block':'none';
-
+  ph.textContent=it.ph||'';ph.style.display=it.ph?'block':'none';
   if(mode==='quiz'){
     document.getElementById('word-main').textContent=it.w;
     document.getElementById('word-prompt').textContent='Chọn nghĩa tiếng Việt đúng:';
-    renderQuizOpts(it);
+    renderOpts(it,'vn',getPool(cat).map(x=>x.vn));
   } else if(mode==='vn2en'){
     document.getElementById('word-main').textContent='???';
     document.getElementById('word-prompt').textContent='Nghĩa: '+it.vn;
-    renderVn2EnOpts(it);
+    renderOpts(it,'w',getPool(cat).map(x=>x.w));
   } else if(mode==='scramble'){
     document.getElementById('word-main').textContent='???';
     document.getElementById('word-prompt').textContent='Nghĩa: '+it.vn;
@@ -630,36 +1032,17 @@ function renderQ(){
   startTimer();
 }
 
-/* ── QUIZ ── */
-function renderQuizOpts(it){
-  const g=document.getElementById('opts-grid'); g.style.display='grid'; g.innerHTML='';
-  const pool=getPool(cat);
-  const wrongs=shuf(pool.filter(x=>x.vn!==it.vn)).slice(0,3).map(x=>x.vn);
-  shuf([it.vn,...wrongs]).forEach((o,i)=>{
-    const b=document.createElement('button'); b.className='opt';
+function renderOpts(it,key,allVals){
+  const g=document.getElementById('opts-grid');g.style.display='grid';g.innerHTML='';
+  const correct=it[key];
+  const wrongs=shuf(allVals.filter(x=>x!==correct)).slice(0,3);
+  shuf([correct,...wrongs]).forEach((o,i)=>{
+    const b=document.createElement('button');b.className='opt';
     b.innerHTML=`<span class="opt-key">${'ABCD'[i]}</span><span>${o}</span>`;
     b.addEventListener('click',e=>{
-      if(b.disabled) return;
-      const ok=o===it.vn;
-      document.querySelectorAll('.opt').forEach(x=>{x.disabled=true;const t=x.querySelector('span:last-child').textContent;if(t===it.vn)x.classList.add('opt-ok');else if(x===b&&!ok)x.classList.add('opt-no');});
-      handleResult(ok,it,e);
-    });
-    g.appendChild(b);
-  });
-}
-
-/* ── VN2EN ── */
-function renderVn2EnOpts(it){
-  const g=document.getElementById('opts-grid'); g.style.display='grid'; g.innerHTML='';
-  const pool=getPool(cat);
-  const wrongs=shuf(pool.filter(x=>x.w!==it.w)).slice(0,3).map(x=>x.w);
-  shuf([it.w,...wrongs]).forEach((o,i)=>{
-    const b=document.createElement('button'); b.className='opt';
-    b.innerHTML=`<span class="opt-key">${'ABCD'[i]}</span><span>${o}</span>`;
-    b.addEventListener('click',e=>{
-      if(b.disabled) return;
-      const ok=o===it.w;
-      document.querySelectorAll('.opt').forEach(x=>{x.disabled=true;const t=x.querySelector('span:last-child').textContent;if(t===it.w)x.classList.add('opt-ok');else if(x===b&&!ok)x.classList.add('opt-no');});
+      if(b.disabled)return;
+      const ok=o===correct;
+      document.querySelectorAll('.opt').forEach(x=>{x.disabled=true;const t=x.querySelector('span:last-child').textContent;if(t===correct)x.classList.add('opt-ok');else if(x===b&&!ok)x.classList.add('opt-no');});
       handleResult(ok,it,e);
     });
     g.appendChild(b);
@@ -668,37 +1051,34 @@ function renderVn2EnOpts(it){
 
 /* ── SCRAMBLE ── */
 function renderScramble(it){
-  const sw=document.getElementById('scr-wrap'); sw.style.display='block';
-  const ans=document.getElementById('ans-slots'); const tr=document.getElementById('tile-row');
-  ans.innerHTML=''; tr.innerHTML='';
+  const sw=document.getElementById('scr-wrap');sw.style.display='block';
+  const ans=document.getElementById('ans-slots');const tr=document.getElementById('tile-row');
+  ans.innerHTML='';tr.innerHTML='';
   const letters=shuf(it.w.toUpperCase().split(''));
   let chosen=[];
-
   it.w.split('').forEach((_,i)=>{
-    const s=document.createElement('div'); s.className='slot empty'; s.dataset.si=i;
+    const s=document.createElement('div');s.className='slot empty';s.dataset.si=i;
     s.addEventListener('click',()=>{
-      if(!s.textContent) return;
+      if(!s.textContent)return;
       const ti=parseInt(s.dataset.ti);
-      const idx=chosen.findIndex(c=>c.ti===ti); if(idx===-1) return;
+      const idx=chosen.findIndex(c=>c.ti===ti);if(idx===-1)return;
       chosen.splice(idx,1);
       Array.from(ans.children).forEach((sl,j)=>{if(chosen[j]){sl.textContent=chosen[j].ltr;sl.dataset.ti=chosen[j].ti;sl.classList.remove('empty');}else{sl.textContent='';sl.classList.add('empty');}});
-      const tile=tr.querySelector(`[data-ti="${ti}"]`); if(tile) tile.classList.remove('used');
+      const tile=tr.querySelector(`[data-ti="${ti}"]`);if(tile)tile.classList.remove('used');
     });
     ans.appendChild(s);
   });
-
   letters.forEach((ltr,i)=>{
-    const t=document.createElement('div'); t.className='tile'; t.textContent=ltr; t.dataset.ti=i;
+    const t=document.createElement('div');t.className='tile';t.textContent=ltr;t.dataset.ti=i;
     t.addEventListener('click',()=>{
-      if(t.classList.contains('used')) return;
-      const si=chosen.length; if(si>=it.w.length) return;
-      chosen.push({ltr,ti:i}); t.classList.add('used');
-      const slot=ans.children[si]; slot.textContent=ltr; slot.classList.remove('empty'); slot.dataset.ti=i;
+      if(t.classList.contains('used'))return;
+      const si=chosen.length;if(si>=it.w.length)return;
+      chosen.push({ltr,ti:i});t.classList.add('used');
+      const slot=ans.children[si];slot.textContent=ltr;slot.classList.remove('empty');slot.dataset.ti=i;
       if(chosen.length===it.w.length){
         const formed=chosen.map(c=>c.ltr).join('').toLowerCase();
-        if(formed===it.w.toLowerCase()){
-          handleResult(true,it,null);
-        } else {
+        if(formed===it.w.toLowerCase()){handleResult(true,it,null);}
+        else{
           Array.from(ans.children).forEach(s=>s.style.color='var(--red)');
           setTimeout(()=>{chosen.length=0;Array.from(ans.children).forEach(s=>{s.textContent='';s.className='slot empty';s.style.color='';});Array.from(tr.children).forEach(t=>t.classList.remove('used'));},650);
         }
@@ -710,39 +1090,38 @@ function renderScramble(it){
 
 /* ── MATCH ── */
 function renderMatch(){
-  matchSel=null; matchDone=0;
+  matchSel=null;matchDone=0;
   const items=queue;
-  const wCol=document.getElementById('match-words'); const dCol=document.getElementById('match-defs');
-  wCol.innerHTML=''; dCol.innerHTML='';
+  const wCol=document.getElementById('match-words');const dCol=document.getElementById('match-defs');
+  wCol.innerHTML='';dCol.innerHTML='';
   const shuffled=shuf(items.map((it,i)=>({vn:it.vn,idx:i})));
   items.forEach((it,i)=>{
-    const el=document.createElement('div'); el.className='match-item';
-    el.textContent=it.w; el.dataset.idx=i; el.dataset.type='w';
+    const el=document.createElement('div');el.className='match-item';
+    el.textContent=it.w;el.dataset.idx=i;el.dataset.type='w';
     el.addEventListener('click',()=>matchClick(el,i,'w',items));
     wCol.appendChild(el);
   });
   shuffled.forEach(({vn,idx})=>{
-    const el=document.createElement('div'); el.className='match-item';
-    el.textContent=vn; el.dataset.idx=idx; el.dataset.type='d';
+    const el=document.createElement('div');el.className='match-item';
+    el.textContent=vn;el.dataset.idx=idx;el.dataset.type='d';
     el.addEventListener('click',()=>matchClick(el,idx,'d',items));
     dCol.appendChild(el);
   });
 }
-
 function matchClick(el,idx,type,items){
-  if(el.classList.contains('matched')) return;
-  if(!matchSel){el.classList.add('sel'); matchSel={el,idx,type}; return;}
-  if(matchSel.type===type){matchSel.el.classList.remove('sel'); el.classList.add('sel'); matchSel={el,idx,type}; return;}
+  if(el.classList.contains('matched'))return;
+  if(!matchSel){el.classList.add('sel');matchSel={el,idx,type};return;}
+  if(matchSel.type===type){matchSel.el.classList.remove('sel');el.classList.add('sel');matchSel={el,idx,type};return;}
   const ok=matchSel.idx===idx;
   matchSel.el.classList.remove('sel');
   if(ok){
     [el,matchSel.el].forEach(e=>e.classList.add('matched'));
-    matchDone++; qOk++;
-    const n=XP_MAP.match; roundXP+=n; addXP(n); bumpStreak(true);
+    matchDone++;qOk++;
+    const n=XP_MAP.match;roundXP+=n;addXP(n);bumpStreak(true);
     document.getElementById('sc-ok').textContent=qOk+' đúng';
     particle(el.getBoundingClientRect().left+40,el.getBoundingClientRect().top,true);
     xpPop(el.getBoundingClientRect().left+40,el.getBoundingClientRect().top,n);
-    if(matchDone===items.length) setTimeout(endGame,700);
+    if(matchDone===items.length)setTimeout(endGame,700);
   } else {
     [el,matchSel.el].forEach(e=>e.classList.add('wrong'));
     bumpStreak(false);
@@ -753,13 +1132,13 @@ function matchClick(el,idx,type,items){
 
 /* ════ RESULT ════ */
 function handleResult(ok,it,e){
-  stopTimer(); dotDone(qIdx,ok);
-  if(ok) qOk++; else qNo++;
+  stopTimer();dotDone(qIdx,ok);
+  if(ok)qOk++;else qNo++;
   document.getElementById('sc-ok').textContent=qOk+' đúng';
   document.getElementById('sc-no').textContent=qNo+' sai';
-  const n=ok?XP_MAP[mode]:0; if(ok){roundXP+=n; addXP(n);} bumpStreak(ok);
+  const n=ok?XP_MAP[mode]:0;if(ok){roundXP+=n;addXP(n);}bumpStreak(ok);
   const card=document.getElementById('word-card');
-  card.classList.add(ok?'flash-ok':'flash-no'); setTimeout(()=>card.classList.remove('flash-ok','flash-no'),600);
+  card.classList.add(ok?'flash-ok':'flash-no');setTimeout(()=>card.classList.remove('flash-ok','flash-no'),600);
   const fb=document.getElementById('fb-bar');
   if(ok){
     fb.className='fb-bar ok show';
@@ -767,46 +1146,45 @@ function handleResult(ok,it,e){
     document.getElementById('fb-main').textContent='Chính xác! "'+it.w+'"';
     document.getElementById('fb-vn').textContent='Nghĩa: '+it.vn;
     document.getElementById('fb-syn').textContent=it.syn?'Từ đồng nghĩa: '+it.syn:'';
-    if(e){particle(e.clientX,e.clientY,true); xpPop(e.clientX,e.clientY-20,n);}
+    if(e){particle(e.clientX,e.clientY,true);xpPop(e.clientX,e.clientY-20,n);}
   } else {
     fb.className='fb-bar no show';
     document.getElementById('fb-icon').textContent='❌';
     document.getElementById('fb-main').textContent='Chưa đúng! "'+it.w+'" nghĩa là:';
     document.getElementById('fb-vn').textContent=it.vn;
     document.getElementById('fb-syn').textContent=it.syn?'Từ đồng nghĩa: '+it.syn:'';
-    if(e) particle(e.clientX,e.clientY,false);
+    if(e)particle(e.clientX,e.clientY,false);
   }
   document.getElementById('next-btn').className='next-btn show';
 }
-
-document.getElementById('next-btn').addEventListener('click',()=>{qIdx++; qIdx>=queue.length?endGame():renderQ();});
+document.getElementById('next-btn').addEventListener('click',()=>{qIdx++;qIdx>=queue.length?endGame():renderQ();});
 
 /* ════ TIMER ════ */
 function startTimer(){
   stopTimer();
   const secs=TIMER_MAP[mode];
-  if(secs>=9999){document.getElementById('timer-num').textContent='∞'; document.getElementById('timer-arc').style.strokeDashoffset='0'; return;}
+  if(secs>=9999){document.getElementById('timer-num').textContent='∞';document.getElementById('timer-arc').style.strokeDashoffset='0';return;}
   timeLeft=secs;
-  const arc=document.getElementById('timer-arc'); const num=document.getElementById('timer-num');
-  arc.style.strokeDashoffset='0'; arc.style.stroke='#a8e063'; num.textContent=timeLeft;
+  const arc=document.getElementById('timer-arc');const num=document.getElementById('timer-num');
+  arc.style.strokeDashoffset='0';arc.style.stroke='#a8e063';num.textContent=timeLeft;
   timerID=setInterval(()=>{
-    timeLeft--; num.textContent=timeLeft;
+    timeLeft--;num.textContent=timeLeft;
     arc.style.strokeDashoffset=(125.6*(1-timeLeft/secs)).toFixed(1);
-    if(timeLeft<=5) arc.style.stroke='var(--red)';
-    if(timeLeft<=0){stopTimer(); handleResult(false,queue[qIdx],null); document.getElementById('fb-main').textContent='Hết giờ! "'+queue[qIdx].w+'" nghĩa là:';}
+    if(timeLeft<=5)arc.style.stroke='var(--red)';
+    if(timeLeft<=0){stopTimer();handleResult(false,queue[qIdx],null);document.getElementById('fb-main').textContent='Hết giờ! "'+queue[qIdx].w+'" nghĩa là:';}
   },1000);
 }
 function stopTimer(){clearInterval(timerID);}
 
 /* ════ END ════ */
 function endGame(){
-  stopTimer(); showScreen('screen-end');
-  const total=queue.length, acc=Math.round((qOk/total)*100)||0;
+  stopTimer();showScreen('screen-end');
+  const total=queue.length,acc=Math.round((qOk/total)*100)||0;
   const ranks=[
-    {min:90,emoji:'🏆',title:'Xuất sắc!',   sub:'Trí nhớ sắc bén — bạn thật tuyệt vời!'},
-    {min:75,emoji:'🌟',title:'Giỏi lắm!',   sub:'Tiếp tục luyện để giữ phong độ nhé!'},
-    {min:55,emoji:'👍',title:'Tốt đấy!',    sub:'Ôn lại những từ sai và thử lại nhé!'},
-    {min:0, emoji:'💪',title:'Cố lên!',     sub:'Mỗi lần sai là một lần học — đừng bỏ cuộc!'},
+    {min:90,emoji:'🏆',title:'Xuất sắc!',sub:'Trí nhớ sắc bén — bạn thật tuyệt vời!'},
+    {min:75,emoji:'🌟',title:'Giỏi lắm!',sub:'Tiếp tục luyện để giữ phong độ nhé!'},
+    {min:55,emoji:'👍',title:'Tốt đấy!',sub:'Ôn lại những từ sai và thử lại nhé!'},
+    {min:0,emoji:'💪',title:'Cố lên!',sub:'Mỗi lần sai là một lần học — đừng bỏ cuộc!'},
   ];
   const r=ranks.find(x=>acc>=x.min);
   document.getElementById('end-emoji').textContent=r.emoji;
